@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="currencies">
+        <item>@string/currency_usd</item>
+        <item>@string/currency_bond</item>
+        <item>@string/currency_rtgs</item>
+    </string-array>
+
+</resources>

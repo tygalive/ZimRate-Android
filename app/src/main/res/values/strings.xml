@@ -1,0 +1,15 @@
+<resources>
+    <string translatable="false" name="app_name">My Rate Calculator</string>
+
+    <string translatable="false" name="current_rate">$1 USD =</string>
+    <string name="calc_amount">Amount</string>
+    <string name="app_info">Enter the current days rate below.</string>
+    <string name="amount_info">Enter the amount you want to calculate.</string>
+    <string name="result_info">Calculation Results.</string>
+
+    <string translatable="false" name="currency_usd">USD</string>
+    <string translatable="false"  name="currency_bond">Bond</string>
+    <string translatable="false"  name="currency_rtgs">Rtgs</string>
+
+    <string translatable="false" name="result">$%1$10.2f %2$s = $%3$10.2f %4$s</string>
+</resources>
