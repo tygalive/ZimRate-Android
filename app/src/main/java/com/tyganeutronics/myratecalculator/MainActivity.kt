@@ -8,10 +8,7 @@ import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.LinearLayoutCompat
 import com.tyganeutronics.base.BaseUtils
-import com.tyganeutronics.myratecalculator.models.BOND
-import com.tyganeutronics.myratecalculator.models.Currency
-import com.tyganeutronics.myratecalculator.models.RTGS
-import com.tyganeutronics.myratecalculator.models.USD
+import com.tyganeutronics.myratecalculator.models.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.result_layout.view.*
 
@@ -33,19 +30,28 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
                 "1"
             )
         )
+        calc_rbz.text?.append(
+            BaseUtils.getPrefs(this).getString(
+                getString(R.string.currency_rbz),
+                "1"
+            )
+        )
 
         calc_bond.addTextChangedListener(this)
         calc_rtgs.addTextChangedListener(this)
+        calc_rbz.addTextChangedListener(this)
         calc_amount.addTextChangedListener(this)
 
         calc_amount.text?.append(
             BaseUtils.getPrefs(this).getString(
-                getString(R.string.currency_usd),
+                "amount",
                 "1"
             )
         )
 
         calc_currency.onItemSelectedListener = this
+
+        calc_currency.setSelection(BaseUtils.getPrefs(this).getInt("currency", 0))
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -72,6 +78,7 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
 
         var bondText = calc_bond.text?.toString()
         var rtgsText = calc_rtgs.text?.toString()
+        var rbzText = calc_rbz.text?.toString()
 
         if (bondText == null || bondText.isEmpty()) {
             bondText = "1"
@@ -79,15 +86,21 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
         if (rtgsText == null || rtgsText.isEmpty()) {
             rtgsText = "1"
         }
+        if (rbzText == null || rbzText.isEmpty()) {
+            rbzText = "1"
+        }
 
         BaseUtils.getPrefs(this).edit().putString(getString(R.string.currency_bond), bondText)
             .apply()
         BaseUtils.getPrefs(this).edit().putString(getString(R.string.currency_rtgs), rtgsText)
             .apply()
+        BaseUtils.getPrefs(this).edit().putString(getString(R.string.currency_rbz), rbzText)
+            .apply()
 
         var usd = USD(1.0)
         var bond = BOND(bondText.toDouble())
         var rtgs = RTGS(rtgsText.toDouble())
+        var rbz = RBZ(rbzText.toDouble())
 
         var currency: Currency = usd
         when (calc_currency.selectedItem) {
@@ -100,9 +113,12 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
             getString(R.string.currency_rtgs) -> {
                 currency = rtgs
             }
+            getString(R.string.currency_rbz) -> {
+                currency = rbz
+            }
         }
 
-        return Calculator(usd, bond, rtgs, currency)
+        return Calculator(usd, bond, rtgs, rbz, currency)
     }
 
     private fun calculate() {
@@ -114,7 +130,9 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
         if (amountText.isNotEmpty()) {
 
             //save amount entered
-            BaseUtils.getPrefs(this).edit().putString(getString(R.string.currency_usd), amountText)
+            BaseUtils.getPrefs(this).edit().putString("amount", amountText)
+                .apply()
+            BaseUtils.getPrefs(this).edit().putInt("currency", calc_currency.selectedItemPosition)
                 .apply()
 
             calc_result_layout.removeAllViews()
@@ -148,6 +166,16 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
                     getString(R.string.currency_rtgs)
                 )
             )
+
+            add_result(
+                getString(
+                    R.string.result,
+                    amountText.toDouble(),
+                    calc_currency.selectedItem,
+                    calculator.toRBZ(amountText.toDouble()),
+                    getString(R.string.currency_rbz)
+                )
+            )
         }
 
     }
@@ -161,7 +189,7 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
                 false
             ) as LinearLayoutCompat
 
-         resultLayout.result_text.text = result
+        resultLayout.result_text.text = result
 
         calc_result_layout.addView(resultLayout)
     }
