@@ -7,6 +7,7 @@ class Calculator constructor(
     var bond: BOND,
     var rtgs: RTGS,
     var rbz: RBZ,
+    var rand: RAND,
     var currency: Currency
 ) {
 
@@ -26,7 +27,12 @@ class Calculator constructor(
         return toCurrency(rbz, amount)
     }
 
+    fun toRAND(amount: Double): Double {
+        return toCurrency(rand, amount)
+    }
+
     protected fun toCurrency(current: Currency, amount: Double): Double {
         return amount.times(current.rate).div(currency.rate)
     }
+
 }

@@ -3,7 +3,7 @@
 
     <string translatable="false" name="current_rate">$1 USD =</string>
     <string name="calc_amount">Amount</string>
-    <string name="app_info">Enter the current days rate below.</string>
+    <string name="app_info">Enter the current days rates below.</string>
     <string name="amount_info">Enter the amount you want to calculate.</string>
     <string name="result_info">Calculation Results.</string>
 
@@ -11,6 +11,7 @@
     <string translatable="false"  name="currency_bond">Bond</string>
     <string translatable="false"  name="currency_rtgs">Rtgs</string>
     <string name="currency_rbz" translatable="false">Rbz</string>
+    <string name="currency_rand" translatable="false">Rands</string>
 
-    <string translatable="false" name="result">$%1$10.2f %2$s = $%3$10.2f %4$s</string>
+    <string name="result" translatable="false">%1$s%2$10.2f %3$s = %4$s%5$10.2f %6$s</string>
 </resources>

@@ -21,7 +21,8 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/space_20dp"
+            android:paddingStart="@dimen/space_20dp"
+            android:paddingEnd="@dimen/space_20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -49,7 +50,8 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/space_20dp"
+            android:paddingStart="@dimen/space_20dp"
+            android:paddingEnd="@dimen/space_20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -77,7 +79,8 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/space_20dp"
+            android:paddingStart="@dimen/space_20dp"
+            android:paddingEnd="@dimen/space_20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -94,6 +97,35 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/calc_rbz"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/space_20dp"
+            android:paddingEnd="@dimen/space_20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_10dp"
+                android:layout_marginRight="@dimen/space_10dp"
+                android:text="@string/current_rate" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/currency_rand">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/calc_rand"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal" />
@@ -119,7 +151,8 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/space_20dp"
+            android:paddingStart="@dimen/space_20dp"
+            android:paddingEnd="@dimen/space_20dp"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout

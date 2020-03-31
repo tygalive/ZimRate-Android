@@ -36,10 +36,17 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
                 "1"
             )
         )
+        calc_rand.text?.append(
+            BaseUtils.getPrefs(this).getString(
+                getString(R.string.currency_rand),
+                "1"
+            )
+        )
 
         calc_bond.addTextChangedListener(this)
         calc_rtgs.addTextChangedListener(this)
         calc_rbz.addTextChangedListener(this)
+        calc_rand.addTextChangedListener(this)
         calc_amount.addTextChangedListener(this)
 
         calc_currency.onItemSelectedListener = this
@@ -79,6 +86,7 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
         var bondText = calc_bond.text?.toString()
         var rtgsText = calc_rtgs.text?.toString()
         var rbzText = calc_rbz.text?.toString()
+        var randText = calc_rand.text?.toString()
 
         if (bondText == null || bondText.isEmpty()) {
             bondText = "1"
@@ -89,6 +97,9 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
         if (rbzText == null || rbzText.isEmpty()) {
             rbzText = "1"
         }
+        if (randText == null || randText.isEmpty()) {
+            randText = "1"
+        }
 
         BaseUtils.getPrefs(this).edit().putString(getString(R.string.currency_bond), bondText)
             .apply()
@@ -96,11 +107,14 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
             .apply()
         BaseUtils.getPrefs(this).edit().putString(getString(R.string.currency_rbz), rbzText)
             .apply()
+        BaseUtils.getPrefs(this).edit().putString(getString(R.string.currency_rand), randText)
+            .apply()
 
         var usd = USD(1.0)
         var bond = BOND(bondText.toDouble())
         var rtgs = RTGS(rtgsText.toDouble())
         var rbz = RBZ(rbzText.toDouble())
+        var rand = RAND(randText.toDouble())
 
         var currency: Currency = usd
         when (calc_currency.selectedItem) {
@@ -116,9 +130,12 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
             getString(R.string.currency_rbz) -> {
                 currency = rbz
             }
+            getString(R.string.currency_rand) -> {
+                currency = rand
+            }
         }
 
-        return Calculator(usd, bond, rtgs, rbz, currency)
+        return Calculator(usd, bond, rtgs, rbz, rand, currency)
     }
 
     private fun calculate() {
@@ -140,40 +157,60 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
             add_result(
                 getString(
                     R.string.result,
+                    calculator.currency.getSign(),
                     amountText.toDouble(),
                     calc_currency.selectedItem,
+                    calculator.usd.getSign(),
                     calculator.toUSD(amountText.toDouble()),
-                    getString(R.string.currency_usd)
+                    getString(calculator.usd.getName())
                 )
             )
 
             add_result(
                 getString(
                     R.string.result,
+                    calculator.currency.getSign(),
                     amountText.toDouble(),
                     calc_currency.selectedItem,
+                    calculator.bond.getSign(),
                     calculator.toBOND(amountText.toDouble()),
-                    getString(R.string.currency_bond)
+                    getString(calculator.bond.getName())
                 )
             )
 
             add_result(
                 getString(
                     R.string.result,
+                    calculator.currency.getSign(),
                     amountText.toDouble(),
                     calc_currency.selectedItem,
+                    calculator.rtgs.getSign(),
                     calculator.toRTGS(amountText.toDouble()),
-                    getString(R.string.currency_rtgs)
+                    getString(calculator.rtgs.getName())
                 )
             )
 
             add_result(
                 getString(
                     R.string.result,
+                    calculator.currency.getSign(),
                     amountText.toDouble(),
                     calc_currency.selectedItem,
+                    calculator.rbz.getSign(),
                     calculator.toRBZ(amountText.toDouble()),
-                    getString(R.string.currency_rbz)
+                    getString(calculator.rbz.getName())
+                )
+            )
+
+            add_result(
+                getString(
+                    R.string.result,
+                    calculator.currency.getSign(),
+                    amountText.toDouble(),
+                    calc_currency.selectedItem,
+                    calculator.rand.getSign(),
+                    calculator.toRAND(amountText.toDouble()),
+                    getString(calculator.rand.getName())
                 )
             )
         }
