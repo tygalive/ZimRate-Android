@@ -42,16 +42,16 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
         calc_rbz.addTextChangedListener(this)
         calc_amount.addTextChangedListener(this)
 
+        calc_currency.onItemSelectedListener = this
+
+        calc_currency.setSelection(BaseUtils.getPrefs(this).getInt("currency", 0))
+
         calc_amount.text?.append(
             BaseUtils.getPrefs(this).getString(
                 "amount",
                 "1"
             )
         )
-
-        calc_currency.onItemSelectedListener = this
-
-        calc_currency.setSelection(BaseUtils.getPrefs(this).getInt("currency", 0))
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
