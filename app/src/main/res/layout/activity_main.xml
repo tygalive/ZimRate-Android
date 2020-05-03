@@ -1,202 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/space_10dp"
-            android:text="@string/app_info"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/space_20dp"
-            android:paddingEnd="@dimen/space_20dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/space_10dp"
-                android:layout_marginRight="@dimen/space_10dp"
-                android:text="@string/current_rate" />
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/space_10dp"
+                android:text="@string/app_info"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/currency_bond">
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/space_20dp"
+                android:paddingEnd="@dimen/space_20dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_bond"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_10dp"
+                    android:layout_marginRight="@dimen/space_10dp"
+                    android:text="@string/current_rate" />
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
+                    android:hint="@string/currency_bond">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/calc_bond"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/space_20dp"
-            android:paddingEnd="@dimen/space_20dp"
-            android:orientation="horizontal">
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/space_20dp"
+                android:paddingEnd="@dimen/space_20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_10dp"
+                    android:layout_marginRight="@dimen/space_10dp"
+                    android:text="@string/current_rate" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/currency_rtgs">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/calc_rtgs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/space_20dp"
+                android:paddingEnd="@dimen/space_20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_10dp"
+                    android:layout_marginRight="@dimen/space_10dp"
+                    android:text="@string/current_rate" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/currency_rbz">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/calc_rbz"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/space_20dp"
+                android:paddingEnd="@dimen/space_20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_10dp"
+                    android:layout_marginRight="@dimen/space_10dp"
+                    android:text="@string/current_rate" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/currency_rand">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/calc_rand"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/space_10dp"
-                android:layout_marginRight="@dimen/space_10dp"
-                android:text="@string/current_rate" />
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/space_10dp"
+                android:text="@string/amount_info"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-            <com.google.android.material.textfield.TextInputLayout
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/currency_rtgs">
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/space_20dp"
+                android:paddingEnd="@dimen/space_20dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_rtgs"
-                    android:layout_width="match_parent"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
+                    android:layout_weight="2"
+                    android:hint="@string/calc_amount">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/calc_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/space_20dp"
-            android:paddingEnd="@dimen/space_20dp"
-            android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/calc_currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/currencies" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/space_10dp"
-                android:layout_marginRight="@dimen/space_10dp"
-                android:text="@string/current_rate" />
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/space_10dp"
+                android:text="@string/result_info"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/calc_result_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/currency_rbz">
+                android:layout_margin="@dimen/space_10dp"
+                android:orientation="vertical" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_rbz"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
+        </LinearLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
+    </ScrollView>
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+    <include layout="@layout/ads_view" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/space_20dp"
-            android:paddingEnd="@dimen/space_20dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/space_10dp"
-                android:layout_marginRight="@dimen/space_10dp"
-                android:text="@string/current_rate" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/currency_rand">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_rand"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/space_10dp"
-            android:text="@string/amount_info"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/space_20dp"
-            android:paddingEnd="@dimen/space_20dp"
-            android:orientation="horizontal">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:hint="@string/calc_amount">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_amount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/calc_currency"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/currencies" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/space_10dp"
-            android:text="@string/result_info"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/calc_result_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/space_10dp"
-            android:orientation="vertical" />
-
-    </LinearLayout>
-
-</ScrollView>
+</androidx.appcompat.widget.LinearLayoutCompat>

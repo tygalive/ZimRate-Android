@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "517253029311",
+    "firebase_url": "https://my-rate-calculator.firebaseio.com",
+    "project_id": "my-rate-calculator",
+    "storage_bucket": "my-rate-calculator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517253029311:android:a0670fad299c0501e0550a",
+        "android_client_info": {
+          "package_name": "com.tyganeutronics.myratecalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517253029311-296i2g95i3l76ehug4bt1jpkqnrophlh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAagb8YmgaKKEBECtsfG3pkkbxw57zBjrc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517253029311-296i2g95i3l76ehug4bt1jpkqnrophlh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,8 +9,6 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -27,7 +25,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    buildToolsVersion = '28.0.3'
+    buildToolsVersion = '29.0.3'
 
 }
 
@@ -41,5 +39,5 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
 
     //Android 8 Date time backport
-    api 'com.jakewharton.threetenabp:threetenabp:1.2.2'
+    api 'com.jakewharton.threetenabp:threetenabp:1.2.4'
 }

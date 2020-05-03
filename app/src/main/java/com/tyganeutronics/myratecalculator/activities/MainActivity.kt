@@ -1,18 +1,19 @@
-package com.tyganeutronics.myratecalculator
+package com.tyganeutronics.myratecalculator.activities
 
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.LinearLayoutCompat
 import com.tyganeutronics.base.BaseUtils
+import com.tyganeutronics.myratecalculator.Calculator
+import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.models.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.result_layout.view.*
 
-class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelectedListener {
+class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -135,7 +136,14 @@ class MainActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemSelecte
             }
         }
 
-        return Calculator(usd, bond, rtgs, rbz, rand, currency)
+        return Calculator(
+            usd,
+            bond,
+            rtgs,
+            rbz,
+            rand,
+            currency
+        )
     }
 
     private fun calculate() {

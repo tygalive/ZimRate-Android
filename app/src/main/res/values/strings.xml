@@ -14,4 +14,7 @@
     <string name="currency_rand" translatable="false">Rands</string>
 
     <string name="result" translatable="false">%1$s%2$10.2f %3$s = %4$s%5$10.2f %6$s</string>
+
+    <string name="ads_id" translatable="false">ca-app-pub-5305936235957258/6604376845</string>
+    <string name="ads_app_id" translatable="false">ca-app-pub-5305936235957258~9422111874</string>
 </resources>

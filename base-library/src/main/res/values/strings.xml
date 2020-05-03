@@ -1,3 +1,58 @@
 <resources>
+    <string name="linkFaceBook" translatable="false">richard.muvirimi</string>
+    <string name="linkGitHub" translatable="false">tygalive</string>
+    <string name="linkGooglePlus" translatable="false">u/0/102715930013074857419</string>
+    <string name="linkPlayStoreApps" translatable="false">Tyga Neutronics</string>
+    <string name="linkPlayStoreDev" translatable="false">4619823602934104438</string>
+    <string name="linkTel" translatable="false">+263717522788</string>
+    <string name="linkTwitter" translatable="false">Yang_Richyy</string>
+    <string name="linkWebSite" translatable="false">https://tyganeutronics.wordpress.com</string>
+    <string name="linkYouTube" translatable="false">UC5rQScP8BWDiFaHnzAyfMhw</string>
+    <string name="linkEmail" translatable="false">tygalive@gmail.com</string>
+    <string name="linkSkype" translatable="false">tygalive_1</string>
 
+    <!--Pinterest-->
+    <string name="linkPInterest" translatable="false">https://www.pinterest.com/richardmuvirimi/</string>
+    <string name="linkPInterestTitle" translatable="false">Pinterest</string>
+
+    <!--LinkedIn-->
+    <string name="linkLinkedIn" translatable="false">richard-muvirimi-0a7744123/</string>
+    <string name="linkedin" translatable="false">LinkedIn</string>
+
+    <!--Stack over flow-->
+    <string name="linkStackOverFlow" translatable="false">https://stackoverflow.com/users/5956589/richard-muvirimi</string>
+    <string name="linkStackOverFlowTitle" translatable="false">Stack OverFlow</string>
+
+    <!--Quora-->
+    <string name="linkQuora" translatable="false">https://www.quora.com/profile/Richard-Muvirimi</string>
+    <string name="linkQuoraTitle" translatable="false">Quora</string>
+
+    <!--Reddit-->
+    <string name="linkReddit" translatable="false">https://www.reddit.com/user/tygalive</string>
+    <string name="linkRedditTitle" translatable="false">Reddit</string>
+
+    <!--WordPress-->
+    <string name="linkWordPress" translatable="false">https://profiles.wordpress.org/tygalive/</string>
+    <string name="linkWordPressTitle" translatable="false">WordPress</string>
+
+    <!--Phone-->
+    <string name="linkPhone" translatable="false">tel:+263774790262</string>
+    <string name="linkPhoneTitle" translatable="false">Call</string>
+
+    <!--Fiverr-->
+    <string name="linkFiverr" translatable="false">https://www.fiverr.com/richardmuvirimi</string>
+    <string name="linkFiverrTitle" translatable="false">Fiverr</string>
+
+    <!--Freelancer-->
+    <string name="linkFreeLancer" translatable="false">https://www.freelancer.com/u/tygalive.html</string>
+    <string name="linkFreeLancerTitle" translatable="false">Freelancer</string>
+
+    <!--Whatsapp-->
+    <string name="linkWhatsApp" translatable="false">+263774790262</string>
+    <string name="linkWhatsAppTitle" translatable="false">Richard Muvirimi</string>
+
+    <!--Daveloper details-->
+    <string name="devBrief">A confectionery baker during the day and at night a solo freelancing Web, Android and Windows enthusiast Developer.\n\nPlease feel free to contact me below if you have any issue, query or suggestions.</string>
+    <string name="devName" translatable="false">Richard Muvirimi</string>
+    <string name="devTitle">Software Developer</string>
 </resources>

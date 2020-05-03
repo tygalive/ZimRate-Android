@@ -8,12 +8,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/result_text"
-        android:textColor="@android:color/black"
         android:gravity="center_vertical"
         android:layout_margin="@dimen/space_5dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:drawableStart="@drawable/ic_result"
-        android:drawableLeft="@drawable/ic_result"
+        android:drawableStart="?attr/ic_result"
+        android:drawableLeft="?attr/ic_result"
         />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
