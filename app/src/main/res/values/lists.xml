@@ -3,10 +3,39 @@
 
     <string-array name="currencies">
         <item>@string/currency_usd</item>
-        <item>@string/currency_rand</item>
         <item>@string/currency_bond</item>
-        <item>@string/currency_rtgs</item>
+        <item>@string/currency_omir</item>
         <item>@string/currency_rbz</item>
+        <item>@string/currency_rtgs</item>
+        <item>@string/currency_rand</item>
+    </string-array>
+
+    <string-array name="preferred">
+        <item>@string/preferred_mean</item>
+        <item>@string/preferred_min</item>
+        <item>@string/preferred_max</item>
+    </string-array>
+
+    <string-array name="preferred_values">
+        <item>@string/prefer_mean</item>
+        <item>@string/prefer_min</item>
+        <item>@string/prefer_max</item>
+    </string-array>
+
+    <string-array name="update_interval">
+        <item>@string/update_hourly</item>
+        <item>@string/update_hour_two</item>
+        <item>@string/update_hour_six</item>
+        <item>@string/update_hour_twelve</item>
+        <item>@string/update_daily</item>
+    </string-array>
+
+    <string-array name="update_interval_values">
+        <item>1</item>
+        <item>2</item>
+        <item>6</item>
+        <item>12</item>
+        <item>24</item>
     </string-array>
 
 </resources>

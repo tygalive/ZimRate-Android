@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/settings">
+
+        <ListPreference
+            android:defaultValue="@string/prefer_mean"
+            android:entries="@array/preferred"
+            android:entryValues="@array/preferred_values"
+            android:icon="?attr/ic_result"
+            android:key="@string/preferred_currency"
+            android:summary="@string/preferred_currency_summary"
+            android:title="@string/preferred_currency" />
+
+        <ListPreference
+            android:entries="@array/update_interval"
+            android:entryValues="@array/update_interval_values"
+            android:icon="?attr/ic_interval"
+            android:key="@string/update_interval"
+            android:summary="%s"
+            android:title="@string/update_interval"
+            app:defaultValue="1" />
+
+        <CheckBoxPreference
+            android:icon="?attr/ic_auto"
+            android:key="@string/auto_update"
+            android:summaryOff="@string/auto_update_summary_off"
+            android:summaryOn="@string/auto_update_summary_on"
+            android:title="@string/auto_update" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:icon="?attr/ic_check"
+            android:key="@string/auto_check"
+            android:summaryOff="@string/auto_check_summary_off"
+            android:summaryOn="@string/auto_check_summary_on"
+            android:title="@string/auto_check" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/about">
+
+        <Preference
+            android:icon="@mipmap/ic_zimrate"
+            android:key="@string/rates_source"
+            android:summary="@string/rates_source"
+            android:title="@string/rates_source_title"
+            app:enableCopying="true">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/rates_source" />
+        </Preference>
+
+        <Preference
+            android:icon="@mipmap/ic_author"
+            android:key="@string/author_name"
+            android:summary="@string/author_email"
+            android:title="@string/author_name"
+            app:enableCopying="true">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/author_url" />
+        </Preference>
+
+        <Preference
+            android:iconSpaceReserved="true"
+            android:key="@string/app_version"
+            android:title="@string/app_version"
+            app:iconSpaceReserved="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

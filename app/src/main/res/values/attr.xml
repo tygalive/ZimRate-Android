@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="ic_result" format="reference" />
+    <attr name="ic_auto" format="reference" />
+    <attr name="ic_interval" format="reference" />
+    <attr name="ic_check" format="reference" />
+    <attr name="ic_money" format="reference" />
+    <attr name="ic_show" format="reference" />
+    <attr name="ic_hide" format="reference" />
 </resources>

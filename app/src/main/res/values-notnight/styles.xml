@@ -3,5 +3,13 @@
 
     <style name="AppTheme" parent="AppTheme.Base">
         <item name="ic_result">@drawable/ic_result</item>
+
+        <item name="ic_auto">@drawable/ic_auto</item>
+        <item name="ic_interval">@drawable/ic_interval</item>
+        <item name="ic_check">@drawable/ic_check</item>
+        <item name="ic_money">@drawable/ic_money</item>
+
+        <item name="ic_show">@drawable/ic_show</item>
+        <item name="ic_hide">@drawable/ic_hide</item>
     </style>
 </resources>

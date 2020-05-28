@@ -3,18 +3,61 @@
 
     <string translatable="false" name="current_rate">$1 USD =</string>
     <string name="calc_amount">Amount</string>
-    <string name="app_info">Enter the current days rates below.</string>
-    <string name="amount_info">Enter the amount you want to calculate.</string>
-    <string name="result_info">Calculation Results.</string>
+    <string name="app_info">Today\'s Rates</string>
+    <string name="amount_info">Amount to Rate</string>
+    <string name="result_info">Rates</string>
 
     <string translatable="false" name="currency_usd">USD</string>
-    <string translatable="false"  name="currency_bond">Bond</string>
-    <string translatable="false"  name="currency_rtgs">Rtgs</string>
-    <string name="currency_rbz" translatable="false">Rbz</string>
-    <string name="currency_rand" translatable="false">Rands</string>
+    <string name="currency_bond" translatable="false">BOND</string>
+    <string name="currency_rtgs" translatable="false">RTGS</string>
+    <string name="currency_omir" translatable="false">OMIR</string>
+    <string name="currency_rbz" translatable="false">RBZ</string>
+    <string name="currency_rand" translatable="false">ZAR</string>
 
-    <string name="result" translatable="false">%1$s%2$10.2f %3$s = %4$s%5$10.2f %6$s</string>
+    <string name="preferred_currency">Preferred Currency Value</string>
+    <string name="preferred_currency_summary">Fetch %s Value</string>
+    <string name="preferred_mean">Average</string>
+    <string name="preferred_min">Minimum</string>
+    <string name="preferred_max">Maximum</string>
+
+    <string name="prefer_mean">mean</string>
+    <string name="prefer_min">min</string>
+    <string name="prefer_max">max</string>
+
+    <string name="update_interval">Update Interval</string>
+    <string name="update_hourly">Hourly</string>
+    <string name="update_hour_two">Every Two Hours</string>
+    <string name="update_hour_six">Every Six Hours</string>
+    <string name="update_hour_twelve">Every Twelve Hours</string>
+    <string name="update_daily">Daily</string>
+
+    <string name="auto_update">Auto Update</string>
+    <string name="auto_update_summary_on">Automatically update with received currency rates</string>
+    <string name="auto_update_summary_off">Manually click update currency rates</string>
+
+    <string name="auto_check">Check Updates</string>
+    <string name="auto_check_summary_on">Automatically check for currency updates</string>
+    <string name="auto_check_summary_off">Manually update currency rates</string>
+
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="rates_source_title">Rates from</string>
+    <string name="rates_source" translatable="false">http://zimrate.tyganeutronics.com</string>
+
+    <string name="author_name" translatable="false">Richard Muvirimi</string>
+    <string name="author_email" translatable="false">tygalive@gmail.com</string>
+    <string name="author_url" translatable="false">https://tyganeutronics.com</string>
+
+    <string name="rates_url" translatable="false">http://zimrate.tyganeutronics.com/api</string>
+
+    <string name="app_version">Version %s</string>
+
+    <string name="update_available">New Rates Available</string>
+    <string name="update_apply">Apply</string>
+
+    <string name="result" translatable="false">%1$s%2$,10.2f %3$s = %4$s%5$,10.2f %6$s</string>
 
     <string name="ads_id" translatable="false">ca-app-pub-5305936235957258/6604376845</string>
     <string name="ads_app_id" translatable="false">ca-app-pub-5305936235957258~9422111874</string>
+
 </resources>

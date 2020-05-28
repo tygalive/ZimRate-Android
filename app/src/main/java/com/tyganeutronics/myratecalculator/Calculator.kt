@@ -5,6 +5,7 @@ import com.tyganeutronics.myratecalculator.models.*
 class Calculator constructor(
     var usd: USD,
     var bond: BOND,
+    var omir: OMIR,
     var rtgs: RTGS,
     var rbz: RBZ,
     var rand: RAND,
@@ -13,6 +14,10 @@ class Calculator constructor(
 
     fun toUSD(amount: Double): Double {
         return toCurrency(usd, amount)
+    }
+
+    fun toOMIR(amount: Double): Double {
+        return toCurrency(omir, amount)
     }
 
     fun toBOND(amount: Double): Double {

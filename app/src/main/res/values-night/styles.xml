@@ -3,6 +3,14 @@
 
     <style name="AppTheme" parent="AppTheme.Base">
         <item name="ic_result">@drawable/ic_result_dark</item>
+
+        <item name="ic_auto">@drawable/ic_auto_dark</item>
+        <item name="ic_interval">@drawable/ic_interval_dark</item>
+        <item name="ic_check">@drawable/ic_check_dark</item>
+        <item name="ic_money">@drawable/ic_money_dark</item>
+
+        <item name="ic_show">@drawable/ic_show_dark</item>
+        <item name="ic_hide">@drawable/ic_hide_dark</item>
     </style>
 
 </resources>
