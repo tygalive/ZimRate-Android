@@ -38,10 +38,20 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
         bindViews()
         syncViews()
+        textWatchers()
 
         if (shouldUpdate()) {
             fetchRates()
         }
+    }
+
+    private fun textWatchers() {
+        et_bond.addTextChangedListener(this)
+        et_omir.addTextChangedListener(this)
+        et_rtgs.addTextChangedListener(this)
+        et_rbz.addTextChangedListener(this)
+        et_rand.addTextChangedListener(this)
+        et_amount.addTextChangedListener(this)
     }
 
     /**
@@ -50,16 +60,11 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
     private fun bindViews() {
         sr_layout.setOnRefreshListener(this)
 
-        et_bond.addTextChangedListener(this)
-        et_omir.addTextChangedListener(this)
-        et_rtgs.addTextChangedListener(this)
-        et_rbz.addTextChangedListener(this)
-        et_rand.addTextChangedListener(this)
-        et_amount.addTextChangedListener(this)
-
         s_currency.onItemSelectedListener = this
 
         btn_toggle.setOnClickListener(this)
+
+        triggerRateDialog()
     }
 
     /**
@@ -130,13 +135,13 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
     }
 
     private fun shouldUpdate(): Boolean {
-        var check = BaseUtils.getPrefs(baseContext).getBoolean(getString(R.string.auto_check), true)
+        var check = BaseUtils.getPrefs(baseContext).getBoolean("check_update", true)
 
         if (check) {
 
             val last = BaseUtils.getPrefs(baseContext).getLong("last_check", 0L)
             val offset =
-                BaseUtils.getPrefs(baseContext).getString(getString(R.string.update_interval), "0")
+                BaseUtils.getPrefs(baseContext).getString("update_interval", "0")
             val current = System.currentTimeMillis()
 
             val hour = TimeUnit.HOURS.toMillis(offset!!.toLong())
@@ -153,7 +158,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
         url += "?prefer=" + BaseUtils.getPrefs(baseContext)
             .getString(
-                getString(R.string.preferred_currency),
+                "preferred_currency",
                 getString(R.string.prefer_mean)
             )
 
@@ -169,7 +174,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
         sr_layout.isRefreshing = false
 
-        if (BaseUtils.getPrefs(baseContext).getBoolean(getString(R.string.auto_update), false)) {
+        if (BaseUtils.getPrefs(baseContext).getBoolean("auto_update", false)) {
             updateCurrencies(response)
         } else {
             Snackbar.make(calc_result_layout, R.string.update_available, Snackbar.LENGTH_INDEFINITE)
@@ -205,6 +210,8 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
                 }
             }
         }
+
+        saveRates()
 
         BaseUtils.getPrefs(baseContext).edit().putLong("last_check", System.currentTimeMillis())
             .apply()
@@ -257,6 +264,24 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         return super.onOptionsItemSelected(item)
     }
 
+    private fun saveRates() {
+        BaseUtils.getPrefs(this).edit()
+            .putString(getString(R.string.currency_bond), et_bond.text?.toString())
+            .apply()
+        BaseUtils.getPrefs(this).edit()
+            .putString(getString(R.string.currency_omir), et_omir.text?.toString())
+            .apply()
+        BaseUtils.getPrefs(this).edit()
+            .putString(getString(R.string.currency_rtgs), et_rtgs.text?.toString())
+            .apply()
+        BaseUtils.getPrefs(this).edit()
+            .putString(getString(R.string.currency_rbz), et_rbz.text?.toString())
+            .apply()
+        BaseUtils.getPrefs(this).edit()
+            .putString(getString(R.string.currency_rand), et_rand.text?.toString())
+            .apply()
+    }
+
     private fun getCalculator(): Calculator {
 
         var bondText = et_bond.text?.toString()
@@ -281,16 +306,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
             randText = "1"
         }
 
-        BaseUtils.getPrefs(this).edit().putString(getString(R.string.currency_bond), bondText)
-            .apply()
-        BaseUtils.getPrefs(this).edit().putString(getString(R.string.currency_omir), omirText)
-            .apply()
-        BaseUtils.getPrefs(this).edit().putString(getString(R.string.currency_rtgs), rtgsText)
-            .apply()
-        BaseUtils.getPrefs(this).edit().putString(getString(R.string.currency_rbz), rbzText)
-            .apply()
-        BaseUtils.getPrefs(this).edit().putString(getString(R.string.currency_rand), randText)
-            .apply()
+        saveRates()
 
         val usd = USD(1.0)
         val bond = BOND(bondText!!.toDouble())

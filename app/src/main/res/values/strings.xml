@@ -20,9 +20,9 @@
     <string name="preferred_min">Minimum</string>
     <string name="preferred_max">Maximum</string>
 
-    <string name="prefer_mean">mean</string>
-    <string name="prefer_min">min</string>
-    <string name="prefer_max">max</string>
+    <string name="prefer_mean" translatable="false">mean</string>
+    <string name="prefer_min" translatable="false">min</string>
+    <string name="prefer_max" translatable="false">max</string>
 
     <string name="update_interval">Update Interval</string>
     <string name="update_hourly">Hourly</string>
@@ -59,5 +59,23 @@
 
     <string name="ads_id" translatable="false">ca-app-pub-5305936235957258/6604376845</string>
     <string name="ads_app_id" translatable="false">ca-app-pub-5305936235957258~9422111874</string>
+
+    <string name="license">Open source Licenses</string>
+
+    <string name="rate_app">How would you rate this app?</string>
+    <string name="rate_later">Later</string>
+    <string name="rate_never">Never</string>
+    <string name="rate_submit">Submit</string>
+    <string name="rate_submit_feedbak">Submit Feedback</string>
+    <string name="rate_submit_prompt">Please tell where we can improve.</string>
+    <string name="rate_cancel">Cancel</string>
+    <string name="rate_email_failed">You have no email client. Please visit our website to submit feedback.</string>
+    <string name="rate_site">Visit</string>
+    <string name="rate_playstore">Would you like to rate us also on Playstore</string>
+    <string name="rate_yes">Yes</string>
+    <string name="rate_title">Rate this App</string>
+
+    <string name="playstore_market" translatable="false">market://details?id=%s</string>
+    <string name="playstore_browser" translatable="false">https://play.google.com/store/apps/details?id=%s</string>
 
 </resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<notices>
+    <notice>
+        <name>Smart App Rate</name>
+        <url>https://github.com/codemybrainsout/smart-app-rate/</url>
+        <copyright>Copyright (C) 2016 Code My Brains Out</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Volley</name>
+        <url>https://github.com/google/volley/</url>
+        <copyright>Copyright 2020 Google</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+</notices>

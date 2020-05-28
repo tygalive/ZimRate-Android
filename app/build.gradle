@@ -47,8 +47,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-ads:19.1.0'
     implementation 'com.google.firebase:firebase-invites:17.0.0'
 
-    //Material about
-    implementation 'com.github.jrvansuita:MaterialAbout:0.2.4'
     //Smart app rate
     implementation 'com.github.codemybrainsout:smart-app-rate:1.0.8'
     //licenses dialog
@@ -65,7 +63,7 @@ dependencies {
     implementation 'androidx.preference:preference:1.1.1'
 
     //https://developer.android.com/training/volley
-    api 'com.android.volley:volley:1.1.1'
+    implementation 'com.android.volley:volley:1.1.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

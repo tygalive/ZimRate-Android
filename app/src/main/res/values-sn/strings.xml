@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="calc_amount">Rate</string>
+    <string name="app_info">Rate ranhasi</string>
+    <string name="amount_info">Mari yandoda kurater</string>
+    <string name="result_info">Marates</string>
+
+    <string name="preferred_currency">Rate randoda</string>
+    <string name="preferred_currency_summary">Tora rate %s</string>
+    <string name="preferred_mean">Yepakati</string>
+    <string name="preferred_min">Yepazazi</string>
+    <string name="preferred_max">Yepamusoro</string>
+
+    <string name="update_interval">Tarisa rate itsva</string>
+    <string name="update_hourly">Pa hour</string>
+    <string name="update_hour_two">Pama hour maviri</string>
+    <string name="update_hour_six">Pama hour Matanhatu</string>
+    <string name="update_hour_twelve">Pama hour gumi neviri</string>
+    <string name="update_daily">Pazuva</string>
+
+    <string name="auto_update">Isa rate ritsva</string>
+    <string name="auto_update_summary_on">Kana rate itsva riripo, isai iroro</string>
+    <string name="auto_update_summary_off">Ndochinja ndega rate</string>
+
+    <string name="auto_check">Tarisa rate itsva</string>
+    <string name="auto_check_summary_on">Nditarisirewo rate itsva kana riripo</string>
+    <string name="auto_check_summary_off">Ndochinja ndega rate</string>
+
+    <string name="settings">MaSettings</string>
+    <string name="about">Ndezvei</string>
+    <string name="rates_source_title">MaRates arikubva</string>
+
+    <string name="app_version">Chiburwa %s</string>
+
+    <string name="update_available">Rate ritsva ravapo</string>
+    <string name="update_apply">Isa</string>
+
+    <string name="license">Ma License</string>
+
+    <string name="rate_app">Unoinawo sei application ino?</string>
+    <string name="rate_later">Rimwe zuva</string>
+    <string name="rate_never">Hameno</string>
+    <string name="rate_submit">Tumira</string>
+    <string name="rate_submit_feedbak">Tumira</string>
+    <string name="rate_submit_prompt">Chii chandingaite kuti application ino iku fadze</string>
+    <string name="rate_cancel">Kana</string>
+    <string name="rate_email_failed">Hapana email. Enda pawebsite utumire</string>
+    <string name="rate_site">Enda</string>
+    <string name="rate_playstore">Unoda kuita saizvozvo here paPlaystore</string>
+    <string name="rate_yes">Ehe</string>
+    <string name="rate_title">Rater Application ino</string>
+
+</resources>
