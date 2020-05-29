@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="calc_amount">Rate</string>
+    <string name="calc_amount">Mari</string>
     <string name="app_info">Rate ranhasi</string>
     <string name="amount_info">Mari yandoda kurater</string>
     <string name="result_info">Marates</string>

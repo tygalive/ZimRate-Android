@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Response
@@ -22,8 +24,14 @@ import com.tyganeutronics.myratecalculator.MyApplication
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.models.*
 import kotlinx.android.synthetic.main.layout_main.*
-import kotlinx.android.synthetic.main.result_layout.view.*
+import kotlinx.android.synthetic.main.layout_rates.*
+import kotlinx.android.synthetic.main.layout_result.view.*
 import org.json.JSONArray
+import org.threeten.bp.Instant
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.ZoneId
+import org.threeten.bp.format.DateTimeFormatter
+import org.threeten.bp.format.FormatStyle
 import java.util.concurrent.TimeUnit
 
 
@@ -118,11 +126,26 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         when (v?.id) {
             R.id.btn_toggle -> {
 
+                val attrId: Int
                 if (layout_rates.visibility == View.VISIBLE) {
                     layout_rates.visibility = View.GONE
+
+                    attrId = R.attr.ic_show
                 } else {
                     layout_rates.visibility = View.VISIBLE
+
+                    attrId = R.attr.ic_hide
                 }
+
+                val typedValue = TypedValue()
+                theme.resolveAttribute(attrId, typedValue, true)
+
+                btn_toggle.setCompoundDrawablesWithIntrinsicBounds(
+                    null,
+                    null,
+                    ContextCompat.getDrawable(baseContext, typedValue.resourceId),
+                    null
+                )
 
             }
         }
@@ -192,21 +215,33 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
         for (i in 0 until currencies.length()) {
             val currency = currencies.getJSONObject(i)
+
+            val instant = Instant.ofEpochSecond(currency.getString("last_updated").toLong())
+            val format = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT)
+            val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).format(format)
+
+            val rate = currency.getString("rate")
+
             when (currency.getString("currency")) {
                 getString(R.string.currency_bond) -> {
-                    et_bond.setText(currency.getString("rate"))
+                    et_bond.setText(rate)
+                    et_bond_parent.helperText = date
                 }
                 getString(R.string.currency_omir) -> {
-                    et_omir.setText(currency.getString("rate"))
+                    et_omir.setText(rate)
+                    et_omir_parent.helperText = date
                 }
                 getString(R.string.currency_rbz) -> {
-                    et_rbz.setText(currency.getString("rate"))
+                    et_rbz.setText(rate)
+                    et_rbz_parent.helperText = date
                 }
                 getString(R.string.currency_rtgs) -> {
-                    et_rtgs.setText(currency.getString("rate"))
+                    et_rtgs.setText(rate)
+                    et_rtgs_parent.helperText = date
                 }
                 getString(R.string.currency_rand) -> {
-                    et_rand.setText(currency.getString("rate"))
+                    et_rand.setText(rate)
+                    et_rand_parent.helperText = date
                 }
             }
         }
@@ -443,7 +478,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
         val resultLayout: CardView =
             layoutInflater.inflate(
-                R.layout.result_layout,
+                R.layout.layout_result,
                 calc_result_layout,
                 false
             ) as CardView

@@ -1,5 +1,5 @@
 <resources>
-    <string translatable="false" name="app_name">My Rate Calculator</string>
+    <string name="app_name" translatable="false">ZimRate Calculator</string>
 
     <string translatable="false" name="current_rate">$1 USD =</string>
     <string name="calc_amount">Amount</string>

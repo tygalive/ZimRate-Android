@@ -6,6 +6,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
+import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.tyganeutronics.base.BaseApplication;
 
 import org.jetbrains.annotations.Contract;
@@ -38,5 +39,7 @@ public final class MyApplication extends BaseApplication {
 
         // Start the queue
         getRequestQueue().start();
+
+        AndroidThreeTen.init(this);
     }
 }
