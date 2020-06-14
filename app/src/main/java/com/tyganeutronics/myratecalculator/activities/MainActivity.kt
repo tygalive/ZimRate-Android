@@ -200,7 +200,12 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         if (BaseUtils.getPrefs(baseContext).getBoolean("auto_update", false)) {
             updateCurrencies(response)
         } else {
-            Snackbar.make(calc_result_layout, R.string.update_available, Snackbar.LENGTH_INDEFINITE)
+
+            Snackbar.make(
+                calc_result_layout,
+                R.string.update_available,
+                Snackbar.LENGTH_INDEFINITE
+            )
                 .setAction(
                     R.string.update_apply
                 ) {

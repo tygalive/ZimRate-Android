@@ -29,6 +29,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/space_5dp"
+                    app:cardCornerRadius="@dimen/space_5dp"
                     android:padding="@dimen/space_5dp"
                     app:cardElevation="@dimen/space_5dp">
 
@@ -60,6 +61,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                     android:layout_margin="@dimen/space_5dp"
+                    app:cardCornerRadius="@dimen/space_5dp"
                     app:cardElevation="@dimen/space_5dp"
                     app:contentPadding="@dimen/space_5dp">
 

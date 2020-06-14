@@ -77,6 +77,7 @@ abstract class BaseActivity : AppCompatActivity() {
             .formHint(getString(R.string.rate_submit_prompt))
             .formSubmitText(getString(R.string.rate_submit))
             .formCancelText(getString(R.string.rate_cancel))
+            .positiveButtonTextColor(R.color.colorAccent)
             .onThresholdCleared { ratingDialog, rating, thresholdCleared -> //do something
                 ratingDialog.dismiss()
 
@@ -86,7 +87,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 rateOnPlayStore.setMessage(getString(R.string.rate_playstore))
                 rateOnPlayStore.setPositiveButton(R.string.rate_yes) { rateDialog, which ->
 
-                    val intent = Intent(Intent.ACTION_SEND)
+                    val intent = Intent(Intent.ACTION_VIEW)
                     intent.data = Uri.parse(getString(R.string.playstore_market, packageName))
 
                     if (intent.resolveActivity(packageManager) == null) {

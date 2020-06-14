@@ -7,4 +7,6 @@
     <attr name="ic_money" format="reference" />
     <attr name="ic_show" format="reference" />
     <attr name="ic_hide" format="reference" />
+
+    <attr name="color_rating_bar" format="reference" />
 </resources>
