@@ -11,8 +11,8 @@ android {
         applicationId "com.tyganeutronics.myratecalculator"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 5
-        versionName "1.1.2"
+        versionCode 7
+        versionName "1.3.1"
         multiDexEnabled true
     }
 
@@ -46,9 +46,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-ads:19.1.0'
     implementation 'com.google.firebase:firebase-invites:17.0.0'
 
-    //Smart app rate
-    //https://github.com/hansemannn/smart-app-rate
-    implementation 'com.github.hansemannn:smart-app-rate:1.1.1'
+    //https://github.com/Pixplicity/gene-rate
+    implementation 'com.github.Pixplicity:gene-rate:v1.1.8'
+
     //licenses dialog
     implementation 'de.psdev.licensesdialog:licensesdialog:2.1.0'
 

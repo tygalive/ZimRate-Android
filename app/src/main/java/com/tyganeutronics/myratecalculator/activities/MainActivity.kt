@@ -16,7 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Response
 import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.material.snackbar.Snackbar
 import com.tyganeutronics.base.BaseUtils
 import com.tyganeutronics.myratecalculator.Calculator
@@ -26,7 +26,7 @@ import com.tyganeutronics.myratecalculator.models.*
 import kotlinx.android.synthetic.main.layout_main.*
 import kotlinx.android.synthetic.main.layout_rates.*
 import kotlinx.android.synthetic.main.layout_result.view.*
-import org.json.JSONArray
+import org.json.JSONObject
 import org.threeten.bp.Instant
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneId
@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit
 
 
 class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedListener,
-    Response.Listener<JSONArray>, Response.ErrorListener, SwipeRefreshLayout.OnRefreshListener,
+    Response.Listener<JSONObject>, Response.ErrorListener, SwipeRefreshLayout.OnRefreshListener,
     View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -177,15 +177,19 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
     private fun fetchRates() {
 
-        var url = getString(R.string.rates_url)
+        val url = getString(R.string.rates_url)
 
-        url += "?prefer=" + BaseUtils.getPrefs(baseContext)
-            .getString(
-                "preferred_currency",
-                getString(R.string.prefer_mean)
-            )
+        val jsonObject = JSONObject()
 
-        val jsonObjectRequest = JsonArrayRequest(url, this, this)
+        jsonObject.put(
+            "prefer", BaseUtils.getPrefs(baseContext)
+                .getString(
+                    "preferred_currency",
+                    getString(R.string.prefer_mean)
+                )
+        )
+
+        val jsonObjectRequest = JsonObjectRequest(url, jsonObject, this, this)
 
         jsonObjectRequest.setShouldCache(false)
         jsonObjectRequest.retryPolicy = DefaultRetryPolicy(10000, 2, 1.0f)
@@ -193,7 +197,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         MyApplication.getRequestQueue().add(jsonObjectRequest)
     }
 
-    override fun onResponse(response: JSONArray?) {
+    override fun onResponse(response: JSONObject?) {
 
         sr_layout.isRefreshing = false
 
@@ -215,46 +219,50 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
     }
 
-    private fun updateCurrencies(response: JSONArray?) {
-        val currencies = JSONArray(response.toString())
+    private fun updateCurrencies(response: JSONObject?) {
+        val currencies = JSONObject(response.toString()).optJSONArray("USD")
 
-        for (i in 0 until currencies.length()) {
-            val currency = currencies.getJSONObject(i)
+        if (currencies != null) {
 
-            val instant = Instant.ofEpochSecond(currency.getString("last_updated").toLong())
-            val format = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT)
-            val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).format(format)
+            for (i in 0 until currencies.length()) {
+                val currency = currencies.getJSONObject(i)
 
-            val rate = currency.getString("rate")
+                val instant = Instant.ofEpochSecond(currency.getString("last_updated").toLong())
+                val format =
+                    DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT)
+                val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).format(format)
 
-            when (currency.getString("currency")) {
-                getString(R.string.currency_bond) -> {
-                    et_bond.setText(rate)
-                    et_bond_parent.helperText = date
-                }
-                getString(R.string.currency_omir) -> {
-                    et_omir.setText(rate)
-                    et_omir_parent.helperText = date
-                }
-                getString(R.string.currency_rbz) -> {
-                    et_rbz.setText(rate)
-                    et_rbz_parent.helperText = date
-                }
-                getString(R.string.currency_rtgs) -> {
-                    et_rtgs.setText(rate)
-                    et_rtgs_parent.helperText = date
-                }
-                getString(R.string.currency_rand) -> {
-                    et_rand.setText(rate)
-                    et_rand_parent.helperText = date
+                val rate = currency.getString("rate")
+
+                when (currency.getString("currency")) {
+                    getString(R.string.currency_bond) -> {
+                        et_bond.setText(rate)
+                        et_bond_parent.helperText = date
+                    }
+                    getString(R.string.currency_omir) -> {
+                        et_omir.setText(rate)
+                        et_omir_parent.helperText = date
+                    }
+                    getString(R.string.currency_rbz) -> {
+                        et_rbz.setText(rate)
+                        et_rbz_parent.helperText = date
+                    }
+                    getString(R.string.currency_rtgs) -> {
+                        et_rtgs.setText(rate)
+                        et_rtgs_parent.helperText = date
+                    }
+                    getString(R.string.currency_rand) -> {
+                        et_rand.setText(rate)
+                        et_rand_parent.helperText = date
+                    }
                 }
             }
+
+            saveRates()
+
+            BaseUtils.getPrefs(baseContext).edit().putLong("last_check", System.currentTimeMillis())
+                .apply()
         }
-
-        saveRates()
-
-        BaseUtils.getPrefs(baseContext).edit().putLong("last_check", System.currentTimeMillis())
-            .apply()
     }
 
     override fun onErrorResponse(error: VolleyError?) {

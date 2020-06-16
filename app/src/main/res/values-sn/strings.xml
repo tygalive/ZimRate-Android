@@ -38,17 +38,12 @@
 
     <string name="license">Ma License</string>
 
-    <string name="rate_app">Unoinawo sei application ino?</string>
+    <string name="rate_app">Hesi, taona kunge unoifarira application ino, tinga batsirikana ukati rater paPlaystore!</string>
     <string name="rate_later">Rimwe zuva</string>
-    <string name="rate_never">Hameno</string>
-    <string name="rate_submit">Tumira</string>
-    <string name="rate_submit_feedbak">Tumira</string>
-    <string name="rate_submit_prompt">Chii chandingaite kuti application ino iku fadze</string>
-    <string name="rate_cancel">Kana</string>
+    <string name="rate_feedback">Ndine chikumbiro</string>
+    <string name="rate_sure">Tumira</string>
+    <string name="rate_submit_feedback">Tumira</string>
     <string name="rate_email_failed">Hapana email. Enda pawebsite utumire</string>
     <string name="rate_site">Enda</string>
-    <string name="rate_playstore">Unoda kuita saizvozvo here paPlaystore</string>
-    <string name="rate_yes">Ehe</string>
-    <string name="rate_title">Rater Application ino</string>
 
 </resources>

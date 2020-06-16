@@ -5,7 +5,7 @@
     <PreferenceCategory android:title="@string/settings">
 
         <ListPreference
-            android:defaultValue="@string/prefer_mean"
+            android:defaultValue="@string/prefer_min"
             android:entries="@array/preferred"
             android:entryValues="@array/preferred_values"
             android:icon="?attr/ic_result"

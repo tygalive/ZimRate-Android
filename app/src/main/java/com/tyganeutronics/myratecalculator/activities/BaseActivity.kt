@@ -3,17 +3,15 @@ package com.tyganeutronics.myratecalculator.activities
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.codemybrainsout.ratingdialog.RatingDialog
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.pixplicity.generate.Rate
 import com.tyganeutronics.base.BaseUtils
 import com.tyganeutronics.myratecalculator.R
 import kotlinx.android.synthetic.main.ads_view.*
@@ -60,51 +58,12 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun triggerRateDialog() {
 
-        val drawable = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            resources.getDrawable(R.mipmap.ic_launcher, theme)
-        } else {
-            resources.getDrawable(R.mipmap.ic_launcher)
-        }
-
-        val ratingDialog = RatingDialog.Builder(this)
-            .icon(drawable)
-            .session(7)
-            .threshold(3f)
-            .title(getString(R.string.rate_app))
-            .positiveButtonText(getString(R.string.rate_later))
-            .negativeButtonText(getString(R.string.rate_never))
-            .formTitle(getString(R.string.rate_submit_feedbak))
-            .formHint(getString(R.string.rate_submit_prompt))
-            .formSubmitText(getString(R.string.rate_submit))
-            .formCancelText(getString(R.string.rate_cancel))
-            .positiveButtonTextColor(R.color.colorAccent)
-            .onThresholdCleared { ratingDialog, rating, thresholdCleared -> //do something
-                ratingDialog.dismiss()
-
-                val rateOnPlayStore: AlertDialog.Builder = AlertDialog.Builder(this@BaseActivity)
-                rateOnPlayStore.setIcon(R.mipmap.ic_launcher)
-                rateOnPlayStore.setTitle(getString(R.string.rate_title))
-                rateOnPlayStore.setMessage(getString(R.string.rate_playstore))
-                rateOnPlayStore.setPositiveButton(R.string.rate_yes) { rateDialog, which ->
-
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    intent.data = Uri.parse(getString(R.string.playstore_market, packageName))
-
-                    if (intent.resolveActivity(packageManager) == null) {
-                        intent.data = Uri.parse(getString(R.string.playstore_browser, packageName))
-                    }
-                    startActivity(intent)
-                }
-                rateOnPlayStore.setNegativeButton(R.string.rate_cancel, null)
-
-                rateOnPlayStore.create().show()
-            }
-            .onThresholdFailed { ratingDialog, rating, thresholdCleared -> //do something
-                ratingDialog.dismiss()
-            }
-            .onRatingChanged { rating, thresholdCleared -> }
-            .onRatingBarFormSumbit {
-
+        val rate: Rate = Rate.Builder(baseContext)
+            .setMessage(R.string.rate_app)
+            .setPositiveButton(R.string.rate_sure)
+            .setCancelButton(R.string.rate_later)
+            .setNegativeButton(R.string.rate_feedback)
+            .setFeedbackAction {
                 val intent = Intent(Intent.ACTION_SEND)
 
                 intent.putExtra(Intent.EXTRA_EMAIL, getString(R.string.author_email))
@@ -115,19 +74,23 @@ abstract class BaseActivity : AppCompatActivity() {
                     startActivity(
                         Intent.createChooser(
                             intent,
-                            getString(R.string.rate_submit_feedbak)
+                            getString(R.string.rate_submit_feedback)
                         )
                     )
                 } else {
                     Snackbar.make(adView, R.string.rate_email_failed, Snackbar.LENGTH_INDEFINITE)
-                        .setAction(R.string.rate_site) { v1 ->
+                        .setAction(R.string.rate_site) {
                             val i = Intent(Intent.ACTION_VIEW)
                             i.data = Uri.parse(getString(R.string.author_url))
                             startActivity(i)
                         }.show()
                 }
-            }.build()
+            }
+            .setSnackBarParent(adView)
+            .build()
 
-        ratingDialog.show()
+        rate.count()
+
+        rate.showRequest()
     }
 }
