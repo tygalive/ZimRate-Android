@@ -11,6 +11,7 @@
 
         <item name="ic_show">@drawable/ic_show</item>
         <item name="ic_hide">@drawable/ic_hide</item>
+        <item name="ic_apply">@drawable/ic_apply</item>
 
         <item name="color_rating_bar">@android:color/darker_gray</item>
     </style>

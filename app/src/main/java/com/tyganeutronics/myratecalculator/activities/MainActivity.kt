@@ -412,82 +412,83 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
             calc_result_layout.removeAllViews()
 
-            addResult(
-                getString(
-                    R.string.result,
-                    calculator.currency.getSign(),
-                    amountText.toDouble(),
-                    s_currency.selectedItem,
-                    calculator.usd.getSign(),
-                    calculator.toUSD(amountText.toDouble()),
-                    getString(calculator.usd.getName())
-                )
+            calculateCurrencyResult(
+                amountText.toDouble(),
+                calculator.toUSD(amountText.toDouble()),
+                calculator.usd
             )
 
-            addResult(
-                getString(
-                    R.string.result,
-                    calculator.currency.getSign(),
-                    amountText.toDouble(),
-                    s_currency.selectedItem,
-                    calculator.bond.getSign(),
-                    calculator.toBOND(amountText.toDouble()),
-                    getString(calculator.bond.getName())
-                )
+            calculateCurrencyResult(
+                amountText.toDouble(),
+                calculator.toBOND(amountText.toDouble()),
+                calculator.bond
             )
 
-            addResult(
-                getString(
-                    R.string.result,
-                    calculator.currency.getSign(),
-                    amountText.toDouble(),
-                    s_currency.selectedItem,
-                    calculator.omir.getSign(),
-                    calculator.toOMIR(amountText.toDouble()),
-                    getString(calculator.omir.getName())
-                )
+            calculateCurrencyResult(
+                amountText.toDouble(),
+                calculator.toOMIR(amountText.toDouble()),
+                calculator.omir
             )
 
-            addResult(
-                getString(
-                    R.string.result,
-                    calculator.currency.getSign(),
-                    amountText.toDouble(),
-                    s_currency.selectedItem,
-                    calculator.rbz.getSign(),
-                    calculator.toRBZ(amountText.toDouble()),
-                    getString(calculator.rbz.getName())
-                )
+            calculateCurrencyResult(
+                amountText.toDouble(),
+                calculator.toRBZ(amountText.toDouble()),
+                calculator.rbz
             )
 
-            addResult(
-                getString(
-                    R.string.result,
-                    calculator.currency.getSign(),
-                    amountText.toDouble(),
-                    s_currency.selectedItem,
-                    calculator.rtgs.getSign(),
-                    calculator.toRTGS(amountText.toDouble()),
-                    getString(calculator.rtgs.getName())
-                )
+            calculateCurrencyResult(
+                amountText.toDouble(),
+                calculator.toRTGS(amountText.toDouble()),
+                calculator.rtgs
             )
 
-            addResult(
-                getString(
-                    R.string.result,
-                    calculator.currency.getSign(),
-                    amountText.toDouble(),
-                    s_currency.selectedItem,
-                    calculator.rand.getSign(),
-                    calculator.toRAND(amountText.toDouble()),
-                    getString(calculator.rand.getName())
-                )
+            calculateCurrencyResult(
+                amountText.toDouble(),
+                calculator.toRAND(amountText.toDouble()),
+                calculator.rand
             )
         }
 
     }
 
-    private fun addResult(result: String) {
+    private fun calculateCurrencyResult(amountText: Double, result: Double, currency: Currency) {
+
+        addResultLayout(
+            getResultText(
+                amountText,
+                currency.getSign(),
+                result,
+                getString(currency.getName())
+            ), result, getString(currency.getName())
+        )
+    }
+
+    /**
+     * get calculated result text
+     */
+    private fun getResultText(
+        amountText: Double,
+        sign: String,
+        result: Double,
+        currency: String
+    ): String {
+        val calculator = getCalculator()
+
+        return getString(
+            R.string.result,
+            calculator.currency.getSign(),
+            amountText,
+            s_currency.selectedItem,
+            sign,
+            result,
+            currency
+        )
+    }
+
+    /**
+     * create result layout
+     */
+    private fun addResultLayout(result: String, amount: Double, currency: String) {
 
         val resultLayout: CardView =
             layoutInflater.inflate(
@@ -497,6 +498,14 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
             ) as CardView
 
         resultLayout.result_text.text = result
+        resultLayout.setOnClickListener {
+
+            et_amount.setText(String.format("%10.2f", amount).trim())
+
+            val selection = resources.getStringArray(R.array.currencies).indexOf(currency)
+
+            s_currency.setSelection(selection)
+        }
 
         calc_result_layout.addView(resultLayout)
     }

@@ -15,6 +15,8 @@
         android:layout_margin="@dimen/space_5dp"
         android:drawableStart="?attr/ic_money"
         android:drawableLeft="?attr/ic_money"
+        android:drawableEnd="?attr/ic_apply"
+        android:drawableRight="?attr/ic_apply"
         android:drawablePadding="@dimen/space_10dp"
         android:gravity="center_vertical"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
