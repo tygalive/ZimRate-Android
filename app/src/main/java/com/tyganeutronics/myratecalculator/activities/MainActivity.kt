@@ -1,6 +1,7 @@
 package com.tyganeutronics.myratecalculator.activities
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -175,21 +176,18 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         return check
     }
 
+    /**
+     * Do fetch server rates
+     */
     private fun fetchRates() {
 
-        val url = getString(R.string.rates_url)
+        val prefer = BaseUtils.getPrefs(applicationContext)
+            .getString("preferred_currency", getString(R.string.prefer_max))
 
-        val jsonObject = JSONObject()
+        val uri = Uri.parse(getString(R.string.rates_url)).buildUpon()
+            .appendQueryParameter("prefer", prefer).build()
 
-        jsonObject.put(
-            "prefer", BaseUtils.getPrefs(baseContext)
-                .getString(
-                    "preferred_currency",
-                    getString(R.string.prefer_mean)
-                )
-        )
-
-        val jsonObjectRequest = JsonObjectRequest(url, jsonObject, this, this)
+        val jsonObjectRequest = JsonObjectRequest(uri.toString(), null, this, this)
 
         jsonObjectRequest.setShouldCache(false)
         jsonObjectRequest.retryPolicy = DefaultRetryPolicy(10000, 2, 1.0f)
@@ -201,7 +199,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
         sr_layout.isRefreshing = false
 
-        if (BaseUtils.getPrefs(baseContext).getBoolean("auto_update", false)) {
+        if (BaseUtils.getPrefs(baseContext).getBoolean("auto_update", true)) {
             updateCurrencies(response)
         } else {
 

@@ -48,7 +48,7 @@
     <string name="author_email" translatable="false">tygalive@gmail.com</string>
     <string name="author_url" translatable="false">https://tyganeutronics.com</string>
 
-    <string name="rates_url" translatable="false">http://zimrate.tyganeutronics.com//api/v1</string>
+    <string name="rates_url" translatable="false">http://zimrate.tyganeutronics.com/api/v1</string>
 
     <string name="app_version">Version %s</string>
 
