@@ -27,13 +27,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/currency_bond"
+            app:counterMaxLength="@integer/maxvalue"
             app:helperTextTextColor="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_bond"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:maxLength="@integer/maxvalue" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,13 +60,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/currency_omir"
+            app:counterMaxLength="@integer/maxvalue"
             app:helperTextTextColor="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_omir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:maxLength="@integer/maxvalue" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,13 +93,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/currency_rbz"
+            app:counterMaxLength="@integer/maxvalue"
             app:helperTextTextColor="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_rbz"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:maxLength="@integer/maxvalue" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,13 +126,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/currency_rtgs"
+            app:counterMaxLength="@integer/maxvalue"
             app:helperTextTextColor="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_rtgs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:maxLength="@integer/maxvalue" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -151,13 +159,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/currency_rand"
+            app:counterMaxLength="@integer/maxvalue"
             app:helperTextTextColor="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_rand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:maxLength="@integer/maxvalue" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -87,12 +87,14 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
+                                app:counterMaxLength="@integer/maxvalue"
                                 android:hint="@string/calc_amount">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/et_amount"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:maxLength="@integer/maxvalue"
                                     android:inputType="numberDecimal" />
 
                             </com.google.android.material.textfield.TextInputLayout>
