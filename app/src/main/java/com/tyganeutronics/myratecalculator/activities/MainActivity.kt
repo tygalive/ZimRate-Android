@@ -24,6 +24,7 @@ import com.tyganeutronics.myratecalculator.Calculator
 import com.tyganeutronics.myratecalculator.MyApplication
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.models.*
+import kotlinx.android.synthetic.main.layout_amount.*
 import kotlinx.android.synthetic.main.layout_main.*
 import kotlinx.android.synthetic.main.layout_rates.*
 import kotlinx.android.synthetic.main.layout_result.view.*
@@ -34,7 +35,6 @@ import org.threeten.bp.ZoneId
 import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.format.FormatStyle
 import java.util.concurrent.TimeUnit
-
 
 class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedListener,
     Response.Listener<JSONObject>, Response.ErrorListener, SwipeRefreshLayout.OnRefreshListener,

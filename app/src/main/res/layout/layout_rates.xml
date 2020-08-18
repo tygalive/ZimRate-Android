@@ -15,7 +15,7 @@
         android:paddingStart="@dimen/space_20dp"
         android:paddingEnd="@dimen/space_20dp">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/space_10dp"
@@ -27,7 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/currency_bond"
+            app:counterEnabled="true"
             app:counterMaxLength="@integer/maxvalue"
+            app:endIconMode="clear_text"
             app:helperTextTextColor="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -48,7 +50,7 @@
         android:paddingStart="@dimen/space_20dp"
         android:paddingEnd="@dimen/space_20dp">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/space_10dp"
@@ -60,7 +62,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/currency_omir"
+            app:counterEnabled="true"
             app:counterMaxLength="@integer/maxvalue"
+            app:endIconMode="clear_text"
             app:helperTextTextColor="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -81,7 +85,7 @@
         android:paddingStart="@dimen/space_20dp"
         android:paddingEnd="@dimen/space_20dp">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/space_10dp"
@@ -93,7 +97,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/currency_rbz"
+            app:counterEnabled="true"
             app:counterMaxLength="@integer/maxvalue"
+            app:endIconMode="clear_text"
             app:helperTextTextColor="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -114,7 +120,7 @@
         android:paddingStart="@dimen/space_20dp"
         android:paddingEnd="@dimen/space_20dp">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/space_10dp"
@@ -126,7 +132,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/currency_rtgs"
+            app:counterEnabled="true"
             app:counterMaxLength="@integer/maxvalue"
+            app:endIconMode="clear_text"
             app:helperTextTextColor="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -147,7 +155,7 @@
         android:paddingStart="@dimen/space_20dp"
         android:paddingEnd="@dimen/space_20dp">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/space_10dp"
@@ -159,7 +167,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/currency_rand"
+            app:counterEnabled="true"
             app:counterMaxLength="@integer/maxvalue"
+            app:endIconMode="clear_text"
             app:helperTextTextColor="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText

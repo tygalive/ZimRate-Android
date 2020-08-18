@@ -60,61 +60,7 @@
 
                     </androidx.cardview.widget.CardView>
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/space_5dp"
-                        app:cardCornerRadius="@dimen/space_5dp"
-                        app:cardElevation="@dimen/space_5dp"
-                        app:contentPadding="@dimen/space_5dp">
-
-                        <androidx.appcompat.widget.LinearLayoutCompat
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_margin="@dimen/space_10dp"
-                                android:text="@string/amount_info"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                            <androidx.appcompat.widget.LinearLayoutCompat
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:paddingStart="@dimen/space_20dp"
-                                android:paddingEnd="@dimen/space_20dp">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="2"
-                                    app:counterMaxLength="@integer/maxvalue"
-                                    android:hint="@string/calc_amount">
-
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/et_amount"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:maxLength="@integer/maxvalue"
-                                        android:inputType="numberDecimal" />
-
-                                </com.google.android.material.textfield.TextInputLayout>
-
-                                <androidx.appcompat.widget.AppCompatSpinner
-                                    android:id="@+id/s_currency"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:entries="@array/currencies" />
-
-                            </androidx.appcompat.widget.LinearLayoutCompat>
-
-                        </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    </androidx.cardview.widget.CardView>
+                   <include layout="@layout/layout_amount" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
