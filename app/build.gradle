@@ -26,7 +26,7 @@ android {
         sourceCompatibility = "1.8"
         targetCompatibility = "1.8"
     }
-    buildToolsVersion = '30.0.1'
+    buildToolsVersion = '30.0.2'
 
 }
 
