@@ -62,12 +62,21 @@
 
     <string name="license">Open source Licenses</string>
 
-    <string name="rate_app">Hey, you seem to like this app. You would help us a great deal with a 5-star rating!</string>
+    <string name="rate_app">How would you rate this app?</string>
     <string name="rate_later">Later</string>
-    <string name="rate_feedback">Send Feedback</string>
-    <string name="rate_sure">Sure</string>
-    <string name="rate_submit_feedback">Submit Feedback</string>
+    <string name="rate_never">Never</string>
+    <string name="rate_submit">Submit</string>
+    <string name="rate_submit_feedbak">Submit Feedback</string>
+    <string name="rate_submit_prompt">Please tell where we can improve.</string>
+    <string name="rate_cancel">Cancel</string>
     <string name="rate_email_failed">You have no email client. Please visit our website to submit feedback.</string>
     <string name="rate_site">Visit</string>
+    <string name="rate_playstore">Would you like to rate us also on Playstore</string>
+    <string name="rate_yes">Yes</string>
+    <string name="rate_title">Rate this App</string>
+
+    <string name="playstore_market" translatable="false">market://details?id=%s</string>
+    <string name="playstore_browser" translatable="false">https://play.google.com/store/apps/details?id=%s</string>
+
 
 </resources>
