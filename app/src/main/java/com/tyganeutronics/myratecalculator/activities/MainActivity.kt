@@ -330,11 +330,11 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
     private fun getCalculator(): Calculator {
 
-        var bondText = et_bond.text?.toString()
-        var omirText = et_omir.text?.toString()
-        var rtgsText = et_rtgs.text?.toString()
-        var rbzText = et_rbz.text?.toString()
-        var randText = et_rand.text?.toString()
+        var bondText = normaliseInput(et_bond.text?.toString())
+        var omirText = normaliseInput(et_omir.text?.toString())
+        var rtgsText = normaliseInput(et_rtgs.text?.toString())
+        var rbzText = normaliseInput(et_rbz.text?.toString())
+        var randText = normaliseInput(et_rand.text?.toString())
 
         if (TextUtils.isEmpty(bondText)) {
             bondText = "1"
@@ -355,11 +355,11 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         saveRates()
 
         val usd = USD(1.0)
-        val bond = BOND(bondText!!.toDouble())
-        val omir = OMIR(omirText!!.toDouble())
-        val rtgs = RTGS(rtgsText!!.toDouble())
-        val rbz = RBZ(rbzText!!.toDouble())
-        val rand = RAND(randText!!.toDouble())
+        val bond = BOND(bondText.toDouble())
+        val omir = OMIR(omirText.toDouble())
+        val rtgs = RTGS(rtgsText.toDouble())
+        val rbz = RBZ(rbzText.toDouble())
+        val rand = RAND(randText.toDouble())
 
         var currency: Currency = usd
         when (s_currency.selectedItem) {
@@ -394,11 +394,27 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         )
     }
 
+    private fun isNumeric(input: String): Boolean {
+        return try {
+            input.toDouble()
+            true
+        } catch (e: NumberFormatException) {
+            false
+        }
+    }
+
+    private fun normaliseInput(input: String?): String {
+        if (input == null || input.isEmpty() || !isNumeric(input)) {
+            return "1"
+        }
+        return input
+    }
+
     private fun calculate() {
 
         val calculator = getCalculator()
 
-        val amountText = et_amount.text?.toString() ?: "1"
+        val amountText = normaliseInput(et_amount.text?.toString())
 
         if (amountText.isNotEmpty()) {
 
