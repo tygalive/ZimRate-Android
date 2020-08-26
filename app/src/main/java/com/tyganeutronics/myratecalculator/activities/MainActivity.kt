@@ -21,6 +21,7 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.base.BaseUtils
 import com.tyganeutronics.myratecalculator.Calculator
 import com.tyganeutronics.myratecalculator.MyApplication
@@ -159,6 +160,8 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
     override fun onRefresh() {
         sr_layout.isRefreshing = true
+
+        FirebaseAnalytics.getInstance(this).logEvent("refresh_rates", Bundle())
 
         fetchRates()
     }

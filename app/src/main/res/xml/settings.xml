@@ -40,6 +40,18 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/prefs_misc">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:icon="?attr/ic_analytics"
+            android:key="analytics"
+            android:summaryOff="@string/prefs_analytics_off"
+            android:summaryOn="@string/prefs_analytics_on"
+            android:title="@string/prefs_analytics_title" />
+
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/about">
 
         <Preference

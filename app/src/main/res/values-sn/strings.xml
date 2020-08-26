@@ -54,4 +54,9 @@
     <string name="widget_add_desc">Sarudza rate rekuisa</string>
     <string name="widget_add">Isa</string>
 
+    <string name="prefs_misc">Zvimwewo</string>
+    <string name="prefs_analytics_title">Analytics</string>
+    <string name="prefs_analytics_on">Bvumidza kutorwa kwestatistics dzema shandisiro angu</string>
+    <string name="prefs_analytics_off">Musatore statistics dzemashandisiro angu</string>
+
 </resources>

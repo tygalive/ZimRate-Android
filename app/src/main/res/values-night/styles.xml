@@ -13,6 +13,8 @@
         <item name="ic_hide">@drawable/ic_hide_dark</item>
         <item name="ic_apply">@drawable/ic_apply_dark</item>
 
+        <item name="ic_analytics">@drawable/ic_analytics_dark</item>
+
         <item name="color_rating_bar">@android:color/white</item>
     </style>
 

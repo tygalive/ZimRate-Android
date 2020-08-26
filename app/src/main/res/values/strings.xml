@@ -78,6 +78,11 @@
     <string name="widget_add_desc">Select rate to add</string>
     <string name="widget_add">Add</string>
 
+    <string name="prefs_misc">Miscellaneous</string>
+    <string name="prefs_analytics_title">Analytics</string>
+    <string name="prefs_analytics_on">Allow collection of anonymous usage statistics</string>
+    <string name="prefs_analytics_off">Opt out of collection of anonymous usage statistics</string>
+
     <string name="playstore_market" translatable="false">market://details?id=%s</string>
     <string name="playstore_browser" translatable="false">https://play.google.com/store/apps/details?id=%s</string>
 
