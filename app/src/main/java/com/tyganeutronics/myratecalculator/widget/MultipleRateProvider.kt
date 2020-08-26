@@ -1,13 +1,17 @@
 package com.tyganeutronics.myratecalculator.widget
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.widget.RemoteViews
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.base.BaseUtils
 import com.tyganeutronics.myratecalculator.R
+import com.tyganeutronics.myratecalculator.activities.MainActivity
 import com.tyganeutronics.myratecalculator.contract.CurrencyContract
 import org.threeten.bp.Instant
 import org.threeten.bp.LocalDateTime
@@ -33,6 +37,14 @@ class MultipleRateProvider : AppWidgetProvider() {
                 }
 
             }
+        }
+    }
+
+    override fun onEnabled(context: Context?) {
+        super.onEnabled(context)
+
+        if (context != null) {
+            FirebaseAnalytics.getInstance(context).logEvent("add_multiple_widget", Bundle())
         }
     }
 
@@ -108,6 +120,12 @@ class MultipleRateProvider : AppWidgetProvider() {
         val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).format(format)
 
         views.setTextViewText(R.id.txt_date_checked, date)
+
+        //pending intent
+        val intent = Intent(context, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+
+        views.setOnClickPendingIntent(R.id.widget_main, pendingIntent)
 
         //update widget
         appWidgetManager.updateAppWidget(appWidgetId, views)

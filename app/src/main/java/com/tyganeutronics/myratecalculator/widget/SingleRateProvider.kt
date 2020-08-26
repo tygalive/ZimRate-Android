@@ -1,13 +1,17 @@
 package com.tyganeutronics.myratecalculator.widget
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.widget.RemoteViews
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.base.BaseUtils
 import com.tyganeutronics.myratecalculator.R
+import com.tyganeutronics.myratecalculator.activities.MainActivity
 
 
 class SingleRateProvider : AppWidgetProvider() {
@@ -26,6 +30,14 @@ class SingleRateProvider : AppWidgetProvider() {
                 }
 
             }
+        }
+    }
+
+    override fun onEnabled(context: Context?) {
+        super.onEnabled(context)
+
+        if (context != null) {
+            FirebaseAnalytics.getInstance(context).logEvent("add_single_widget", Bundle())
         }
     }
 
@@ -64,6 +76,12 @@ class SingleRateProvider : AppWidgetProvider() {
         //set values
         views.setTextViewText(R.id.tv_rate, value)
         views.setTextViewText(R.id.tv_rate_title, currency)
+
+        //pending intent
+        val intent = Intent(context, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+
+        views.setOnClickPendingIntent(R.id.widget_main, pendingIntent)
 
         getWidgetManager(context).updateAppWidget(appWidgetId, views)
 
