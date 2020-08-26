@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/space_10dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/widget_add_desc" />
+
+    <RadioGroup
+        android:id="@+id/rg_widget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_5dp">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rbtn_bond"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/currency_bond" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rbtn_omir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/currency_omir" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rbtn_rbz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/currency_rbz" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rbtn_rtgs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/currency_rtgs" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rbtn_zar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/currency_zar" />
+
+    </RadioGroup>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/space_20dp"
+        android:layout_marginRight="@dimen/space_20dp"
+        android:text="@string/widget_add" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -8,7 +8,7 @@ class Calculator constructor(
     var omir: OMIR,
     var rtgs: RTGS,
     var rbz: RBZ,
-    var rand: RAND,
+    var zar: ZAR,
     var currency: Currency
 ) {
 
@@ -32,8 +32,8 @@ class Calculator constructor(
         return toCurrency(rbz, amount)
     }
 
-    fun toRAND(amount: Double): Double {
-        return toCurrency(rand, amount)
+    fun toZAR(amount: Double): Double {
+        return toCurrency(zar, amount)
     }
 
     protected fun toCurrency(current: Currency, amount: Double): Double {

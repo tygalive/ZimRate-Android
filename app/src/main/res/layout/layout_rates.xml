@@ -163,17 +163,17 @@
             android:text="@string/current_rate" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_rand_parent"
+            android:id="@+id/et_zar_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/currency_rand"
+            android:hint="@string/currency_zar"
             app:counterEnabled="true"
             app:counterMaxLength="@integer/maxvalue"
             app:endIconMode="clear_text"
             app:helperTextTextColor="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_rand"
+                android:id="@+id/et_zar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"

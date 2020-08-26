@@ -12,7 +12,7 @@
     <string name="currency_rtgs" translatable="false">RTGS</string>
     <string name="currency_omir" translatable="false">OMIR</string>
     <string name="currency_rbz" translatable="false">RBZ</string>
-    <string name="currency_rand" translatable="false">ZAR</string>
+    <string name="currency_zar" translatable="false">ZAR</string>
 
     <string name="preferred_currency">Preferred Currency Value</string>
     <string name="preferred_currency_summary">Fetch %s Value</string>
@@ -74,6 +74,9 @@
     <string name="rate_playstore">Would you like to rate us also on Playstore</string>
     <string name="rate_yes">Yes</string>
     <string name="rate_title">Rate this App</string>
+
+    <string name="widget_add_desc">Select rate to add</string>
+    <string name="widget_add">Add</string>
 
     <string name="playstore_market" translatable="false">market://details?id=%s</string>
     <string name="playstore_browser" translatable="false">https://play.google.com/store/apps/details?id=%s</string>

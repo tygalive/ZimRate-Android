@@ -2,7 +2,7 @@ package com.tyganeutronics.myratecalculator.models
 
 import com.tyganeutronics.myratecalculator.R
 
-class RAND constructor(id: String, rate: Double) : Currency(id, rate) {
+class ZAR constructor(id: String, rate: Double) : Currency(id, rate) {
 
     constructor(rate: Double) : this("RAND", rate)
 
@@ -11,6 +11,6 @@ class RAND constructor(id: String, rate: Double) : Currency(id, rate) {
     }
 
     override fun getName(): Int {
-        return R.string.currency_rand
+        return R.string.currency_zar
     }
 }

@@ -7,7 +7,7 @@
         <item>@string/currency_omir</item>
         <item>@string/currency_rbz</item>
         <item>@string/currency_rtgs</item>
-        <item>@string/currency_rand</item>
+        <item>@string/currency_zar</item>
     </string-array>
 
     <string-array name="preferred">

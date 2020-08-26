@@ -51,4 +51,7 @@
     <string name="rate_yes">Ehe</string>
     <string name="rate_title">Rater Application ino</string>
 
+    <string name="widget_add_desc">Sarudza rate rekuisa</string>
+    <string name="widget_add">Isa</string>
+
 </resources>

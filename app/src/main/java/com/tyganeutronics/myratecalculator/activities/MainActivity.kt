@@ -1,5 +1,7 @@
 package com.tyganeutronics.myratecalculator.activities
 
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -23,7 +25,10 @@ import com.tyganeutronics.base.BaseUtils
 import com.tyganeutronics.myratecalculator.Calculator
 import com.tyganeutronics.myratecalculator.MyApplication
 import com.tyganeutronics.myratecalculator.R
+import com.tyganeutronics.myratecalculator.contract.CurrencyContract
 import com.tyganeutronics.myratecalculator.models.*
+import com.tyganeutronics.myratecalculator.widget.MultipleRateProvider
+import com.tyganeutronics.myratecalculator.widget.SingleRateProvider
 import kotlinx.android.synthetic.main.layout_amount.*
 import kotlinx.android.synthetic.main.layout_main.*
 import kotlinx.android.synthetic.main.layout_rates.*
@@ -59,7 +64,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         et_omir.addTextChangedListener(this)
         et_rtgs.addTextChangedListener(this)
         et_rbz.addTextChangedListener(this)
-        et_rand.addTextChangedListener(this)
+        et_zar.addTextChangedListener(this)
         et_amount.addTextChangedListener(this)
     }
 
@@ -105,14 +110,14 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
                 "1"
             )
         )
-        et_rand.setText(
+        et_zar.setText(
             BaseUtils.getPrefs(this).getString(
-                getString(R.string.currency_rand),
+                getString(R.string.currency_zar),
                 "1"
             )
         )
 
-        s_currency.setSelection(BaseUtils.getPrefs(this).getInt("currency", 0))
+        s_currency.setSelection(BaseUtils.getPrefs(this).getInt(CurrencyContract.CURRENCY, 0))
 
         et_amount.text?.append(
             BaseUtils.getPrefs(this).getString(
@@ -163,14 +168,12 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
         if (check) {
 
-            val last = BaseUtils.getPrefs(baseContext).getLong("last_check", 0L)
-            val offset =
-                BaseUtils.getPrefs(baseContext).getString("update_interval", "0")
-            val current = System.currentTimeMillis()
+            val last = BaseUtils.getPrefs(baseContext).getLong(CurrencyContract.LAST_CHECK, 0L)
+            val offset = BaseUtils.getPrefs(baseContext).getString("update_interval", "1")
 
-            val hour = TimeUnit.HOURS.toMillis(offset!!.toLong())
+            val hours = TimeUnit.HOURS.toMillis(offset!!.toLong())
 
-            check = check.and(current > last.plus(hour))
+            check = check.and(System.currentTimeMillis() > last.plus(hours))
         }
 
         return check
@@ -185,7 +188,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
             .getString("preferred_currency", getString(R.string.prefer_max))
 
         val uri = Uri.parse(getString(R.string.rates_url)).buildUpon()
-            .appendQueryParameter("prefer", prefer).build()
+            .appendQueryParameter(CurrencyContract.PREFER, prefer).build()
 
         val jsonObjectRequest = JsonObjectRequest(uri.toString(), null, this, this)
 
@@ -218,21 +221,23 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
     }
 
     private fun updateCurrencies(response: JSONObject?) {
-        val currencies = JSONObject(response.toString()).optJSONArray("USD")
+        val currencies = JSONObject(response.toString()).optJSONArray(CurrencyContract.USD)
 
         if (currencies != null) {
 
             for (i in 0 until currencies.length()) {
                 val currency = currencies.getJSONObject(i)
 
-                val instant = Instant.ofEpochSecond(currency.getString("last_updated").toLong())
+                val instant = Instant.ofEpochSecond(
+                    currency.getString(CurrencyContract.LAST_UPDATED).toLong()
+                )
                 val format =
                     DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT)
                 val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).format(format)
 
-                val rate = currency.getString("rate")
+                val rate = currency.getString(CurrencyContract.RATE)
 
-                when (currency.getString("currency")) {
+                when (currency.getString(CurrencyContract.CURRENCY)) {
                     getString(R.string.currency_bond) -> {
                         et_bond.setText(rate)
                         et_bond_parent.helperText = date
@@ -249,16 +254,17 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
                         et_rtgs.setText(rate)
                         et_rtgs_parent.helperText = date
                     }
-                    getString(R.string.currency_rand) -> {
-                        et_rand.setText(rate)
-                        et_rand_parent.helperText = date
+                    getString(R.string.currency_zar) -> {
+                        et_zar.setText(rate)
+                        et_zar_parent.helperText = date
                     }
                 }
             }
 
             saveRates()
 
-            BaseUtils.getPrefs(baseContext).edit().putLong("last_check", System.currentTimeMillis())
+            BaseUtils.getPrefs(baseContext).edit()
+                .putLong(CurrencyContract.LAST_CHECK, System.currentTimeMillis())
                 .apply()
         }
     }
@@ -324,7 +330,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
             .putString(getString(R.string.currency_rbz), et_rbz.text?.toString())
             .apply()
         BaseUtils.getPrefs(this).edit()
-            .putString(getString(R.string.currency_rand), et_rand.text?.toString())
+            .putString(getString(R.string.currency_zar), et_zar.text?.toString())
             .apply()
     }
 
@@ -334,7 +340,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         var omirText = normaliseInput(et_omir.text?.toString())
         var rtgsText = normaliseInput(et_rtgs.text?.toString())
         var rbzText = normaliseInput(et_rbz.text?.toString())
-        var randText = normaliseInput(et_rand.text?.toString())
+        var zarText = normaliseInput(et_zar.text?.toString())
 
         if (TextUtils.isEmpty(bondText)) {
             bondText = "1"
@@ -348,8 +354,8 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         if (TextUtils.isEmpty(rbzText)) {
             rbzText = "1"
         }
-        if (TextUtils.isEmpty(randText)) {
-            randText = "1"
+        if (TextUtils.isEmpty(zarText)) {
+            zarText = "1"
         }
 
         saveRates()
@@ -359,7 +365,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         val omir = OMIR(omirText.toDouble())
         val rtgs = RTGS(rtgsText.toDouble())
         val rbz = RBZ(rbzText.toDouble())
-        val rand = RAND(randText.toDouble())
+        val zar = ZAR(zarText.toDouble())
 
         var currency: Currency = usd
         when (s_currency.selectedItem) {
@@ -378,8 +384,8 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
             getString(R.string.currency_rbz) -> {
                 currency = rbz
             }
-            getString(R.string.currency_rand) -> {
-                currency = rand
+            getString(R.string.currency_zar) -> {
+                currency = zar
             }
         }
 
@@ -389,7 +395,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
             omir,
             rtgs,
             rbz,
-            rand,
+            zar,
             currency
         )
     }
@@ -458,8 +464,8 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
             calculateCurrencyResult(
                 amountText.toDouble(),
-                calculator.toRAND(amountText.toDouble()),
-                calculator.rand
+                calculator.toZAR(amountText.toDouble()),
+                calculator.zar
             )
         }
 
@@ -523,4 +529,40 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
         calc_result_layout.addView(resultLayout)
     }
+
+    override fun onStop() {
+        super.onStop()
+
+        updateMultipleWidget()
+        updateSingleWidget()
+    }
+
+    private fun updateMultipleWidget() {
+
+        val componentName = ComponentName(this, MultipleRateProvider::class.java)
+
+        val appWidgetManager = AppWidgetManager.getInstance(this)
+
+        val intent = Intent(this, MultipleRateProvider::class.java)
+        intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+
+        val multipleIds = appWidgetManager.getAppWidgetIds(componentName)
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, multipleIds)
+        sendBroadcast(intent)
+    }
+
+    private fun updateSingleWidget() {
+
+        val componentName = ComponentName(this, SingleRateProvider::class.java)
+
+        val appWidgetManager = AppWidgetManager.getInstance(this)
+
+        val intent = Intent(this, SingleRateProvider::class.java)
+        intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+
+        val multipleIds = appWidgetManager.getAppWidgetIds(componentName)
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, multipleIds)
+        sendBroadcast(intent)
+    }
+
 }
