@@ -10,7 +10,7 @@ class SettingsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_settings)
 
-        title = getString(R.string.settings)
+        title = getString(R.string.menu_settings)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 

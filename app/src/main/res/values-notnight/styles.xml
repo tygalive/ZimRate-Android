@@ -14,6 +14,7 @@
         <item name="ic_apply">@drawable/ic_apply</item>
 
         <item name="ic_analytics">@drawable/ic_analytics</item>
+        <item name="ic_info">@drawable/ic_info</item>
 
         <item name="color_rating_bar">@android:color/darker_gray</item>
     </style>

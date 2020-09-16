@@ -13,6 +13,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
+import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -133,6 +134,8 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         when (v?.id) {
             R.id.btn_toggle -> {
 
+                FirebaseAnalytics.getInstance(baseContext).logEvent("toggle_rates_parent", Bundle())
+
                 val attrId: Int
                 if (layout_rates.visibility == View.VISIBLE) {
                     layout_rates.visibility = View.GONE
@@ -198,7 +201,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         jsonObjectRequest.setShouldCache(false)
         jsonObjectRequest.retryPolicy = DefaultRetryPolicy(10000, 2, 1.0f)
 
-        MyApplication.getRequestQueue().add(jsonObjectRequest)
+        MyApplication.requestQueue?.add(jsonObjectRequest)
     }
 
     override fun onResponse(response: JSONObject?) {
@@ -283,6 +286,8 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        FirebaseAnalytics.getInstance(baseContext).logEvent("change_currency", Bundle())
+
         calculate()
     }
 
@@ -300,7 +305,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-        menuInflater.inflate(R.menu.calculator_menu, menu)
+        menuInflater.inflate(R.menu.calculator, menu)
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -311,6 +316,22 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
                 val intent = Intent(baseContext, SettingsActivity().javaClass)
                 startActivity(intent)
+
+                return true
+            }
+            R.id.menu_info -> {
+
+                FirebaseAnalytics.getInstance(baseContext).logEvent("view_info_dialog", Bundle())
+
+                val typedValue = TypedValue()
+                theme.resolveAttribute(R.attr.ic_info, typedValue, true)
+
+                val dialog = AlertDialog.Builder(this)
+                dialog.setTitle(R.string.menu_info)
+                dialog.setIcon(ContextCompat.getDrawable(baseContext, typedValue.resourceId))
+                dialog.setMessage(R.string.info_message)
+                dialog.setPositiveButton(R.string.info_dismiss, null)
+                dialog.show()
 
                 return true
             }
@@ -526,6 +547,9 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
             et_amount.setText(String.format("%10.2f", amount).trim())
 
             val selection = resources.getStringArray(R.array.currencies).indexOf(currency)
+
+            FirebaseAnalytics.getInstance(baseContext)
+                .logEvent("copy_result_for_calculation", Bundle())
 
             s_currency.setSelection(selection)
         }

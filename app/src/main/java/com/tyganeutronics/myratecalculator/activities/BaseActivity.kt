@@ -12,7 +12,6 @@ import androidx.core.content.res.ResourcesCompat
 import com.codemybrainsout.ratingdialog.RatingDialog
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.base.BaseUtils
@@ -38,7 +37,6 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun setupAd() {
-        MobileAds.initialize(this)
 
         val builder = AdRequest.Builder()
         val adRequest = builder.build()

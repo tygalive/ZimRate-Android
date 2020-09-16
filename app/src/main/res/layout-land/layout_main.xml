@@ -13,12 +13,12 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <ScrollView
                 android:layout_width="0dp"
+                android:nestedScrollingEnabled="true"
                 android:layout_height="match_parent"
                 android:layout_weight="3">
 
@@ -26,6 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:clipToPadding="false"
                     android:padding="@dimen/space_10dp">
 
                     <androidx.cardview.widget.CardView
@@ -60,41 +61,46 @@
 
                     </androidx.cardview.widget.CardView>
 
-                   <include layout="@layout/layout_amount" />
+                    <include layout="@layout/layout_amount" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </ScrollView>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <ScrollView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/space_10dp"
-                    android:text="@string/result_info"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <include layout="@layout/ads_view" />
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="true">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/calc_result_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/space_5dp"
-                    android:paddingBottom="@dimen/space_10dp" />
+                    android:orientation="vertical">
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/space_10dp"
+                        android:text="@string/result_info"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <include layout="@layout/ads_view" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/calc_result_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:orientation="vertical"
+                        android:padding="@dimen/space_5dp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </ScrollView>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <include layout="@layout/ads_view" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
