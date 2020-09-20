@@ -1,2 +1,2 @@
 rootProject.name='My Rate Calculator'
-include ':app', ':base-library'
+include ':app'

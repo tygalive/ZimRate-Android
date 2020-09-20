@@ -9,15 +9,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.RemoteViews
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.tyganeutronics.base.BaseUtils
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.activities.MainActivity
 import com.tyganeutronics.myratecalculator.contract.CurrencyContract
-import org.threeten.bp.Instant
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.ZoneId
-import org.threeten.bp.format.DateTimeFormatter
-import org.threeten.bp.format.FormatStyle
+import com.tyganeutronics.myratecalculator.utils.BaseUtils
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 
 class MultipleRateProvider : AppWidgetProvider() {

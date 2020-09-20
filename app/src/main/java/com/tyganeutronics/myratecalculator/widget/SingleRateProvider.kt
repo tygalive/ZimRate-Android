@@ -9,9 +9,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.RemoteViews
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.tyganeutronics.base.BaseUtils
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.activities.MainActivity
+import com.tyganeutronics.myratecalculator.utils.BaseUtils
 
 
 class SingleRateProvider : AppWidgetProvider() {

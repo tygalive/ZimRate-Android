@@ -33,6 +33,36 @@
             }
           ]
         }
+      },
+      "admob_app_id": "ca-app-pub-5305936235957258~9422111874"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517253029311:android:fd3aa19d089e5fd9e0550a",
+        "android_client_info": {
+          "package_name": "com.tyganeutronics.myratecalculator.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517253029311-296i2g95i3l76ehug4bt1jpkqnrophlh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAagb8YmgaKKEBECtsfG3pkkbxw57zBjrc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517253029311-296i2g95i3l76ehug4bt1jpkqnrophlh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
       }
     }
   ],

@@ -6,8 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.RemoteViews
-import com.tyganeutronics.base.BaseUtils
 import com.tyganeutronics.myratecalculator.R
+import com.tyganeutronics.myratecalculator.utils.BaseUtils
 import kotlinx.android.synthetic.main.widget_configure.*
 
 class WidgetActivity : BaseActivity(), View.OnClickListener {

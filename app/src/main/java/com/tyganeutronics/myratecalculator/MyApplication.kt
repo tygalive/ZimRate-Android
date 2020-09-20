@@ -1,5 +1,6 @@
 package com.tyganeutronics.myratecalculator
 
+import androidx.multidex.MultiDexApplication
 import com.android.volley.Cache
 import com.android.volley.Network
 import com.android.volley.RequestQueue
@@ -7,10 +8,9 @@ import com.android.volley.toolbox.BasicNetwork
 import com.android.volley.toolbox.DiskBasedCache
 import com.android.volley.toolbox.HurlStack
 import com.google.android.gms.ads.MobileAds
-import com.tyganeutronics.base.BaseApplication
 import org.jetbrains.annotations.Contract
 
-class MyApplication : BaseApplication() {
+class MyApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 

@@ -23,12 +23,12 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.tyganeutronics.base.BaseUtils
 import com.tyganeutronics.myratecalculator.Calculator
 import com.tyganeutronics.myratecalculator.MyApplication
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.contract.CurrencyContract
 import com.tyganeutronics.myratecalculator.models.*
+import com.tyganeutronics.myratecalculator.utils.BaseUtils
 import com.tyganeutronics.myratecalculator.widget.MultipleRateProvider
 import com.tyganeutronics.myratecalculator.widget.SingleRateProvider
 import kotlinx.android.synthetic.main.layout_amount.*
@@ -36,11 +36,11 @@ import kotlinx.android.synthetic.main.layout_main.*
 import kotlinx.android.synthetic.main.layout_rates.*
 import kotlinx.android.synthetic.main.layout_result.view.*
 import org.json.JSONObject
-import org.threeten.bp.Instant
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.ZoneId
-import org.threeten.bp.format.DateTimeFormatter
-import org.threeten.bp.format.FormatStyle
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import java.util.concurrent.TimeUnit
 
 class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedListener,
@@ -164,7 +164,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
     override fun onRefresh() {
         sr_layout.isRefreshing = true
 
-        FirebaseAnalytics.getInstance(this).logEvent("refresh_rates", Bundle())
+        getFirebaseAnalytics()!!.logEvent("refresh_rates", Bundle())
 
         fetchRates()
     }

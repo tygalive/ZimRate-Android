@@ -1,6 +1,5 @@
 package com.tyganeutronics.myratecalculator.activities
 
-
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -14,15 +13,14 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.tyganeutronics.base.BaseUtils
 import com.tyganeutronics.myratecalculator.R
+import com.tyganeutronics.myratecalculator.utils.BaseUtils
 import kotlinx.android.synthetic.main.ads_view.*
-
 
 abstract class BaseActivity : AppCompatActivity() {
     private var mFirebaseAnalytics: FirebaseAnalytics? = null
 
-    private fun getmFirebaseAnalytics(): FirebaseAnalytics? {
+    protected fun getFirebaseAnalytics(): FirebaseAnalytics? {
         return mFirebaseAnalytics
     }
 
@@ -33,7 +31,7 @@ abstract class BaseActivity : AppCompatActivity() {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
         val analytics =
             BaseUtils.getPrefs(baseContext).getBoolean("analytics", true)
-        getmFirebaseAnalytics()!!.setAnalyticsCollectionEnabled(analytics)
+        getFirebaseAnalytics()!!.setAnalyticsCollectionEnabled(analytics)
     }
 
     fun setupAd() {
