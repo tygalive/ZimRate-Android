@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -16,6 +15,7 @@ import android.widget.AdapterView
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Response
@@ -23,10 +23,13 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.maltaisn.calcdialog.CalcDialog
+import com.maltaisn.calcdialog.CalcNumpadLayout
 import com.tyganeutronics.myratecalculator.Calculator
 import com.tyganeutronics.myratecalculator.MyApplication
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.contract.CurrencyContract
+import com.tyganeutronics.myratecalculator.fragments.FragmentCalculator
 import com.tyganeutronics.myratecalculator.models.*
 import com.tyganeutronics.myratecalculator.utils.BaseUtils
 import com.tyganeutronics.myratecalculator.widget.MultipleRateProvider
@@ -36,6 +39,7 @@ import kotlinx.android.synthetic.main.layout_main.*
 import kotlinx.android.synthetic.main.layout_rates.*
 import kotlinx.android.synthetic.main.layout_result.view.*
 import org.json.JSONObject
+import java.math.BigDecimal
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -45,7 +49,9 @@ import java.util.concurrent.TimeUnit
 
 class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedListener,
     Response.Listener<JSONObject>, Response.ErrorListener, SwipeRefreshLayout.OnRefreshListener,
-    View.OnClickListener {
+    View.OnClickListener, CalcDialog.CalcDialogCallback {
+
+    private val fragmentCalculator: FragmentCalculator = FragmentCalculator()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +85,14 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         s_currency.onItemSelectedListener = this
 
         btn_toggle.setOnClickListener(this)
+
+        //calculator btns
+        ib_bond_calculator.setOnClickListener(this)
+        ib_omir_calculator.setOnClickListener(this)
+        ib_rtgs_calculator.setOnClickListener(this)
+        ib_rbz_calculator.setOnClickListener(this)
+        ib_zar_calculator.setOnClickListener(this)
+        ib_amount_calculator.setOnClickListener(this)
 
         triggerRateDialog()
     }
@@ -128,35 +142,105 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
             )
         )
 
+        fragmentCalculator.settings.apply {
+            minValue = BigDecimal("-1e10")
+            maxValue = BigDecimal("1e10")
+            numpadLayout = CalcNumpadLayout.CALCULATOR
+            isExpressionShown = true
+            isAnswerBtnShown = true
+        }
+
+        sr_layout.setColorSchemeResources(R.color.colorAccent)
+
     }
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
+    override fun onClick(view: View) {
+        when (view.id) {
             R.id.btn_toggle -> {
 
                 FirebaseAnalytics.getInstance(baseContext).logEvent("toggle_rates_parent", Bundle())
 
-                val attrId: Int
-                if (layout_rates.visibility == View.VISIBLE) {
-                    layout_rates.visibility = View.GONE
-
-                    attrId = R.attr.ic_show
-                } else {
-                    layout_rates.visibility = View.VISIBLE
-
-                    attrId = R.attr.ic_hide
-                }
-
-                val typedValue = TypedValue()
-                theme.resolveAttribute(attrId, typedValue, true)
-
                 btn_toggle.setCompoundDrawablesWithIntrinsicBounds(
                     null,
                     null,
-                    ContextCompat.getDrawable(baseContext, typedValue.resourceId),
+                    ContextCompat.getDrawable(
+                        baseContext,
+                        run {
+                            layout_rates.isVisible = layout_rates.isVisible.not()
+                            val drawable: Int =
+                                if (layout_rates.isVisible) R.drawable.ic_expand_less else R.drawable.ic_expand_more
+                            drawable
+                        }
+                    ),
                     null
                 )
 
+            }
+            R.id.ib_bond_calculator -> {
+                fragmentCalculator.settings.apply {
+                    initialValue = et_bond.text.let {
+                        val text = if (it.isNullOrBlank()) "0" else it
+                        text
+                    }.toString().toBigDecimal()
+                    requestCode = view.id
+                }
+
+                fragmentCalculator.show(supportFragmentManager, "CalcDialog")
+            }
+            R.id.ib_omir_calculator -> {
+                fragmentCalculator.settings.apply {
+                    initialValue = et_omir.text.let {
+                        val text = if (it.isNullOrBlank()) "0" else it
+                        text
+                    }.toString().toBigDecimal()
+                    requestCode = view.id
+                }
+
+                fragmentCalculator.show(supportFragmentManager, "CalcDialog")
+            }
+            R.id.ib_rtgs_calculator -> {
+                fragmentCalculator.settings.apply {
+                    initialValue = et_rtgs.text.let {
+                        val text = if (it.isNullOrBlank()) "0" else it
+                        text
+                    }.toString().toBigDecimal()
+                    requestCode = view.id
+                }
+
+                fragmentCalculator.show(supportFragmentManager, "CalcDialog")
+            }
+            R.id.ib_rbz_calculator -> {
+                fragmentCalculator.settings.apply {
+                    initialValue = et_rbz.text.let {
+                        val text = if (it.isNullOrBlank()) "0" else it
+                        text
+                    }.toString().toBigDecimal()
+                    requestCode = view.id
+                }
+
+                fragmentCalculator.show(supportFragmentManager, "CalcDialog")
+            }
+            R.id.ib_zar_calculator -> {
+                fragmentCalculator.settings.apply {
+                    initialValue = et_zar.text.let {
+                        val text = if (it.isNullOrBlank()) "0" else it
+                        text
+                    }.toString().toBigDecimal()
+                    requestCode = view.id
+                }
+
+                fragmentCalculator.show(supportFragmentManager, "CalcDialog")
+            }
+            R.id.ib_amount_calculator -> {
+                fragmentCalculator.settings.apply {
+                    initialValue = et_amount.text.let {
+                        val text = if (it.isNullOrBlank()) "0" else it
+                        text
+                    }.toString().toBigDecimal()
+                    requestCode = view.id
+                }
+
+                fragmentCalculator.show(supportFragmentManager, "CalcDialog")
             }
         }
     }
@@ -323,12 +407,9 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
                 FirebaseAnalytics.getInstance(baseContext).logEvent("view_info_dialog", Bundle())
 
-                val typedValue = TypedValue()
-                theme.resolveAttribute(R.attr.ic_info, typedValue, true)
-
                 val dialog = AlertDialog.Builder(this)
                 dialog.setTitle(R.string.menu_info)
-                dialog.setIcon(ContextCompat.getDrawable(baseContext, typedValue.resourceId))
+                dialog.setIcon(ContextCompat.getDrawable(baseContext, R.drawable.ic_info))
                 dialog.setMessage(R.string.info_message)
                 dialog.setPositiveButton(R.string.info_dismiss, null)
                 dialog.show()
@@ -590,6 +671,29 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         val multipleIds = appWidgetManager.getAppWidgetIds(componentName)
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, multipleIds)
         sendBroadcast(intent)
+    }
+
+    override fun onValueEntered(requestCode: Int, value: BigDecimal?) {
+        when (requestCode) {
+            R.id.ib_bond_calculator -> {
+                et_bond.setText(value?.toString() ?: "")
+            }
+            R.id.ib_omir_calculator -> {
+                et_omir.setText(value?.toString() ?: "")
+            }
+            R.id.ib_rtgs_calculator -> {
+                et_rtgs.setText(value?.toString() ?: "")
+            }
+            R.id.ib_rbz_calculator -> {
+                et_rbz.setText(value?.toString() ?: "")
+            }
+            R.id.ib_zar_calculator -> {
+                et_zar.setText(value?.toString() ?: "")
+            }
+            R.id.ib_amount_calculator -> {
+                et_amount.setText(value?.toString() ?: "")
+            }
+        }
     }
 
 }

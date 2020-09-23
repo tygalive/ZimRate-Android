@@ -11,9 +11,10 @@ android {
         applicationId "com.tyganeutronics.myratecalculator"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 17
-        versionName "1.5.2"
+        versionCode 18
+        versionName "1.6"
         multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -75,5 +76,8 @@ dependencies {
 
     //https://developer.android.com/training/volley
     implementation 'com.android.volley:volley:1.1.1'
+
+    //https://github.com/maltaisn/calcdialoglib
+    implementation "com.maltaisn:calcdialog:2.2.1"
 }
 

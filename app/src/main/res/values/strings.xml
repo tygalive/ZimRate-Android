@@ -42,7 +42,7 @@
     <string name="menu_settings">Settings</string>
     <string name="menu_info">Tips</string>
     <string name="info_message">1. To refresh rates at any time, you can swipe from the top on this screen.\n\n2. You can also add a widget to your home screen to view last loaded rates without opening app. (Rates are not loaded in the background)\n\n3. You can instantly use the calculated result for further calculation by pressing the desired result.</string>
-    <string name="info_dismiss">Ok</string>
+    <string name="info_dismiss">OK</string>
     <string name="about">About</string>
     <string name="rates_source_title">Rates from</string>
     <string name="rates_source" translatable="false">http://zimrate.tyganeutronics.com/</string>
@@ -89,5 +89,17 @@
     <string name="playstore_market" translatable="false">market://details?id=%s</string>
     <string name="playstore_browser" translatable="false">https://play.google.com/store/apps/details?id=%s</string>
 
+    <string name="calculator_answer">Ans</string>
+    <string name="calculator_dialog_cancel">Cancel</string>
+    <string name="calculator_dialog_clear">Clear</string>
+    <string name="calculator_dialog_erase">Erase</string>
+    <string name="calculator_dialog_ok">OK</string>
+
+    <string-array name="calculator_dialog_errors">
+        <item>Division by zero</item>
+        <item>Out of bounds</item>
+        <item>Result must be positive</item>
+        <item>Result must be negative</item>
+    </string-array>
 
 </resources>

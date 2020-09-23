@@ -2,20 +2,15 @@
 <resources>
 
     <style name="AppTheme" parent="AppTheme.Base">
-        <item name="ic_result">@drawable/ic_result</item>
-
+        <item name="ic_dollar">@drawable/ic_dollar</item>
         <item name="ic_auto">@drawable/ic_auto</item>
         <item name="ic_interval">@drawable/ic_interval</item>
         <item name="ic_check">@drawable/ic_check</item>
-        <item name="ic_money">@drawable/ic_money</item>
-
-        <item name="ic_show">@drawable/ic_show</item>
-        <item name="ic_hide">@drawable/ic_hide</item>
-        <item name="ic_apply">@drawable/ic_apply</item>
-
         <item name="ic_analytics">@drawable/ic_analytics</item>
-        <item name="ic_info">@drawable/ic_info</item>
 
         <item name="color_rating_bar">@android:color/darker_gray</item>
+        <item name="icon_tint">@color/colorAccent</item>
+
     </style>
+
 </resources>

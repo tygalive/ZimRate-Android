@@ -8,7 +8,7 @@
             android:defaultValue="max"
             android:entries="@array/preferred"
             android:entryValues="@array/preferred_values"
-            android:icon="?attr/ic_result"
+            android:icon="?attr/ic_dollar"
             android:key="preferred_currency"
             android:summary="@string/preferred_currency_summary"
             android:title="@string/preferred_currency" />

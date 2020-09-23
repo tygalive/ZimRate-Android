@@ -62,4 +62,17 @@
     <string name="prefs_analytics_on">Bvumidza kutorwa kwestatistics dzema shandisiro angu</string>
     <string name="prefs_analytics_off">Musatore statistics dzemashandisiro angu</string>
 
+    <string name="calculator_answer">Ans</string>
+    <string name="calculator_dialog_cancel">Kanzura</string>
+    <string name="calculator_dialog_clear">Tangidza</string>
+    <string name="calculator_dialog_erase">Tangidza zvese</string>
+    <string name="calculator_dialog_ok">Isa</string>
+
+    <string-array name="calculator_dialog_errors">
+        <item>Wadivider nazero</item>
+        <item>Number yapfuurira</item>
+        <item>Number inofanira kuita hombe pana zero</item>
+        <item>Number inofanira kuita diki pana zero</item>
+    </string-array>
+
 </resources>

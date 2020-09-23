@@ -18,6 +18,7 @@
             android:layout_height="@dimen/space_20dp"
             android:layout_marginEnd="@dimen/space_5dp"
             android:layout_marginRight="@dimen/space_5dp"
+            android:contentDescription="@string/app_name"
             android:src="@mipmap/ic_launcher" />
 
         <LinearLayout

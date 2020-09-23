@@ -6,31 +6,30 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="@dimen/space_10dp"
+    android:layout_marginStart="@dimen/space_5dp"
+    android:layout_marginLeft="@dimen/space_5dp"
     android:visibility="visible">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/space_20dp"
-        android:paddingEnd="@dimen/space_20dp">
+        android:gravity="center_vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/space_10dp"
-            android:layout_marginRight="@dimen/space_10dp"
+            android:paddingStart="@dimen/space_5dp"
+            android:paddingEnd="@dimen/space_5dp"
             android:text="@string/current_rate" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_bond_parent"
-            android:layout_width="match_parent"
+            style="@style/AppTheme.TextInputLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/currency_bond"
-            app:counterEnabled="true"
-            app:counterMaxLength="@integer/maxvalue"
-            app:endIconMode="clear_text"
-            app:helperTextTextColor="@color/colorAccent">
+            android:layout_weight="1">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_bond"
@@ -41,31 +40,35 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ib_bond_calculator"
+            style="@style/AppTheme.ImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_calculator" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/space_20dp"
-        android:paddingEnd="@dimen/space_20dp">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/space_10dp"
-            android:layout_marginRight="@dimen/space_10dp"
+            android:paddingStart="@dimen/space_5dp"
+            android:paddingEnd="@dimen/space_5dp"
             android:text="@string/current_rate" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_omir_parent"
-            android:layout_width="match_parent"
+            style="@style/AppTheme.TextInputLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/currency_omir"
-            app:counterEnabled="true"
-            app:counterMaxLength="@integer/maxvalue"
-            app:endIconMode="clear_text"
-            app:helperTextTextColor="@color/colorAccent">
+            android:layout_weight="1">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_omir"
@@ -76,31 +79,35 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ib_omir_calculator"
+            style="@style/AppTheme.ImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_calculator" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/space_20dp"
-        android:paddingEnd="@dimen/space_20dp">
+        android:gravity="center_vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/space_10dp"
-            android:layout_marginRight="@dimen/space_10dp"
+            android:paddingStart="@dimen/space_5dp"
+            android:paddingEnd="@dimen/space_5dp"
             android:text="@string/current_rate" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_rbz_parent"
-            android:layout_width="match_parent"
+            style="@style/AppTheme.TextInputLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/currency_rbz"
-            app:counterEnabled="true"
-            app:counterMaxLength="@integer/maxvalue"
-            app:endIconMode="clear_text"
-            app:helperTextTextColor="@color/colorAccent">
+            android:layout_weight="1">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_rbz"
@@ -111,31 +118,35 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ib_rbz_calculator"
+            style="@style/AppTheme.ImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_calculator" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/space_20dp"
-        android:paddingEnd="@dimen/space_20dp">
+        android:gravity="center_vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/space_10dp"
-            android:layout_marginRight="@dimen/space_10dp"
+            android:paddingStart="@dimen/space_5dp"
+            android:paddingEnd="@dimen/space_5dp"
             android:text="@string/current_rate" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_rtgs_parent"
-            android:layout_width="match_parent"
+            style="@style/AppTheme.TextInputLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/currency_rtgs"
-            app:counterEnabled="true"
-            app:counterMaxLength="@integer/maxvalue"
-            app:endIconMode="clear_text"
-            app:helperTextTextColor="@color/colorAccent">
+            android:layout_weight="1">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_rtgs"
@@ -146,31 +157,35 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ib_rtgs_calculator"
+            style="@style/AppTheme.ImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_calculator" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/space_20dp"
-        android:paddingEnd="@dimen/space_20dp">
+        android:gravity="center_vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/space_10dp"
-            android:layout_marginRight="@dimen/space_10dp"
+            android:paddingStart="@dimen/space_5dp"
+            android:paddingEnd="@dimen/space_5dp"
             android:text="@string/current_rate" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_zar_parent"
-            android:layout_width="match_parent"
+            style="@style/AppTheme.TextInputLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/currency_zar"
-            app:counterEnabled="true"
-            app:counterMaxLength="@integer/maxvalue"
-            app:endIconMode="clear_text"
-            app:helperTextTextColor="@color/colorAccent">
+            android:layout_weight="1">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_zar"
@@ -180,6 +195,13 @@
                 android:maxLength="@integer/maxvalue" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ib_zar_calculator"
+            style="@style/AppTheme.ImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_calculator" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

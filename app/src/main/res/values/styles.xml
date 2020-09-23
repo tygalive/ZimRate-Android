@@ -1,11 +1,70 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme.Base" parent="Theme.AppCompat.DayNight.DarkActionBar">
-        <!-- Customize your theme here. -->
+
+    <style name="BaseTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="calcDialogStyle">@style/AppTheme.CalcDialog</item>
+    </style>
+
+    <style name="AppTheme.Base" parent="BaseTheme" />
+
+    <style name="AppTheme.CalcDialog" parent="CalcDialogStyle">
+        <item name="calcOperationBtnStyle">@style/AppTheme.CalcDialog.Button</item>
+        <item name="calcEraseBtnStyle">@style/AppTheme.CalcDialog.CalcEraseBtnStyle</item>
+        <item name="calcExpressionStyle">@style/AppTheme.CalcDialog.CalcExpressionStyle</item>
+        <item name="calcDialogButtonStyle">@style/AppTheme.CalcDialog.CalcDialogButtonStyle</item>
+        <item name="calcAnswerBtnStyle">@style/AppTheme.CalcDialog.CalcAnswerBtnStyle</item>
+        <item name="calcOperationBtnColor">@color/colorAccent</item>
+        <item name="calcDividerColor">@color/colorAccent</item>
+
+        <item name="calcButtonTextClear">@string/calculator_dialog_clear</item>
+        <item name="calcButtonTextCancel">@string/calculator_dialog_cancel</item>
+        <item name="calcButtonTextOk">@string/calculator_dialog_ok</item>
+
+        <item name="calcErrors">@array/calculator_dialog_errors</item>
+    </style>
+
+    <style name="AppTheme.CalcDialog.Button" parent="CalcOperationBtnStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="selectableItemBackground">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.CalcDialog.CalcEraseBtnStyle" parent="CalcEraseBtnStyle">
+        <item name="android:contentDescription">@string/calculator_dialog_erase</item>
+        <item name="tint">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.CalcDialog.CalcExpressionStyle" parent="CalcExpressionStyle">
+        <item name="android:textColor">?attr/icon_tint</item>
+    </style>
+
+    <style name="AppTheme.CalcDialog.CalcAnswerBtnStyle" parent="CalcAnswerBtnStyle">
+        <item name="android:text">@string/calculator_answer</item>
+    </style>
+
+    <style name="AppTheme.CalcDialog.CalcDialogButtonStyle" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:textColor">?attr/icon_tint</item>
+    </style>
+
+    <!--Widgets-->
+    <style name="AppTheme.TextInputLayout" parent="@style/Widget.Design.TextInputLayout">
+        <item name="endIconTint">?attr/icon_tint</item>
+        <item name="android:paddingBottom">@dimen/space_10dp</item>
+        <item name="counterEnabled">true</item>
+        <item name="counterMaxLength">@integer/maxvalue</item>
+        <item name="endIconMode">clear_text</item>
+        <item name="helperTextTextColor">?attr/icon_tint</item>
+    </style>
+
+    <style name="AppTheme.ImageView" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="tint">?attr/icon_tint</item>
+    </style>
+
+    <style name="AppTheme.TextView" parent="Widget.AppCompat.TextView">
+        <item name="drawableTint">?attr/icon_tint</item>
     </style>
 
 </resources>

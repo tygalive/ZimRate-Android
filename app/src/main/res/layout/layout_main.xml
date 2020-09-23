@@ -11,10 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:nestedScrollingEnabled="true"
             android:layout_weight="1">
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -43,10 +42,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/space_10dp"
-                            android:drawableEnd="?attr/ic_hide"
-                            android:drawableRight="?attr/ic_hide"
+                            style="@style/AppTheme.TextView"
+                            android:drawableEnd="@drawable/ic_expand_less"
                             android:drawablePadding="@dimen/space_10dp"
                             android:gravity="center_horizontal"
+                            android:drawableRight="@drawable/ic_expand_less"
                             android:text="@string/app_info"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -78,7 +78,7 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
