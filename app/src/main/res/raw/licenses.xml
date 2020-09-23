@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <notices>
     <notice>
+        <name>Google Material Design Icons</name>
+        <url>https://github.com/google/material-design-icons/</url>
+        <copyright>Copyright (C) 2016 Google</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Material Design Icons</name>
+        <url>https://github.com/Templarian/MaterialDesign</url>
+        <copyright>Copyright (c) 2014, Austin Andrews</copyright>
+        <license>SIL Open Font License v1.1</license>
+    </notice>
+    <notice>
         <name>Smart App Rate</name>
         <url>https://github.com/codemybrainsout/smart-app-rate/</url>
         <copyright>Copyright (C) 2016 Code My Brains Out</copyright>
@@ -10,6 +22,18 @@
         <name>Volley</name>
         <url>https://github.com/google/volley/</url>
         <copyright>Copyright 2020 Google</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Calculator dialog</name>
+        <url>https://github.com/maltaisn/calcdialoglib</url>
+        <copyright>Copyright (C) 2018 Maltaisn</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Android Open Source Project</name>
+        <url>https://source.android.com/</url>
+        <copyright>Copyright (C) 2014 The Android Open Source Project</copyright>
         <license>Apache Software License 2.0</license>
     </notice>
 </notices>
