@@ -676,22 +676,22 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
     override fun onValueEntered(requestCode: Int, value: BigDecimal?) {
         when (requestCode) {
             R.id.ib_bond_calculator -> {
-                et_bond.setText(value?.toString() ?: "")
+                et_bond.setText(value?.toPlainString() ?: "")
             }
             R.id.ib_omir_calculator -> {
-                et_omir.setText(value?.toString() ?: "")
+                et_omir.setText(value?.toPlainString() ?: "")
             }
             R.id.ib_rtgs_calculator -> {
-                et_rtgs.setText(value?.toString() ?: "")
+                et_rtgs.setText(value?.toPlainString() ?: "")
             }
             R.id.ib_rbz_calculator -> {
-                et_rbz.setText(value?.toString() ?: "")
+                et_rbz.setText(value?.toPlainString() ?: "")
             }
             R.id.ib_zar_calculator -> {
-                et_zar.setText(value?.toString() ?: "")
+                et_zar.setText(value?.toPlainString() ?: "")
             }
             R.id.ib_amount_calculator -> {
-                et_amount.setText(value?.toString() ?: "")
+                et_amount.setText(value?.toPlainString() ?: "")
             }
         }
     }
