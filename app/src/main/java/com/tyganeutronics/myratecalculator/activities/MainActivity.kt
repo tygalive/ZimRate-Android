@@ -285,7 +285,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         jsonObjectRequest.setShouldCache(false)
         jsonObjectRequest.retryPolicy = DefaultRetryPolicy(10000, 2, 1.0f)
 
-        MyApplication.requestQueue?.add(jsonObjectRequest)
+        MyApplication.requestQueue.add(jsonObjectRequest)
     }
 
     override fun onResponse(response: JSONObject?) {

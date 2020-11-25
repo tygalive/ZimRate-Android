@@ -24,12 +24,13 @@ class MyApplication : MultiDexApplication() {
         requestQueue = RequestQueue(cache, network)
 
         // Start the queue
-        requestQueue!!.start()
+        requestQueue.start()
+
         MobileAds.initialize(this)
     }
 
     companion object {
         @get:Contract(pure = true)
-        var requestQueue: RequestQueue? = null
+        lateinit var requestQueue: RequestQueue
     }
 }
