@@ -26,8 +26,8 @@ class FragmentSettings : PreferenceFragmentCompat(), Preference.OnPreferenceClic
         findPreference<Preference>(getString(R.string.license))?.onPreferenceClickListener = this
     }
 
-    override fun onPreferenceClick(preference: Preference?): Boolean {
-        when (preference?.key) {
+    override fun onPreferenceClick(preference: Preference): Boolean {
+        when (preference.key) {
             getString(R.string.license) -> {
                 LicensesDialog.Builder(activity)
                     .setNotices(R.raw.licenses)

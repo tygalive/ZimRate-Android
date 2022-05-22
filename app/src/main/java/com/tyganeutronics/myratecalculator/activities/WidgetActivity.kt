@@ -5,10 +5,12 @@ import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.RadioGroup
 import android.widget.RemoteViews
+import androidx.appcompat.widget.AppCompatButton
+import com.google.android.gms.ads.AdView
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.utils.BaseUtils
-import kotlinx.android.synthetic.main.widget_configure.*
 
 class WidgetActivity : BaseActivity(), View.OnClickListener {
 
@@ -40,7 +42,7 @@ class WidgetActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun syncViews() {
-        btn_add.setOnClickListener(this)
+        findViewById<AppCompatButton>(R.id.btn_add).setOnClickListener(this)
     }
 
     private fun getWidgetManager(): AppWidgetManager {
@@ -52,8 +54,8 @@ class WidgetActivity : BaseActivity(), View.OnClickListener {
             R.id.btn_add -> {
 
                 //save configuration
-                var which: String
-                when (rg_widget.checkedRadioButtonId) {
+                val which: String
+                when (findViewById<RadioGroup>(R.id.rg_widget).checkedRadioButtonId) {
                     R.id.rbtn_bond -> {
                         which = getString(R.string.currency_bond)
                     }

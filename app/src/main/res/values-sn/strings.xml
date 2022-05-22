@@ -2,13 +2,14 @@
 <resources>
 
     <string name="calc_amount">Mari</string>
-    <string name="app_info">Rate ranhasi</string>
     <string name="amount_info">Mari yandoda kurater</string>
-    <string name="result_info">Marates</string>
 
     <string name="preferred_currency">Rate randoda</string>
     <string name="preferred_currency_summary">Tora rate %s</string>
-    <string name="preferred_mean">Yepakati</string>
+    <string name="preferred_mean">Yepakati (Mean)</string>
+    <string name="preferred_median">Yepakati (Median)</string>
+    <string name="preferred_random">Chero (Random)</string>
+    <string name="preferred_mode">Ine Mbiri (Mode)</string>
     <string name="preferred_min">Yepazazi</string>
     <string name="preferred_max">Yepamusoro</string>
 

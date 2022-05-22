@@ -31,50 +31,13 @@
                     app:cardCornerRadius="@dimen/space_5dp"
                     app:cardElevation="@dimen/space_5dp">
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:animateLayoutChanges="true"
-                        android:orientation="vertical">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/btn_toggle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/space_10dp"
-                            style="@style/AppTheme.TextView"
-                            android:drawableEnd="@drawable/ic_expand_less"
-                            android:drawablePadding="@dimen/space_10dp"
-                            android:gravity="center_horizontal"
-                            android:drawableRight="@drawable/ic_expand_less"
-                            android:text="@string/app_info"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                        <include layout="@layout/layout_rates" />
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    <include layout="@layout/layout_rates" />
 
                 </androidx.cardview.widget.CardView>
 
-                <include layout="@layout/layout_amount" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/space_10dp"
-                    android:text="@string/result_info"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
                 <include layout="@layout/ads_view" />
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/calc_result_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:clipToPadding="false"
-                    android:padding="@dimen/space_5dp" />
+                <include layout="@layout/layout_amount" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

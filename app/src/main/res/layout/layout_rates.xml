@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_rates"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/space_10dp"
+    android:paddingVertical="@dimen/space_10dp"
     android:layout_marginStart="@dimen/space_5dp"
     android:layout_marginLeft="@dimen/space_5dp"
     android:visibility="visible">
@@ -16,12 +17,45 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_usd_parent"
+            style="@style/AppTheme.TextInputLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/space_5dp"
-            android:paddingEnd="@dimen/space_5dp"
-            android:text="@string/current_rate" />
+            android:hint="@string/currency_usd"
+            android:layout_weight="1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_usd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                style="@style/AppTheme.EditText"
+                android:selectAllOnFocus="true"
+                android:maxLength="@integer/maxvalue" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/txt_usd_result"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            style="@style/AppTheme.Button"
+            android:drawableStart="@drawable/ic_swap"
+            android:drawableLeft="@drawable/ic_swap"
+            android:drawablePadding="@dimen/space_10dp"
+            tools:text="$45"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_bond_parent"
@@ -36,16 +70,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
+                style="@style/AppTheme.EditText"
+                android:selectAllOnFocus="true"
                 android:maxLength="@integer/maxvalue" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/ib_bond_calculator"
-            style="@style/AppTheme.ImageView"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/txt_bond_result"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_calculator" />
+            style="@style/AppTheme.Button"
+            android:drawableStart="@drawable/ic_swap"
+            android:drawableLeft="@drawable/ic_swap"
+            android:drawablePadding="@dimen/space_10dp"
+            tools:text="$45"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -54,13 +96,6 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/space_5dp"
-            android:paddingEnd="@dimen/space_5dp"
-            android:text="@string/current_rate" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_omir_parent"
@@ -75,16 +110,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
                 android:maxLength="@integer/maxvalue" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/ib_omir_calculator"
-            style="@style/AppTheme.ImageView"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/txt_omir_result"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_calculator" />
+            style="@style/AppTheme.Button"
+            android:drawableStart="@drawable/ic_swap"
+            android:drawableLeft="@drawable/ic_swap"
+            android:drawablePadding="@dimen/space_10dp"
+            tools:text="$45"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -93,13 +135,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/space_5dp"
-            android:paddingEnd="@dimen/space_5dp"
-            android:text="@string/current_rate" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_rbz_parent"
@@ -114,16 +149,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
                 android:maxLength="@integer/maxvalue" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/ib_rbz_calculator"
-            style="@style/AppTheme.ImageView"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/txt_rbz_result"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_calculator" />
+            style="@style/AppTheme.Button"
+            android:drawableStart="@drawable/ic_swap"
+            android:drawableLeft="@drawable/ic_swap"
+            android:drawablePadding="@dimen/space_10dp"
+            tools:text="$45"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -132,13 +174,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/space_5dp"
-            android:paddingEnd="@dimen/space_5dp"
-            android:text="@string/current_rate" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_rtgs_parent"
@@ -153,16 +188,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
                 android:maxLength="@integer/maxvalue" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/ib_rtgs_calculator"
-            style="@style/AppTheme.ImageView"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/txt_rtgs_result"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_calculator" />
+            style="@style/AppTheme.Button"
+            android:drawableStart="@drawable/ic_swap"
+            android:drawableLeft="@drawable/ic_swap"
+            android:drawablePadding="@dimen/space_10dp"
+            tools:text="$45"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -171,13 +213,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/space_5dp"
-            android:paddingEnd="@dimen/space_5dp"
-            android:text="@string/current_rate" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_zar_parent"
@@ -192,16 +227,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
                 android:maxLength="@integer/maxvalue" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/ib_zar_calculator"
-            style="@style/AppTheme.ImageView"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/txt_zar_result"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_calculator" />
+            style="@style/AppTheme.Button"
+            android:drawableStart="@drawable/ic_swap"
+            android:drawableLeft="@drawable/ic_swap"
+            android:drawablePadding="@dimen/space_10dp"
+            tools:text="$45"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

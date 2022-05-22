@@ -13,31 +13,30 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import androidx.appcompat.app.AlertDialog
-import androidx.cardview.widget.CardView
+import androidx.appcompat.widget.*
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.DefaultRetryPolicy
+import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.maltaisn.calcdialog.CalcDialog
 import com.maltaisn.calcdialog.CalcNumpadLayout
 import com.tyganeutronics.myratecalculator.Calculator
 import com.tyganeutronics.myratecalculator.MyApplication
 import com.tyganeutronics.myratecalculator.R
+import com.tyganeutronics.myratecalculator.contract.ApiContract
 import com.tyganeutronics.myratecalculator.contract.CurrencyContract
 import com.tyganeutronics.myratecalculator.fragments.FragmentCalculator
-import com.tyganeutronics.myratecalculator.models.*
+import com.tyganeutronics.myratecalculator.database.*
 import com.tyganeutronics.myratecalculator.utils.BaseUtils
 import com.tyganeutronics.myratecalculator.widget.MultipleRateProvider
 import com.tyganeutronics.myratecalculator.widget.SingleRateProvider
-import kotlinx.android.synthetic.main.layout_amount.*
-import kotlinx.android.synthetic.main.layout_main.*
-import kotlinx.android.synthetic.main.layout_rates.*
-import kotlinx.android.synthetic.main.layout_result.view.*
 import org.json.JSONObject
 import java.math.BigDecimal
 import java.time.Instant
@@ -49,7 +48,7 @@ import java.util.concurrent.TimeUnit
 
 class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedListener,
     Response.Listener<JSONObject>, Response.ErrorListener, SwipeRefreshLayout.OnRefreshListener,
-    View.OnClickListener, CalcDialog.CalcDialogCallback {
+    CalcDialog.CalcDialogCallback {
 
     private val fragmentCalculator: FragmentCalculator = FragmentCalculator()
 
@@ -68,31 +67,56 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
     }
 
     private fun textWatchers() {
-        et_bond.addTextChangedListener(this)
-        et_omir.addTextChangedListener(this)
-        et_rtgs.addTextChangedListener(this)
-        et_rbz.addTextChangedListener(this)
-        et_zar.addTextChangedListener(this)
-        et_amount.addTextChangedListener(this)
+
+        listOf(
+            R.id.et_usd,
+            R.id.et_bond,
+            R.id.et_omir,
+            R.id.et_rtgs,
+            R.id.et_rbz,
+            R.id.et_zar,
+            R.id.et_amount
+        ).forEach { id ->
+            findViewById<TextInputEditText>(id).addTextChangedListener(this@MainActivity)
+        }
     }
 
     /**
      * bind layout views
      */
     private fun bindViews() {
-        sr_layout.setOnRefreshListener(this)
+        findViewById<SwipeRefreshLayout>(R.id.sr_layout).setOnRefreshListener(this)
 
-        s_currency.onItemSelectedListener = this
-
-        btn_toggle.setOnClickListener(this)
+        findViewById<AppCompatSpinner>(R.id.s_currency).onItemSelectedListener = this
 
         //calculator btns
-        ib_bond_calculator.setOnClickListener(this)
-        ib_omir_calculator.setOnClickListener(this)
-        ib_rtgs_calculator.setOnClickListener(this)
-        ib_rbz_calculator.setOnClickListener(this)
-        ib_zar_calculator.setOnClickListener(this)
-        ib_amount_calculator.setOnClickListener(this)
+        listOf(
+            R.id.et_usd_parent,
+            R.id.et_bond_parent,
+            R.id.et_omir_parent,
+            R.id.et_rtgs_parent,
+            R.id.et_rbz_parent,
+            R.id.et_zar_parent,
+            R.id.et_amount_parent
+        ).forEach { id ->
+
+            findViewById<TextInputLayout>(id).run {
+                setStartIconOnClickListener {
+
+                    fragmentCalculator.settings.apply {
+                        initialValue = this@run.editText?.text.let {
+                            val text = if (it.isNullOrBlank()) "0" else it
+                            text
+                        }.toString().toBigDecimal()
+                        requestCode = id
+                    }
+
+                    fragmentCalculator.show(supportFragmentManager, "CalcDialog")
+
+                }
+            }
+
+        }
 
         triggerRateDialog()
     }
@@ -102,40 +126,48 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
      */
     private fun syncViews() {
 
-        et_bond.setText(
+        findViewById<TextInputEditText>(R.id.et_usd).setText(
+            BaseUtils.getPrefs(this).getString(
+                getString(R.string.currency_usd),
+                "1"
+            )
+        )
+        findViewById<TextInputEditText>(R.id.et_bond).setText(
             BaseUtils.getPrefs(this).getString(
                 getString(R.string.currency_bond),
                 "1"
             )
         )
-        et_omir.setText(
+        findViewById<TextInputEditText>(R.id.et_omir).setText(
             BaseUtils.getPrefs(this).getString(
                 getString(R.string.currency_omir),
                 "1"
             )
         )
-        et_rtgs.setText(
+        findViewById<TextInputEditText>(R.id.et_rtgs).setText(
             BaseUtils.getPrefs(this).getString(
                 getString(R.string.currency_rtgs),
                 "1"
             )
         )
-        et_rbz.setText(
+        findViewById<TextInputEditText>(R.id.et_rbz).setText(
             BaseUtils.getPrefs(this).getString(
                 getString(R.string.currency_rbz),
                 "1"
             )
         )
-        et_zar.setText(
+        findViewById<TextInputEditText>(R.id.et_zar).setText(
             BaseUtils.getPrefs(this).getString(
                 getString(R.string.currency_zar),
                 "1"
             )
         )
 
-        s_currency.setSelection(BaseUtils.getPrefs(this).getInt(CurrencyContract.CURRENCY, 0))
+        findViewById<AppCompatSpinner>(R.id.s_currency).setSelection(
+            BaseUtils.getPrefs(this).getInt(CurrencyContract.CURRENCY, 0)
+        )
 
-        et_amount.text?.append(
+        findViewById<TextInputEditText>(R.id.et_amount).text?.append(
             BaseUtils.getPrefs(this).getString(
                 "amount",
                 "1"
@@ -150,103 +182,12 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
             isAnswerBtnShown = true
         }
 
-        sr_layout.setColorSchemeResources(R.color.colorAccent)
+        findViewById<SwipeRefreshLayout>(R.id.sr_layout).setColorSchemeResources(R.color.colorAccent)
 
-    }
-
-    override fun onClick(view: View) {
-        when (view.id) {
-            R.id.btn_toggle -> {
-
-                FirebaseAnalytics.getInstance(baseContext).logEvent("toggle_rates_parent", Bundle())
-
-                btn_toggle.setCompoundDrawablesWithIntrinsicBounds(
-                    null,
-                    null,
-                    ContextCompat.getDrawable(
-                        baseContext,
-                        run {
-                            layout_rates.isVisible = layout_rates.isVisible.not()
-                            val drawable: Int =
-                                if (layout_rates.isVisible) R.drawable.ic_expand_less else R.drawable.ic_expand_more
-                            drawable
-                        }
-                    ),
-                    null
-                )
-
-            }
-            R.id.ib_bond_calculator -> {
-                fragmentCalculator.settings.apply {
-                    initialValue = et_bond.text.let {
-                        val text = if (it.isNullOrBlank()) "0" else it
-                        text
-                    }.toString().toBigDecimal()
-                    requestCode = view.id
-                }
-
-                fragmentCalculator.show(supportFragmentManager, "CalcDialog")
-            }
-            R.id.ib_omir_calculator -> {
-                fragmentCalculator.settings.apply {
-                    initialValue = et_omir.text.let {
-                        val text = if (it.isNullOrBlank()) "0" else it
-                        text
-                    }.toString().toBigDecimal()
-                    requestCode = view.id
-                }
-
-                fragmentCalculator.show(supportFragmentManager, "CalcDialog")
-            }
-            R.id.ib_rtgs_calculator -> {
-                fragmentCalculator.settings.apply {
-                    initialValue = et_rtgs.text.let {
-                        val text = if (it.isNullOrBlank()) "0" else it
-                        text
-                    }.toString().toBigDecimal()
-                    requestCode = view.id
-                }
-
-                fragmentCalculator.show(supportFragmentManager, "CalcDialog")
-            }
-            R.id.ib_rbz_calculator -> {
-                fragmentCalculator.settings.apply {
-                    initialValue = et_rbz.text.let {
-                        val text = if (it.isNullOrBlank()) "0" else it
-                        text
-                    }.toString().toBigDecimal()
-                    requestCode = view.id
-                }
-
-                fragmentCalculator.show(supportFragmentManager, "CalcDialog")
-            }
-            R.id.ib_zar_calculator -> {
-                fragmentCalculator.settings.apply {
-                    initialValue = et_zar.text.let {
-                        val text = if (it.isNullOrBlank()) "0" else it
-                        text
-                    }.toString().toBigDecimal()
-                    requestCode = view.id
-                }
-
-                fragmentCalculator.show(supportFragmentManager, "CalcDialog")
-            }
-            R.id.ib_amount_calculator -> {
-                fragmentCalculator.settings.apply {
-                    initialValue = et_amount.text.let {
-                        val text = if (it.isNullOrBlank()) "0" else it
-                        text
-                    }.toString().toBigDecimal()
-                    requestCode = view.id
-                }
-
-                fragmentCalculator.show(supportFragmentManager, "CalcDialog")
-            }
-        }
     }
 
     override fun onRefresh() {
-        sr_layout.isRefreshing = true
+        findViewById<SwipeRefreshLayout>(R.id.sr_layout).isRefreshing = true
 
         getFirebaseAnalytics()!!.logEvent("refresh_rates", Bundle())
 
@@ -277,10 +218,11 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         val prefer = BaseUtils.getPrefs(applicationContext)
             .getString("preferred_currency", getString(R.string.prefer_max))
 
-        val uri = Uri.parse(getString(R.string.rates_url)).buildUpon()
+        val uri = Uri.parse(ApiContract.getRatesUrl(baseContext)).buildUpon()
             .appendQueryParameter(CurrencyContract.PREFER, prefer).build()
 
-        val jsonObjectRequest = JsonObjectRequest(uri.toString(), null, this, this)
+        val jsonObjectRequest =
+            JsonObjectRequest(Request.Method.GET, uri.toString(), null, this, this)
 
         jsonObjectRequest.setShouldCache(false)
         jsonObjectRequest.retryPolicy = DefaultRetryPolicy(10000, 2, 1.0f)
@@ -290,14 +232,14 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
     override fun onResponse(response: JSONObject?) {
 
-        sr_layout.isRefreshing = false
+        findViewById<SwipeRefreshLayout>(R.id.sr_layout).isRefreshing = false
 
         if (BaseUtils.getPrefs(baseContext).getBoolean("auto_update", true)) {
             updateCurrencies(response)
         } else {
 
             Snackbar.make(
-                calc_result_layout,
+                findViewById<LinearLayoutCompat>(R.id.sr_layout),
                 R.string.update_available,
                 Snackbar.LENGTH_INDEFINITE
             )
@@ -329,24 +271,24 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
                 when (currency.getString(CurrencyContract.CURRENCY)) {
                     getString(R.string.currency_bond) -> {
-                        et_bond.setText(rate)
-                        et_bond_parent.helperText = date
+                        findViewById<TextInputEditText>(R.id.et_bond).setText(rate)
+                        findViewById<TextInputLayout>(R.id.et_bond_parent).helperText = date
                     }
                     getString(R.string.currency_omir) -> {
-                        et_omir.setText(rate)
-                        et_omir_parent.helperText = date
+                        findViewById<TextInputEditText>(R.id.et_omir).setText(rate)
+                        findViewById<TextInputLayout>(R.id.et_omir_parent).helperText = date
                     }
                     getString(R.string.currency_rbz) -> {
-                        et_rbz.setText(rate)
-                        et_rbz_parent.helperText = date
+                        findViewById<TextInputEditText>(R.id.et_rbz).setText(rate)
+                        findViewById<TextInputLayout>(R.id.et_rbz_parent).helperText = date
                     }
                     getString(R.string.currency_rtgs) -> {
-                        et_rtgs.setText(rate)
-                        et_rtgs_parent.helperText = date
+                        findViewById<TextInputEditText>(R.id.et_rtgs).setText(rate)
+                        findViewById<TextInputLayout>(R.id.et_rtgs_parent).helperText = date
                     }
                     getString(R.string.currency_zar) -> {
-                        et_zar.setText(rate)
-                        et_zar_parent.helperText = date
+                        findViewById<TextInputEditText>(R.id.et_zar).setText(rate)
+                        findViewById<TextInputLayout>(R.id.et_zar_parent).helperText = date
                     }
                 }
             }
@@ -362,7 +304,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
     override fun onErrorResponse(error: VolleyError?) {
         error?.printStackTrace()
 
-        sr_layout.isRefreshing = false
+        findViewById<SwipeRefreshLayout>(R.id.sr_layout).isRefreshing = false
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -423,30 +365,59 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
     private fun saveRates() {
         BaseUtils.getPrefs(this).edit()
-            .putString(getString(R.string.currency_bond), et_bond.text?.toString())
+            .putString(
+                getString(R.string.currency_usd),
+                findViewById<TextInputEditText>(R.id.et_usd).text?.toString()
+            )
             .apply()
         BaseUtils.getPrefs(this).edit()
-            .putString(getString(R.string.currency_omir), et_omir.text?.toString())
+            .putString(
+                getString(R.string.currency_bond),
+                findViewById<TextInputEditText>(R.id.et_bond).text?.toString()
+            )
             .apply()
         BaseUtils.getPrefs(this).edit()
-            .putString(getString(R.string.currency_rtgs), et_rtgs.text?.toString())
+            .putString(
+                getString(R.string.currency_omir),
+                findViewById<TextInputEditText>(R.id.et_omir).text?.toString()
+            )
             .apply()
         BaseUtils.getPrefs(this).edit()
-            .putString(getString(R.string.currency_rbz), et_rbz.text?.toString())
+            .putString(
+                getString(R.string.currency_rtgs),
+                findViewById<TextInputEditText>(R.id.et_rtgs).text?.toString()
+            )
             .apply()
         BaseUtils.getPrefs(this).edit()
-            .putString(getString(R.string.currency_zar), et_zar.text?.toString())
+            .putString(
+                getString(R.string.currency_rbz),
+                findViewById<TextInputEditText>(R.id.et_rbz).text?.toString()
+            )
+            .apply()
+        BaseUtils.getPrefs(this).edit()
+            .putString(
+                getString(R.string.currency_zar),
+                findViewById<TextInputEditText>(R.id.et_zar).text?.toString()
+            )
             .apply()
     }
 
     private fun getCalculator(): Calculator {
 
-        var bondText = normaliseInput(et_bond.text?.toString())
-        var omirText = normaliseInput(et_omir.text?.toString())
-        var rtgsText = normaliseInput(et_rtgs.text?.toString())
-        var rbzText = normaliseInput(et_rbz.text?.toString())
-        var zarText = normaliseInput(et_zar.text?.toString())
+        var usdText =
+            normaliseInput(findViewById<TextInputEditText>(R.id.et_usd).text?.toString())
+        var bondText =
+            normaliseInput(findViewById<TextInputEditText>(R.id.et_bond).text?.toString())
+        var omirText =
+            normaliseInput(findViewById<TextInputEditText>(R.id.et_omir).text?.toString())
+        var rtgsText =
+            normaliseInput(findViewById<TextInputEditText>(R.id.et_rtgs).text?.toString())
+        var rbzText = normaliseInput(findViewById<TextInputEditText>(R.id.et_rbz).text?.toString())
+        var zarText = normaliseInput(findViewById<TextInputEditText>(R.id.et_zar).text?.toString())
 
+        if (TextUtils.isEmpty(usdText)) {
+            usdText = "1"
+        }
         if (TextUtils.isEmpty(bondText)) {
             bondText = "1"
         }
@@ -465,7 +436,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
         saveRates()
 
-        val usd = USD(1.0)
+        val usd = USD(usdText.toDouble())
         val bond = BOND(bondText.toDouble())
         val omir = OMIR(omirText.toDouble())
         val rtgs = RTGS(rtgsText.toDouble())
@@ -473,7 +444,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         val zar = ZAR(zarText.toDouble())
 
         var currency: Currency = usd
-        when (s_currency.selectedItem) {
+        when (findViewById<AppCompatSpinner>(R.id.s_currency).selectedItem) {
             getString(R.string.currency_usd) -> {
                 currency = usd
             }
@@ -525,50 +496,52 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
         val calculator = getCalculator()
 
-        val amountText = normaliseInput(et_amount.text?.toString())
+        val amountText =
+            normaliseInput(findViewById<TextInputEditText>(R.id.et_amount).text?.toString())
 
         if (amountText.isNotEmpty()) {
 
             //save amount entered
             BaseUtils.getPrefs(this).edit().putString("amount", amountText)
                 .apply()
-            BaseUtils.getPrefs(this).edit().putInt("currency", s_currency.selectedItemPosition)
+            BaseUtils.getPrefs(this).edit().putInt(
+                "currency",
+                findViewById<AppCompatSpinner>(R.id.s_currency).selectedItemPosition
+            )
                 .apply()
 
-            calc_result_layout.removeAllViews()
-
             calculateCurrencyResult(
-                amountText.toDouble(),
+                R.id.txt_usd_result,
                 calculator.toUSD(amountText.toDouble()),
                 calculator.usd
             )
 
             calculateCurrencyResult(
-                amountText.toDouble(),
+                R.id.txt_bond_result,
                 calculator.toBOND(amountText.toDouble()),
                 calculator.bond
             )
 
             calculateCurrencyResult(
-                amountText.toDouble(),
+                R.id.txt_omir_result,
                 calculator.toOMIR(amountText.toDouble()),
                 calculator.omir
             )
 
             calculateCurrencyResult(
-                amountText.toDouble(),
+                R.id.txt_rbz_result,
                 calculator.toRBZ(amountText.toDouble()),
                 calculator.rbz
             )
 
             calculateCurrencyResult(
-                amountText.toDouble(),
+                R.id.txt_rtgs_result,
                 calculator.toRTGS(amountText.toDouble()),
                 calculator.rtgs
             )
 
             calculateCurrencyResult(
-                amountText.toDouble(),
+                R.id.txt_zar_result,
                 calculator.toZAR(amountText.toDouble()),
                 calculator.zar
             )
@@ -576,66 +549,36 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
     }
 
-    private fun calculateCurrencyResult(amountText: Double, result: Double, currency: Currency) {
-
-        addResultLayout(
-            getResultText(
-                amountText,
-                currency.getSign(),
-                result,
-                getString(currency.getName())
-            ), result, getString(currency.getName())
-        )
-    }
-
-    /**
-     * get calculated result text
-     */
-    private fun getResultText(
-        amountText: Double,
-        sign: String,
+    private fun calculateCurrencyResult(
+        target: Int,
         result: Double,
-        currency: String
-    ): String {
-        val calculator = getCalculator()
+        currency: Currency
+    ) {
 
-        return getString(
-            R.string.result,
-            calculator.currency.getSign(),
-            amountText,
-            s_currency.selectedItem,
-            sign,
-            result,
-            currency
-        )
-    }
+        with(findViewById<AppCompatButton>(target)) {
+            setOnClickListener {
 
-    /**
-     * create result layout
-     */
-    private fun addResultLayout(result: String, amount: Double, currency: String) {
+                this@MainActivity.findViewById<TextInputEditText>(R.id.et_amount).setText(
+                    String.format("%10.2f", result).trim()
+                )
 
-        val resultLayout: CardView =
-            layoutInflater.inflate(
-                R.layout.layout_result,
-                calc_result_layout,
-                false
-            ) as CardView
+                val selection = resources.getStringArray(R.array.currencies)
+                    .indexOf(getString(currency.getName()))
 
-        resultLayout.result_text.text = result
-        resultLayout.setOnClickListener {
+                FirebaseAnalytics.getInstance(baseContext)
+                    .logEvent("copy_result_for_calculation", Bundle())
 
-            et_amount.setText(String.format("%10.2f", amount).trim())
+                this@MainActivity.findViewById<AppCompatSpinner>(R.id.s_currency)
+                    .setSelection(selection)
 
-            val selection = resources.getStringArray(R.array.currencies).indexOf(currency)
+            }
 
-            FirebaseAnalytics.getInstance(baseContext)
-                .logEvent("copy_result_for_calculation", Bundle())
-
-            s_currency.setSelection(selection)
+            text = getString(
+                R.string.result,
+                currency.getSign(),
+                result
+            )
         }
-
-        calc_result_layout.addView(resultLayout)
     }
 
     override fun onStop() {
@@ -675,23 +618,28 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
     override fun onValueEntered(requestCode: Int, value: BigDecimal?) {
         when (requestCode) {
-            R.id.ib_bond_calculator -> {
-                et_bond.setText(value?.toPlainString() ?: "")
+            R.id.et_usd_parent -> {
+                findViewById<TextInputEditText>(R.id.et_usd).setText(value?.toPlainString() ?: "")
             }
-            R.id.ib_omir_calculator -> {
-                et_omir.setText(value?.toPlainString() ?: "")
+            R.id.et_bond_parent -> {
+                findViewById<TextInputEditText>(R.id.et_bond).setText(value?.toPlainString() ?: "")
             }
-            R.id.ib_rtgs_calculator -> {
-                et_rtgs.setText(value?.toPlainString() ?: "")
+            R.id.et_omir_parent -> {
+                findViewById<TextInputEditText>(R.id.et_omir).setText(value?.toPlainString() ?: "")
             }
-            R.id.ib_rbz_calculator -> {
-                et_rbz.setText(value?.toPlainString() ?: "")
+            R.id.et_rtgs_parent -> {
+                findViewById<TextInputEditText>(R.id.et_rtgs).setText(value?.toPlainString() ?: "")
             }
-            R.id.ib_zar_calculator -> {
-                et_zar.setText(value?.toPlainString() ?: "")
+            R.id.et_rbz_parent -> {
+                findViewById<TextInputEditText>(R.id.et_rbz).setText(value?.toPlainString() ?: "")
             }
-            R.id.ib_amount_calculator -> {
-                et_amount.setText(value?.toPlainString() ?: "")
+            R.id.et_zar_parent -> {
+                findViewById<TextInputEditText>(R.id.et_zar).setText(value?.toPlainString() ?: "")
+            }
+            R.id.et_amount_parent -> {
+                findViewById<TextInputEditText>(R.id.et_amount).setText(
+                    value?.toPlainString() ?: ""
+                )
             }
         }
     }

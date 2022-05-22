@@ -34,9 +34,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:hint="@string/calc_amount"
+                android:id="@+id/et_amount_parent"
                 style="@style/AppTheme.TextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
+
                     android:id="@+id/et_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -51,13 +53,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:entries="@array/currencies" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/ib_amount_calculator"
-                style="@style/AppTheme.ImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_calculator" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

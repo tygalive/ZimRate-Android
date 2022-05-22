@@ -51,19 +51,19 @@
 
     <!--Widgets-->
     <style name="AppTheme.TextInputLayout" parent="@style/Widget.Design.TextInputLayout">
-        <item name="endIconTint">?attr/icon_tint</item>
-        <item name="android:paddingBottom">@dimen/space_10dp</item>
-        <item name="counterEnabled">true</item>
+        <item name="startIconTint">?attr/icon_tint</item>
         <item name="counterMaxLength">@integer/maxvalue</item>
-        <item name="endIconMode">clear_text</item>
+        <item name="android:paddingBottom">@dimen/space_10dp</item>
+        <item name="startIconDrawable">@drawable/ic_calculator</item>
         <item name="helperTextTextColor">?attr/icon_tint</item>
     </style>
 
-    <style name="AppTheme.ImageView" parent="Widget.AppCompat.Button.Borderless.Colored">
-        <item name="tint">?attr/icon_tint</item>
+    <!--Edit text app style-->
+    <style name="AppTheme.EditText" parent="@style/Widget.AppCompat.EditText">
+        <!--<item name="android:background">@android:color/transparent</item>-->
     </style>
 
-    <style name="AppTheme.TextView" parent="Widget.AppCompat.TextView">
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Borderless">
         <item name="drawableTint">?attr/icon_tint</item>
     </style>
 

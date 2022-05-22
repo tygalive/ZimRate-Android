@@ -7,15 +7,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.res.ResourcesCompat
 import com.codemybrainsout.ratingdialog.RatingDialog
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.utils.BaseUtils
-import kotlinx.android.synthetic.main.ads_view.*
 
 abstract class BaseActivity : AppCompatActivity() {
     private var mFirebaseAnalytics: FirebaseAnalytics? = null
@@ -39,6 +41,7 @@ abstract class BaseActivity : AppCompatActivity() {
         val builder = AdRequest.Builder()
         val adRequest = builder.build()
 
+        val adView = findViewById<AdView>(R.id.adView)
         adView.loadAd(adRequest)
         adView.adListener = object : AdListener() {
             override fun onAdLoaded() {
@@ -46,9 +49,9 @@ abstract class BaseActivity : AppCompatActivity() {
                 adView.visibility = View.VISIBLE
             }
 
-            override fun onAdFailedToLoad(errorCode: Int) {
+            override fun onAdFailedToLoad( loadAdError: LoadAdError) {
                 // Code to be executed when an ad request fails.
-                if (errorCode == AdRequest.ERROR_CODE_NETWORK_ERROR) {
+                if (loadAdError.code == AdRequest.ERROR_CODE_NETWORK_ERROR) {
                     adView.visibility = View.GONE
                 }
             }
@@ -126,11 +129,11 @@ abstract class BaseActivity : AppCompatActivity() {
                         )
                     } else {
                         Snackbar.make(
-                            adView,
+                            findViewById<AdView>(R.id.adView),
                             R.string.rate_email_failed,
                             Snackbar.LENGTH_INDEFINITE
                         )
-                            .setAction(R.string.rate_site) { v1 ->
+                            .setAction(R.string.rate_site) { _ ->
                                 val i = Intent(Intent.ACTION_VIEW)
                                 i.data = Uri.parse(getString(R.string.author_url))
                                 startActivity(i)

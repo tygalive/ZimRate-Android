@@ -1,6 +1,6 @@
 package com.tyganeutronics.myratecalculator
 
-import com.tyganeutronics.myratecalculator.models.*
+import com.tyganeutronics.myratecalculator.database.*
 
 class Calculator constructor(
     var usd: USD,
