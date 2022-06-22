@@ -57,7 +57,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginEnd="@dimen/space_20dp"
-        android:layout_marginRight="@dimen/space_20dp"
         android:text="@string/widget_add" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

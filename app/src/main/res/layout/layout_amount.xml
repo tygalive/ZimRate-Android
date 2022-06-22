@@ -26,7 +26,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginStart="@dimen/space_5dp"
-            android:layout_marginLeft="@dimen/space_5dp"
             android:gravity="center_vertical">
 
             <com.google.android.material.textfield.TextInputLayout

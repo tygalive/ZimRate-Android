@@ -12,6 +12,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.activities.MainActivity
 import com.tyganeutronics.myratecalculator.contract.CurrencyContract
+import com.tyganeutronics.myratecalculator.database.*
 import com.tyganeutronics.myratecalculator.utils.BaseUtils
 import java.time.Instant
 import java.time.LocalDateTime
@@ -78,33 +79,39 @@ class MultipleRateProvider : AppWidgetProvider() {
 
         //rates
         views.setTextViewText(
+            R.id.txt_usd,
+            getStoredValue(
+                context, USD(1.0)
+            )
+        )
+        views.setTextViewText(
             R.id.txt_bond,
             getStoredValue(
-                context, context.getString(R.string.currency_bond)
+                context, BOND(1.0)
             )
         )
         views.setTextViewText(
             R.id.txt_omir,
             getStoredValue(
-                context, context.getString(R.string.currency_omir)
+                context, OMIR(1.0)
             )
         )
         views.setTextViewText(
             R.id.txt_rtgs,
             getStoredValue(
-                context, context.getString(R.string.currency_rtgs)
+                context, RTGS(1.0)
             )
         )
         views.setTextViewText(
             R.id.txt_rbz,
             getStoredValue(
-                context, context.getString(R.string.currency_rbz)
+                context, RBZ(1.0)
             )
         )
         views.setTextViewText(
             R.id.txt_zar,
             getStoredValue(
-                context, context.getString(R.string.currency_zar)
+                context, ZAR(1.0)
             )
         )
 
@@ -132,7 +139,13 @@ class MultipleRateProvider : AppWidgetProvider() {
 
     }
 
-    private fun getStoredValue(context: Context, key: String): String? {
-        return String.format("%10.2f", BaseUtils.getPrefs(context).getString(key, "1")?.toDouble())
+    private fun getStoredValue(context: Context, currency: Currency): String? {
+        val key = context.getString(currency.getName())
+
+       return context.getString(
+            R.string.result,
+            currency.getSign(),
+           BaseUtils.getPrefs(context).getString(key, "1")?.toDouble()
+        )
     }
 }
