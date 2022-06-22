@@ -44,15 +44,15 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'com.google.android.material:material:1.6.1'
 
     //desugaring
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
     // Firebase
-    implementation 'com.google.firebase:firebase-ads:20.6.0'
+    implementation 'com.google.firebase:firebase-ads:21.0.0'
     implementation 'com.google.firebase:firebase-invites:17.0.0'
 
     //Crashlytics
