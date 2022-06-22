@@ -48,12 +48,14 @@
     <string name="info_message">1. To refresh rates at any time, you can swipe from the top on this screen.\n\n2. You can also add a widget to your home screen to view last loaded rates without opening app. (Rates are not loaded in the background)\n\n3. You can instantly use the calculated result for further calculation by pressing the desired result.</string>
     <string name="info_dismiss">OK</string>
     <string name="about">About</string>
+    <string name="author">Author</string>
     <string name="rates_source_title">Rates from</string>
     <string name="rates_source" translatable="false">http://zimrate.tyganeutronics.com/</string>
 
     <string name="author_name" translatable="false">Richard Muvirimi</string>
-    <string name="author_email" translatable="false">tygalive@gmail.com</string>
-    <string name="author_url" translatable="false">https://tyganeutronics.com</string>
+    <string name="author_email" translatable="false">rich4rdmuvirimi@gmail.com</string>
+    <string name="author_email_link" translatable="false">mailto:rich4rdmuvirimi@gmail.com</string>
+    <string name="author_url" translatable="false">https://richard.co.zw</string>
 
     <string name="app_version">Version %s</string>
 
@@ -104,5 +106,9 @@
         <item>Result must be positive</item>
         <item>Result must be negative</item>
     </string-array>
+
+    <string name="donate">Donate</string>
+    <string name="donate_summary">Support this project with a donation</string>
+    <string name="donate_link">https://www.buymeacoffee.com/fpjyrXk</string>
 
 </resources>

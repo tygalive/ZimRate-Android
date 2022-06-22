@@ -33,6 +33,7 @@
     <string name="info_message">1. Kuti uwane rate ritsva chero nguva unogona kuswiper kubva kumusoro pascreen rino.\n\n2. Unogona kuisa widget pahome screen rako kuti uone rate usina kumbo vhura application ino. (Marates haa refresh musinga zvizive)\n\n3. Unogona kushandisa rate racalculator nekudzvanya rate racho usina kuri nyora patsva.</string>
     <string name="info_dismiss">Bho</string>
     <string name="about">Ndezvei</string>
+    <string name="author">Munyori</string>
     <string name="rates_source_title">MaRates arikubva</string>
 
     <string name="app_version">Chiburwa %s</string>
@@ -75,5 +76,9 @@
         <item>Number inofanira kuita hombe pana zero</item>
         <item>Number inofanira kuita diki pana zero</item>
     </string-array>
+
+    <string name="donate">Donate</string>
+    <string name="donate_summary">Batsira project iyenderere mberi ne donation</string>
+    <string name="donate_link">https://www.buymeacoffee.com/fpjyrXk</string>
 
 </resources>
