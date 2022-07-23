@@ -13,8 +13,8 @@ android {
         applicationId "com.tyganeutronics.myratecalculator"
         minSdkVersion 19
         targetSdkVersion 32
-        versionCode 24
-        versionName "1.7.1"
+        versionCode 25
+        versionName "1.7.2"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
     }
@@ -38,6 +38,18 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    flavorDimensions 'store'
+    productFlavors {
+        playstore {
+            dimension = 'store'
+        }
+        samsungstore {
+            dimension = 'store'
+        }
+        otherstore {
+            dimension = 'store'
+        }
+    }
     namespace 'com.tyganeutronics.myratecalculator'
 }
 
@@ -47,17 +59,18 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     //desugaring
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
     // Firebase
-    implementation 'com.google.firebase:firebase-ads:21.0.0'
+    implementation 'com.google.firebase:firebase-ads:21.1.0'
     implementation 'com.google.firebase:firebase-invites:17.0.0'
 
     //Crashlytics
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:30.0.2')
+    implementation platform('com.google.firebase:firebase-bom:30.3.0')
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-crashlytics'
@@ -92,10 +105,12 @@ dependencies {
     // Lifecycle components
     def archLifecycleVersion = '2.2.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.0'
 
     //https://stackoverflow.com/questions/49602410/when-should-we-use-android-arch-lifecyclecompiler-or-android-arch-lifecycleco
     //annotationProcessor "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
     kapt "androidx.lifecycle:lifecycle-common-java8:$archLifecycleVersion"
+
+    implementation("com.android.billingclient:billing-ktx:5.0.0")
 }
 

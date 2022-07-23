@@ -6,6 +6,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.tyganeutronics.myratecalculator.BuildConfig
 import com.tyganeutronics.myratecalculator.R
+import com.tyganeutronics.myratecalculator.utils.BaseUtils
 import de.psdev.licensesdialog.LicensesDialog
 
 
@@ -24,6 +25,9 @@ class FragmentSettings : PreferenceFragmentCompat(), Preference.OnPreferenceClic
         )
 
         findPreference<Preference>(getString(R.string.license))?.onPreferenceClickListener = this
+
+        findPreference<Preference>(getString(R.string.donate))?.isVisible =
+            BaseUtils.isPlayBuild().not()
     }
 
     override fun onPreferenceClick(preference: Preference): Boolean {
