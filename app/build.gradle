@@ -4,17 +4,18 @@ plugins {
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
+    id("com.apollographql.apollo3").version("3.4.0")
 }
 
 android {
-    compileSdkVersion 32
-    buildToolsVersion = '32.0.0'
+    compileSdkVersion 33
+    buildToolsVersion = '33.0.0'
     defaultConfig {
         applicationId "com.tyganeutronics.myratecalculator"
         minSdkVersion 19
-        targetSdkVersion 32
-        versionCode 25
-        versionName "1.7.2"
+        targetSdkVersion 33
+        versionCode 26
+        versionName "1.7.3"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
     }
@@ -56,7 +57,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
@@ -65,7 +66,7 @@ dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
     // Firebase
-    implementation 'com.google.firebase:firebase-ads:21.1.0'
+    implementation 'com.google.firebase:firebase-ads:21.2.0'
     implementation 'com.google.firebase:firebase-invites:17.0.0'
 
     //Crashlytics
@@ -90,27 +91,22 @@ dependencies {
     //preferences
     implementation 'androidx.preference:preference-ktx:1.2.0'
 
-    //https://developer.android.com/training/volley
-    implementation 'com.android.volley:volley:1.2.1'
+    implementation("com.apollographql.apollo3:apollo-runtime:3.4.0")
 
     //https://github.com/maltaisn/calcdialoglib
     implementation "com.maltaisn:calcdialog:2.2.2"
 
     //https://developer.android.com/training/data-storage/room
-    def room_version = '2.4.2'
+    def room_version = '2.4.3'
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
-    // Lifecycle components
-    def archLifecycleVersion = '2.2.0'
-    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.0'
-
-    //https://stackoverflow.com/questions/49602410/when-should-we-use-android-arch-lifecyclecompiler-or-android-arch-lifecycleco
-    //annotationProcessor "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
-    kapt "androidx.lifecycle:lifecycle-common-java8:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
 
     implementation("com.android.billingclient:billing-ktx:5.0.0")
 }
 
+apollo {
+    packageName.set("com.tyganeutronics.myratecalculator.graphql")
+}

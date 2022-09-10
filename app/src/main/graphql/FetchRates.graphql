@@ -1,0 +1,8 @@
+query FetchRates ($prefer : Prefer) {
+    rates : rate (prefer: $prefer) {
+        currency
+        last_updated
+        name
+        rate
+    }
+}

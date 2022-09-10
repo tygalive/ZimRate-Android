@@ -1,0 +1,38 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+}
+
+type Query {
+    info: String
+    rate(callback: String = "", cors: Boolean = false, currency: Currency, date: Int = 0, prefer: Prefer, search: Search): [Rate!]
+}
+
+type Rate {
+    currency: String
+    last_checked: Int
+    last_updated: Int
+    name: String
+    rate: Float
+    url: String
+}
+
+enum Currency {
+    BOND
+    OMIR
+    RBZ
+    RTGS
+    ZAR
+}
+
+enum Prefer {
+    MAX
+    MEAN
+    MEDIAN
+    MIN
+    MODE
+    RANDOM
+}
+
+scalar Search

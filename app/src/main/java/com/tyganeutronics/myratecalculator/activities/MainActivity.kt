@@ -3,7 +3,6 @@ package com.tyganeutronics.myratecalculator.activities
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -13,31 +12,31 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.*
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatSpinner
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.android.volley.DefaultRetryPolicy
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonObjectRequest
+import com.apollographql.apollo3.api.Optional
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.maltaisn.calcdialog.CalcDialog
 import com.maltaisn.calcdialog.CalcNumpadLayout
+import com.tyganeutronics.myratecalculator.AppZimrate
 import com.tyganeutronics.myratecalculator.Calculator
-import com.tyganeutronics.myratecalculator.MyApplication
 import com.tyganeutronics.myratecalculator.R
-import com.tyganeutronics.myratecalculator.contract.ApiContract
 import com.tyganeutronics.myratecalculator.contract.CurrencyContract
-import com.tyganeutronics.myratecalculator.fragments.FragmentCalculator
 import com.tyganeutronics.myratecalculator.database.*
+import com.tyganeutronics.myratecalculator.fragments.FragmentCalculator
+import com.tyganeutronics.myratecalculator.graphql.FetchRatesQuery
+import com.tyganeutronics.myratecalculator.graphql.type.Prefer
 import com.tyganeutronics.myratecalculator.utils.BaseUtils
 import com.tyganeutronics.myratecalculator.widget.MultipleRateProvider
 import com.tyganeutronics.myratecalculator.widget.SingleRateProvider
-import org.json.JSONObject
+import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import java.time.Instant
 import java.time.LocalDateTime
@@ -47,7 +46,7 @@ import java.time.format.FormatStyle
 import java.util.concurrent.TimeUnit
 
 class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedListener,
-    Response.Listener<JSONObject>, Response.ErrorListener, SwipeRefreshLayout.OnRefreshListener,
+    SwipeRefreshLayout.OnRefreshListener,
     CalcDialog.CalcDialogCallback {
 
     private val fragmentCalculator: FragmentCalculator = FragmentCalculator()
@@ -215,27 +214,33 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
      */
     private fun fetchRates() {
 
-        val prefer = BaseUtils.getPrefs(applicationContext)
-            .getString("preferred_currency", getString(R.string.prefer_max))
+        lifecycleScope.launch {
+            val option = BaseUtils.getPrefs(applicationContext)
+                .getString("preferred_currency", getString(R.string.prefer_max))
 
-        val uri = Uri.parse(ApiContract.getRatesUrl(baseContext)).buildUpon()
-            .appendQueryParameter(CurrencyContract.PREFER, prefer).build()
+            val prefer = Optional.presentIfNotNull(Prefer.safeValueOf(option!!.uppercase()))
 
-        val jsonObjectRequest =
-            JsonObjectRequest(Request.Method.GET, uri.toString(), null, this, this)
-
-        jsonObjectRequest.setShouldCache(false)
-        jsonObjectRequest.retryPolicy = DefaultRetryPolicy(10000, 2, 1.0f)
-
-        MyApplication.requestQueue.add(jsonObjectRequest)
+            try {
+                AppZimrate
+                    .apolloClient
+                    .query(FetchRatesQuery(prefer))
+                    .execute()
+                    .data
+                    ?.rates?.let { rates ->
+                        onResponse(rates)
+                    }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                findViewById<SwipeRefreshLayout>(R.id.sr_layout).isRefreshing = false
+            }
+        }
     }
 
-    override fun onResponse(response: JSONObject?) {
-
-        findViewById<SwipeRefreshLayout>(R.id.sr_layout).isRefreshing = false
+    private fun onResponse(rates: List<FetchRatesQuery.Rate>) {
 
         if (BaseUtils.getPrefs(baseContext).getBoolean("auto_update", true)) {
-            updateCurrencies(response)
+            updateCurrencies(rates)
         } else {
 
             Snackbar.make(
@@ -246,65 +251,54 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
                 .setAction(
                     R.string.update_apply
                 ) {
-                    updateCurrencies(response)
+                    updateCurrencies(rates)
                 }.show()
         }
 
     }
 
-    private fun updateCurrencies(response: JSONObject?) {
-        val currencies = JSONObject(response.toString()).optJSONArray(CurrencyContract.USD)
+    private fun updateCurrencies(currencies: List<FetchRatesQuery.Rate>) {
 
-        if (currencies != null) {
+        currencies.forEach { currency ->
 
-            for (i in 0 until currencies.length()) {
-                val currency = currencies.getJSONObject(i)
+            val instant = Instant.ofEpochSecond(
+                currency.last_updated!!.toLong()
+            )
+            val format =
+                DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT)
+            val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).format(format)
 
-                val instant = Instant.ofEpochSecond(
-                    currency.getString(CurrencyContract.LAST_UPDATED).toLong()
-                )
-                val format =
-                    DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT)
-                val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).format(format)
+            val rate = currency.rate.toString()
 
-                val rate = currency.getString(CurrencyContract.RATE)
-
-                when (currency.getString(CurrencyContract.CURRENCY)) {
-                    getString(R.string.currency_bond) -> {
-                        findViewById<TextInputEditText>(R.id.et_bond).setText(rate)
-                        findViewById<TextInputLayout>(R.id.et_bond_parent).helperText = date
-                    }
-                    getString(R.string.currency_omir) -> {
-                        findViewById<TextInputEditText>(R.id.et_omir).setText(rate)
-                        findViewById<TextInputLayout>(R.id.et_omir_parent).helperText = date
-                    }
-                    getString(R.string.currency_rbz) -> {
-                        findViewById<TextInputEditText>(R.id.et_rbz).setText(rate)
-                        findViewById<TextInputLayout>(R.id.et_rbz_parent).helperText = date
-                    }
-                    getString(R.string.currency_rtgs) -> {
-                        findViewById<TextInputEditText>(R.id.et_rtgs).setText(rate)
-                        findViewById<TextInputLayout>(R.id.et_rtgs_parent).helperText = date
-                    }
-                    getString(R.string.currency_zar) -> {
-                        findViewById<TextInputEditText>(R.id.et_zar).setText(rate)
-                        findViewById<TextInputLayout>(R.id.et_zar_parent).helperText = date
-                    }
+            when (currency.currency) {
+                getString(R.string.currency_bond) -> {
+                    findViewById<TextInputEditText>(R.id.et_bond).setText(rate)
+                    findViewById<TextInputLayout>(R.id.et_bond_parent).helperText = date
+                }
+                getString(R.string.currency_omir) -> {
+                    findViewById<TextInputEditText>(R.id.et_omir).setText(rate)
+                    findViewById<TextInputLayout>(R.id.et_omir_parent).helperText = date
+                }
+                getString(R.string.currency_rbz) -> {
+                    findViewById<TextInputEditText>(R.id.et_rbz).setText(rate)
+                    findViewById<TextInputLayout>(R.id.et_rbz_parent).helperText = date
+                }
+                getString(R.string.currency_rtgs) -> {
+                    findViewById<TextInputEditText>(R.id.et_rtgs).setText(rate)
+                    findViewById<TextInputLayout>(R.id.et_rtgs_parent).helperText = date
+                }
+                getString(R.string.currency_zar) -> {
+                    findViewById<TextInputEditText>(R.id.et_zar).setText(rate)
+                    findViewById<TextInputLayout>(R.id.et_zar_parent).helperText = date
                 }
             }
-
-            saveRates()
-
-            BaseUtils.getPrefs(baseContext).edit()
-                .putLong(CurrencyContract.LAST_CHECK, System.currentTimeMillis())
-                .apply()
         }
-    }
 
-    override fun onErrorResponse(error: VolleyError?) {
-        error?.printStackTrace()
+        saveRates()
 
-        findViewById<SwipeRefreshLayout>(R.id.sr_layout).isRefreshing = false
+        BaseUtils.getPrefs(baseContext).edit()
+            .putLong(CurrencyContract.LAST_CHECK, System.currentTimeMillis())
+            .apply()
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

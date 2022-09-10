@@ -8,7 +8,7 @@ import com.tyganeutronics.myratecalculator.BuildConfig
 object ApiContract {
 
     fun getRatesUrl(context: Context): String{
-        return  "http://zimrate.tyganeutronics.com/api/v1"
+        return "http://zimrate.tyganeutronics.com/api/graphql"
     }
 
     private fun getBaseApiUrl(context: Context): String {
