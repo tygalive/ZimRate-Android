@@ -14,8 +14,8 @@ android {
         applicationId "com.tyganeutronics.myratecalculator"
         minSdkVersion 19
         targetSdkVersion 33
-        versionCode 27
-        versionName "1.7.3"
+        versionCode 28
+        versionName "1.7.4"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
     }
@@ -58,7 +58,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
