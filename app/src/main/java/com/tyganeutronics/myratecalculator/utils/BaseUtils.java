@@ -2,7 +2,11 @@ package com.tyganeutronics.myratecalculator.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.util.TypedValue;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorRes;
 import androidx.preference.PreferenceManager;
 
 import com.tyganeutronics.myratecalculator.BuildConfig;

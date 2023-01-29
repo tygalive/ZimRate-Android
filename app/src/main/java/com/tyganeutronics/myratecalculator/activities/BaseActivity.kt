@@ -2,12 +2,10 @@ package com.tyganeutronics.myratecalculator.activities
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.res.ResourcesCompat
 import com.codemybrainsout.ratingdialog.RatingDialog
 import com.google.android.gms.ads.AdListener
@@ -49,7 +47,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 adView.visibility = View.VISIBLE
             }
 
-            override fun onAdFailedToLoad( loadAdError: LoadAdError) {
+            override fun onAdFailedToLoad(loadAdError: LoadAdError) {
                 // Code to be executed when an ad request fails.
                 if (loadAdError.code == AdRequest.ERROR_CODE_NETWORK_ERROR) {
                     adView.visibility = View.GONE
@@ -58,35 +56,25 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    private fun isPlayStoreInstall(): Boolean {
-
-        val source: String? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            packageManager.getInstallSourceInfo(packageName).installingPackageName
-        } else {
-            @Suppress("DEPRECATION")
-            packageManager.getInstallerPackageName(packageName)
-        }
-
-        return source.equals("com.android.vending")
-    }
-
     fun triggerRateDialog() {
 
-        if (isPlayStoreInstall()) {
+        if (BaseUtils.isPlayBuild()) {
             val ratingDialog = RatingDialog.Builder(this)
-                .icon(ResourcesCompat.getDrawable(resources, R.mipmap.ic_launcher, theme))
+                .icon(ResourcesCompat.getDrawable(resources, R.mipmap.ic_launcher, theme)!!)
                 .session(7)
-                .threshold(3f)
-                .title(getString(R.string.rate_app))
-                .positiveButtonText(getString(R.string.rate_later))
-                .negativeButtonText(getString(R.string.rate_never))
-                .formTitle(getString(R.string.rate_submit_feedbak))
-                .formHint(getString(R.string.rate_submit_prompt))
-                .formSubmitText(getString(R.string.rate_submit))
-                .formCancelText(getString(R.string.rate_cancel))
-                .positiveButtonTextColor(R.color.colorAccent)
+                .threshold(3)
+                .title(R.string.rate_app)
+                .positiveButton(
+                    R.string.rate_later,
+                    R.color.colorPrimaryLight
+                )
+                .negativeButton(R.string.rate_never)
+                .formTitle(R.string.rate_submit_feedbak)
+                .formHint(R.string.rate_submit_prompt)
+                .formSubmitText(R.string.rate_submit)
+                .formCancelText(R.string.rate_cancel)
                 .onThresholdCleared { ratingDialog, _, _ -> //do something
-                    ratingDialog.dismiss()
+                    ratingDialog?.dismiss()
 
                     val rateOnPlayStore: AlertDialog.Builder =
                         AlertDialog.Builder(this@BaseActivity)
@@ -109,10 +97,10 @@ abstract class BaseActivity : AppCompatActivity() {
                     rateOnPlayStore.create().show()
                 }
                 .onThresholdFailed { ratingDialog, _, _ -> //do something
-                    ratingDialog.dismiss()
+                    ratingDialog?.dismiss()
                 }
                 .onRatingChanged { _, _ -> }
-                .onRatingBarFormSumbit {
+                .onRatingBarFormSubmit {
 
                     val intent = Intent(Intent.ACTION_SEND)
 

@@ -5,7 +5,7 @@
     <style name="BaseTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimaryLight</item>
         <item name="calcDialogStyle">@style/AppTheme.CalcDialog</item>
     </style>
 
@@ -17,8 +17,8 @@
         <item name="calcExpressionStyle">@style/AppTheme.CalcDialog.CalcExpressionStyle</item>
         <item name="calcDialogButtonStyle">@style/AppTheme.CalcDialog.CalcDialogButtonStyle</item>
         <item name="calcAnswerBtnStyle">@style/AppTheme.CalcDialog.CalcAnswerBtnStyle</item>
-        <item name="calcOperationBtnColor">@color/colorAccent</item>
-        <item name="calcDividerColor">@color/colorAccent</item>
+        <item name="calcOperationBtnColor">@color/colorPrimaryLight</item>
+        <item name="calcDividerColor">@color/colorPrimaryLight</item>
 
         <item name="calcButtonTextClear">@string/calculator_dialog_clear</item>
         <item name="calcButtonTextCancel">@string/calculator_dialog_cancel</item>
@@ -34,11 +34,11 @@
 
     <style name="AppTheme.CalcDialog.CalcEraseBtnStyle" parent="CalcEraseBtnStyle">
         <item name="android:contentDescription">@string/calculator_dialog_erase</item>
-        <item name="tint">@color/colorAccent</item>
+        <item name="tint">@color/colorPrimaryLight</item>
     </style>
 
     <style name="AppTheme.CalcDialog.CalcExpressionStyle" parent="CalcExpressionStyle">
-        <item name="android:textColor">?attr/icon_tint</item>
+        <item name="android:textColor">?attr/colorAccent</item>
     </style>
 
     <style name="AppTheme.CalcDialog.CalcAnswerBtnStyle" parent="CalcAnswerBtnStyle">
@@ -46,16 +46,16 @@
     </style>
 
     <style name="AppTheme.CalcDialog.CalcDialogButtonStyle" parent="Widget.AppCompat.Button.Borderless.Colored">
-        <item name="android:textColor">?attr/icon_tint</item>
+        <item name="android:textColor">?attr/colorAccent</item>
     </style>
 
     <!--Widgets-->
     <style name="AppTheme.TextInputLayout" parent="@style/Widget.Design.TextInputLayout">
-        <item name="startIconTint">?attr/icon_tint</item>
+        <item name="startIconTint">?attr/colorAccent</item>
         <item name="counterMaxLength">@integer/maxvalue</item>
         <item name="android:paddingBottom">@dimen/space_10dp</item>
         <item name="startIconDrawable">@drawable/ic_calculator</item>
-        <item name="helperTextTextColor">?attr/icon_tint</item>
+        <item name="helperTextTextColor">?attr/colorAccent</item>
     </style>
 
     <!--Edit text app style-->
@@ -64,7 +64,7 @@
     </style>
 
     <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Borderless">
-        <item name="drawableTint">?attr/icon_tint</item>
+        <item name="drawableTint">?attr/colorAccent</item>
     </style>
 
 </resources>

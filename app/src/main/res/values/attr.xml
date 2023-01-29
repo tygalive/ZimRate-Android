@@ -7,6 +7,5 @@
     <attr name="ic_analytics" format="reference" />
 
     <attr name="color_rating_bar" format="reference" />
-    <attr name="icon_tint" format="reference" />
 
 </resources>

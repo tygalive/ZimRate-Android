@@ -55,7 +55,7 @@
     <string name="author_name" translatable="false">Richard Muvirimi</string>
     <string name="author_email" translatable="false">rich4rdmuvirimi@gmail.com</string>
     <string name="author_email_link" translatable="false">mailto:rich4rdmuvirimi@gmail.com</string>
-    <string name="author_url" translatable="false">http://richard.co.zw</string>
+    <string name="author_url" translatable="false">https://richard.co.zw</string>
 
     <string name="app_version">Version %s</string>
 

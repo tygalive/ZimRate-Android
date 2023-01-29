@@ -9,7 +9,7 @@
         <item name="ic_analytics">@drawable/ic_analytics_dark</item>
 
         <item name="color_rating_bar">@android:color/white</item>
-        <item name="icon_tint">@android:color/white</item>
+        <item name="colorAccent">@android:color/white</item>
     </style>
 
 </resources>
