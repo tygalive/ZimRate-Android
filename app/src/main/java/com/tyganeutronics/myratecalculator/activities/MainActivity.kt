@@ -181,7 +181,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
             isAnswerBtnShown = true
         }
 
-        findViewById<SwipeRefreshLayout>(R.id.sr_layout).setColorSchemeResources(R.color.colorAccent)
+        findViewById<SwipeRefreshLayout>(R.id.sr_layout).setColorSchemeResources(R.color.colorPrimaryLight)
 
     }
 
