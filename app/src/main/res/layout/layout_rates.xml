@@ -28,7 +28,7 @@
                 android:id="@+id/et_usd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
+                android:inputType="number|numberDecimal"
                 style="@style/AppTheme.EditText"
                 android:selectAllOnFocus="true"
                 android:maxLength="@integer/maxvalue" />
@@ -67,7 +67,7 @@
                 android:id="@+id/et_bond"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
+                android:inputType="number|numberDecimal"
                 style="@style/AppTheme.EditText"
                 android:selectAllOnFocus="true"
                 android:maxLength="@integer/maxvalue" />
@@ -106,7 +106,7 @@
                 android:id="@+id/et_omir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
+                android:inputType="number|numberDecimal"
                 android:selectAllOnFocus="true"
                 android:maxLength="@integer/maxvalue" />
 
@@ -144,7 +144,7 @@
                 android:id="@+id/et_rbz"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
+                android:inputType="number|numberDecimal"
                 android:selectAllOnFocus="true"
                 android:maxLength="@integer/maxvalue" />
 
@@ -182,7 +182,7 @@
                 android:id="@+id/et_rtgs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
+                android:inputType="number|numberDecimal"
                 android:selectAllOnFocus="true"
                 android:maxLength="@integer/maxvalue" />
 
@@ -220,7 +220,7 @@
                 android:id="@+id/et_zar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
+                android:inputType="number|numberDecimal"
                 android:selectAllOnFocus="true"
                 android:maxLength="@integer/maxvalue" />
 

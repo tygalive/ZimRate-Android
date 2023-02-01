@@ -4,18 +4,18 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
 import android.text.TextUtils
-import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.apollographql.apollo3.api.Optional
@@ -45,7 +45,7 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.concurrent.TimeUnit
 
-class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedListener,
+class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener,
     SwipeRefreshLayout.OnRefreshListener,
     CalcDialog.CalcDialogCallback {
 
@@ -76,7 +76,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
             R.id.et_zar,
             R.id.et_amount
         ).forEach { id ->
-            findViewById<TextInputEditText>(id).addTextChangedListener(this@MainActivity)
+            findViewById<TextInputEditText>(id).addTextChangedListener { calculate() }
         }
     }
 
@@ -88,7 +88,7 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
 
         findViewById<AppCompatSpinner>(R.id.s_currency).onItemSelectedListener = this
 
-        //calculator btns
+        //calculator buttons
         listOf(
             R.id.et_usd_parent,
             R.id.et_bond_parent,
@@ -309,18 +309,6 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
         FirebaseAnalytics.getInstance(baseContext).logEvent("change_currency", Bundle())
 
         calculate()
-    }
-
-    override fun afterTextChanged(s: Editable?) {
-        calculate()
-    }
-
-    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-    }
-
-    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -611,30 +599,47 @@ class MainActivity : BaseActivity(), TextWatcher, AdapterView.OnItemSelectedList
     }
 
     override fun onValueEntered(requestCode: Int, value: BigDecimal?) {
-        when (requestCode) {
-            R.id.et_usd_parent -> {
-                findViewById<TextInputEditText>(R.id.et_usd).setText(value?.toPlainString() ?: "")
+        try {
+            when (requestCode) {
+                R.id.et_usd_parent -> {
+                    findViewById<TextInputEditText>(R.id.et_usd).setText(
+                        value?.toDouble().toString()
+                    )
+                }
+                R.id.et_bond_parent -> {
+                    findViewById<TextInputEditText>(R.id.et_bond).setText(
+                        value?.toDouble().toString()
+                    )
+                }
+                R.id.et_omir_parent -> {
+                    findViewById<TextInputEditText>(R.id.et_omir).setText(
+                        value?.toDouble().toString()
+                    )
+                }
+                R.id.et_rtgs_parent -> {
+                    findViewById<TextInputEditText>(R.id.et_rtgs).setText(
+                        value?.toDouble().toString()
+                    )
+                }
+                R.id.et_rbz_parent -> {
+                    findViewById<TextInputEditText>(R.id.et_rbz).setText(
+                        value?.toDouble().toString()
+                    )
+                }
+                R.id.et_zar_parent -> {
+                    findViewById<TextInputEditText>(R.id.et_zar).setText(
+                        value?.toDouble().toString()
+                    )
+                }
+                R.id.et_amount_parent -> {
+                    findViewById<TextInputEditText>(R.id.et_amount).setText(
+                        value?.toDouble().toString()
+                    )
+                }
             }
-            R.id.et_bond_parent -> {
-                findViewById<TextInputEditText>(R.id.et_bond).setText(value?.toPlainString() ?: "")
-            }
-            R.id.et_omir_parent -> {
-                findViewById<TextInputEditText>(R.id.et_omir).setText(value?.toPlainString() ?: "")
-            }
-            R.id.et_rtgs_parent -> {
-                findViewById<TextInputEditText>(R.id.et_rtgs).setText(value?.toPlainString() ?: "")
-            }
-            R.id.et_rbz_parent -> {
-                findViewById<TextInputEditText>(R.id.et_rbz).setText(value?.toPlainString() ?: "")
-            }
-            R.id.et_zar_parent -> {
-                findViewById<TextInputEditText>(R.id.et_zar).setText(value?.toPlainString() ?: "")
-            }
-            R.id.et_amount_parent -> {
-                findViewById<TextInputEditText>(R.id.et_amount).setText(
-                    value?.toPlainString() ?: ""
-                )
-            }
+
+        } catch (exception: ArithmeticException) {
+            Toast.makeText(this, exception.message, Toast.LENGTH_LONG).show()
         }
     }
 
