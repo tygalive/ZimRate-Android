@@ -79,7 +79,7 @@ class SingleRateProvider : AppWidgetProvider() {
 
         //pending intent
         val intent = Intent(context, MainActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         views.setOnClickPendingIntent(R.id.widget_main, pendingIntent)
 
