@@ -10,10 +10,18 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.myratecalculator.R
-import com.tyganeutronics.myratecalculator.activities.MainActivity
-import com.tyganeutronics.myratecalculator.contract.CurrencyContract
-import com.tyganeutronics.myratecalculator.database.*
-import com.tyganeutronics.myratecalculator.utils.BaseUtils
+import com.tyganeutronics.myratecalculator.database.BOND
+import com.tyganeutronics.myratecalculator.database.Currency
+import com.tyganeutronics.myratecalculator.database.OMIR
+import com.tyganeutronics.myratecalculator.database.RBZ
+import com.tyganeutronics.myratecalculator.database.RTGS
+import com.tyganeutronics.myratecalculator.database.USD
+import com.tyganeutronics.myratecalculator.database.ZAR
+import com.tyganeutronics.myratecalculator.fragments.main.FragmentCalculator
+import com.tyganeutronics.myratecalculator.utils.contracts.CurrencyContract
+import com.tyganeutronics.myratecalculator.utils.traits.getLongPref
+import com.tyganeutronics.myratecalculator.utils.traits.getStringPref
+import java.math.BigDecimal
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -81,42 +89,42 @@ class MultipleRateProvider : AppWidgetProvider() {
         views.setTextViewText(
             R.id.txt_usd,
             getStoredValue(
-                context, USD(1.0)
+                context, USD(BigDecimal(1))
             )
         )
         views.setTextViewText(
             R.id.txt_bond,
             getStoredValue(
-                context, BOND(1.0)
+                context, BOND(BigDecimal(1))
             )
         )
         views.setTextViewText(
             R.id.txt_omir,
             getStoredValue(
-                context, OMIR(1.0)
+                context, OMIR(BigDecimal(1))
             )
         )
         views.setTextViewText(
             R.id.txt_rtgs,
             getStoredValue(
-                context, RTGS(1.0)
+                context, RTGS(BigDecimal(1))
             )
         )
         views.setTextViewText(
             R.id.txt_rbz,
             getStoredValue(
-                context, RBZ(1.0)
+                context, RBZ(BigDecimal(1))
             )
         )
         views.setTextViewText(
             R.id.txt_zar,
             getStoredValue(
-                context, ZAR(1.0)
+                context, ZAR(BigDecimal(1))
             )
         )
 
         //date
-        val last = BaseUtils.getPrefs(context).getLong(
+        val last = context.getLongPref(
             CurrencyContract.LAST_CHECK,
             System.currentTimeMillis()
         )
@@ -129,8 +137,9 @@ class MultipleRateProvider : AppWidgetProvider() {
         views.setTextViewText(R.id.txt_date_checked, date)
 
         //pending intent
-        val intent = Intent(context, MainActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        val intent = Intent(context, FragmentCalculator::class.java)
+        val pendingIntent =
+            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         views.setOnClickPendingIntent(R.id.widget_main, pendingIntent)
 
@@ -139,13 +148,13 @@ class MultipleRateProvider : AppWidgetProvider() {
 
     }
 
-    private fun getStoredValue(context: Context, currency: Currency): String? {
+    private fun getStoredValue(context: Context, currency: Currency): String {
         val key = context.getString(currency.getName())
 
-       return context.getString(
+        return context.getString(
             R.string.result,
             currency.getSign(),
-           BaseUtils.getPrefs(context).getString(key, "1")?.toDouble()
+            context.getStringPref(key, "1").ifEmpty { "1" }.toBigDecimal()
         )
     }
 }

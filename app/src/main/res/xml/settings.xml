@@ -56,34 +56,21 @@
 
         <Preference
             android:icon="@mipmap/ic_author"
-            android:key="@string/author_name"
-            android:summary="@string/author_url"
-            android:title="@string/author_name"
-            app:enableCopying="true">
+            android:key="@string/pref_dev_name"
+            android:summary="@string/pref_dev_brief"
+            android:title="@string/pref_dev_name">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="@string/author_url" />
+                android:data="@string/pref_dev_url" />
         </Preference>
 
         <Preference
-            app:iconSpaceReserved="true"
-            android:key="@string/author_email"
-            android:summary="@string/author_email"
-            app:enableCopying="true">
+            android:key="@string/pref_dev_url"
+            android:summary="@string/pref_dev_url"
+            app:iconSpaceReserved="true">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="@string/author_email_link" />
-        </Preference>
-
-        <Preference
-            android:icon="@drawable/ic_dollar"
-            android:key="@string/donate"
-            android:summary="@string/donate_summary"
-            android:title="@string/donate"
-            app:enableCopying="true">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="@string/donate_link" />
+                android:data="@string/pref_dev_url" />
         </Preference>
 
     </PreferenceCategory>
@@ -91,11 +78,17 @@
     <PreferenceCategory android:title="@string/about">
 
         <Preference
-            android:icon="@mipmap/ic_zimrate"
+            android:icon="@mipmap/ic_launcher"
+            android:key="@string/pref_app_version"
+            android:summary="@string/app_name"
+            android:title="@string/pref_app_version" />
+
+        <Preference
             android:key="@string/rates_source"
             android:summary="@string/rates_source"
             android:title="@string/rates_source_title"
-            app:enableCopying="true">
+            app:enableCopying="true"
+            app:iconSpaceReserved="true">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="@string/rates_source" />
@@ -104,11 +97,6 @@
         <Preference
             android:key="@string/license"
             android:title="@string/license"
-            app:iconSpaceReserved="true" />
-
-        <Preference
-            android:key="@string/app_version"
-            android:title="@string/app_version"
             app:iconSpaceReserved="true" />
 
     </PreferenceCategory>

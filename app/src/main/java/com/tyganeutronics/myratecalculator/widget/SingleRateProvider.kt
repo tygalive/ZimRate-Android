@@ -10,8 +10,9 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.myratecalculator.R
-import com.tyganeutronics.myratecalculator.activities.MainActivity
-import com.tyganeutronics.myratecalculator.utils.BaseUtils
+import com.tyganeutronics.myratecalculator.fragments.main.FragmentCalculator
+import com.tyganeutronics.myratecalculator.utils.traits.getStringPref
+import com.tyganeutronics.myratecalculator.utils.traits.removePref
 
 
 class SingleRateProvider : AppWidgetProvider() {
@@ -65,12 +66,12 @@ class SingleRateProvider : AppWidgetProvider() {
 
         val views = RemoteViews(context.packageName, R.layout.widget_single)
 
-        val currency = BaseUtils.getPrefs(context)
-            .getString("widget-$appWidgetId", context.getString(R.string.currency_rbz))
+        val currency =
+            context.getStringPref("widget-$appWidgetId", context.getString(R.string.currency_rbz))
 
         val value = String.format(
             "%10.2f",
-            BaseUtils.getPrefs(context).getString(currency, "1")?.toDouble()
+            context.getStringPref(currency, "1")?.toDouble()
         )
 
         //set values
@@ -78,8 +79,9 @@ class SingleRateProvider : AppWidgetProvider() {
         views.setTextViewText(R.id.tv_rate_title, currency)
 
         //pending intent
-        val intent = Intent(context, MainActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        val intent = Intent(context, FragmentCalculator::class.java)
+        val pendingIntent =
+            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         views.setOnClickPendingIntent(R.id.widget_main, pendingIntent)
 
@@ -96,7 +98,7 @@ class SingleRateProvider : AppWidgetProvider() {
 
         if (appWidgetIds != null) {
             for (appWidgetId in appWidgetIds) {
-                BaseUtils.getPrefs(context).edit().remove("widget-$appWidgetId").apply()
+                context?.removePref("widget-$appWidgetId")
             }
         }
     }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rewards_day_1">Zuva 1</string>
+    <string name="rewards_day_2">Zuva 2</string>
+    <string name="rewards_day_3">Zuva 3</string>
+    <string name="rewards_day_4">Zuva 4</string>
+    <string name="rewards_day_5">Zuva 5</string>
+    <string name="rewards_day_6">Zuva 6</string>
+    <string name="rewards_day_7">Zuva 7</string>
+
+    <string name="rewards_awards_info">MaCoin akapuhwa nekushandisa application mazuva akateedzana.\nWedzera macoin nekuona maAdvert kana kutenga.</string>
+
+    <string name="rewards_description">MaCoin ekuoneka mazuva akateedzana</string>
+
+    <string name="rewards_coins_info">Macoin ese aunogona kushandisa muapplication ino chete. Anosanganisira akatengwa neaka puhwa.</string>
+
+    <string name="rewards_history_awards_cta">MaCoin Akapuhwa</string>
+    <string name="rewards_history_purchases_cta">MaCoin Akatengwa</string>
+    <string name="rewards_history_spends_cta">MaCoin Akashanda</string>
+    <string name="rewards_earn_advert">Ona advert upihwe %d+ maCoin</string>
+    <string name="rewards_earn_advert_loading">Advert iri kuloader…</string>
+    <string name="rewards_earn_purchase">Tenga maCoin</string>
+
+    <string name="rewards_coins">MaCoin</string>
+    <string name="menu_coins_balance">%d maCoin</string>
+
+    <string name="rewards_toast_watched_advert">Mubhadharo wapihwa, Advert Yaonekwa.</string>
+    <string name="rewards_toast_advert_failed">Advert yatadza kuloader.</string>
+
+    <string name="rewards_awarded_history_title">Nhorondo yema Coin akapuhwa</string>
+    <string name="rewards_purchases_history_title">Nhorondo yema Coin Akatengwa</string>
+    <string name="rewards_coin_spends_history_title">Nhorondo yema Coin</string>
+
+    <string name="rewards_expires">Chino guma kushanda %s</string>
+    <string name="rewards_spent_on">Chashanda %s</string>
+
+    <string name="rewards_awarded_starter_pack">MaCoin apuhwa ekutangisa. Wapihwa %d maCoin.</string>
+    <string name="rewards_award_banner_click">"MaCoin ekubaya advert. Wapihwa %d maCoin."</string>
+    <string name="rewards_award_watch_advert">"MaCoin ekuona advert. Wapihwa %d maCoin."</string>
+    <string name="rewards_award_daily_clock_in">"MaCoin ekuoneka mazuva aka teedzana. Wapihwa %d maCoin."</string>
+    <string name="rewards_award_coins_purchased">MaCoin awatenga. %d maCoin awedzerwa.</string>
+
+    <string name="rewards_spend_data_fetch">%d maCoin ashandiswa kutora marates matsva.</string>
+    <string name="rewards_spend_calculation">%d maCoin ashandiswa kucalculator rate.</string>
+
+    <string name="rewards_coins_title">Wedzera maCoin</string>
+    <string name="rewards_coins_available">Zvese zvakarongeka, unogona kuwedzera maCoin ako pazasi.</string>
+    <string name="rewards_coins_exhausted">MaCoin ako apera, unogona kuwedzera maCoin ako pazasi.</string>
+</resources>

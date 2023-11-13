@@ -1,90 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_rates"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/padding_4"
     android:orientation="vertical"
-    android:paddingVertical="@dimen/space_10dp"
-    android:layout_marginStart="@dimen/space_5dp"
+    android:paddingVertical="@dimen/padding_8"
     android:visibility="visible">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_usd_parent"
             style="@style/AppTheme.TextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/currency_usd"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:hint="@string/currency_usd">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_usd"
+                style="@style/AppTheme.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number|numberDecimal"
-                style="@style/AppTheme.EditText"
-                android:selectAllOnFocus="true"
-                android:maxLength="@integer/maxvalue" />
+                android:maxLength="@integer/maxvalue"
+                android:selectAllOnFocus="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/txt_usd_result"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
             style="@style/AppTheme.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:drawableStart="@drawable/ic_swap"
-            android:drawablePadding="@dimen/space_10dp"
-            tools:text="$45"
+            android:drawablePadding="@dimen/padding_8"
             android:gravity="center_vertical"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:text="$45" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_bond_parent"
             style="@style/AppTheme.TextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/currency_bond"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:hint="@string/currency_bond">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_bond"
+                style="@style/AppTheme.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number|numberDecimal"
-                style="@style/AppTheme.EditText"
-                android:selectAllOnFocus="true"
-                android:maxLength="@integer/maxvalue" />
+                android:maxLength="@integer/maxvalue"
+                android:selectAllOnFocus="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/txt_bond_result"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
             style="@style/AppTheme.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:drawableStart="@drawable/ic_swap"
-            android:drawablePadding="@dimen/space_10dp"
-            tools:text="$45"
+            android:drawablePadding="@dimen/padding_8"
             android:gravity="center_vertical"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:text="$45" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -99,144 +98,144 @@
             style="@style/AppTheme.TextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/currency_omir"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:hint="@string/currency_omir">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_omir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number|numberDecimal"
-                android:selectAllOnFocus="true"
-                android:maxLength="@integer/maxvalue" />
+                android:maxLength="@integer/maxvalue"
+                android:selectAllOnFocus="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/txt_omir_result"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
             style="@style/AppTheme.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:drawableStart="@drawable/ic_swap"
-            android:drawablePadding="@dimen/space_10dp"
-            tools:text="$45"
+            android:drawablePadding="@dimen/padding_8"
             android:gravity="center_vertical"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:text="$45" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_rbz_parent"
             style="@style/AppTheme.TextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/currency_rbz"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:hint="@string/currency_rbz">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_rbz"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number|numberDecimal"
-                android:selectAllOnFocus="true"
-                android:maxLength="@integer/maxvalue" />
+                android:maxLength="@integer/maxvalue"
+                android:selectAllOnFocus="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/txt_rbz_result"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
             style="@style/AppTheme.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:drawableStart="@drawable/ic_swap"
-            android:drawablePadding="@dimen/space_10dp"
-            tools:text="$45"
+            android:drawablePadding="@dimen/padding_8"
             android:gravity="center_vertical"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:text="$45" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_rtgs_parent"
             style="@style/AppTheme.TextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/currency_rtgs"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:hint="@string/currency_rtgs">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_rtgs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number|numberDecimal"
-                android:selectAllOnFocus="true"
-                android:maxLength="@integer/maxvalue" />
+                android:maxLength="@integer/maxvalue"
+                android:selectAllOnFocus="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/txt_rtgs_result"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
             style="@style/AppTheme.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:drawableStart="@drawable/ic_swap"
-            android:drawablePadding="@dimen/space_10dp"
-            tools:text="$45"
+            android:drawablePadding="@dimen/padding_8"
             android:gravity="center_vertical"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:text="$45" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_zar_parent"
             style="@style/AppTheme.TextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/currency_zar"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:hint="@string/currency_zar">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_zar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number|numberDecimal"
-                android:selectAllOnFocus="true"
-                android:maxLength="@integer/maxvalue" />
+                android:maxLength="@integer/maxvalue"
+                android:selectAllOnFocus="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/txt_zar_result"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
             style="@style/AppTheme.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:drawableStart="@drawable/ic_swap"
-            android:drawablePadding="@dimen/space_10dp"
-            tools:text="$45"
+            android:drawablePadding="@dimen/padding_8"
             android:gravity="center_vertical"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:text="$45" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

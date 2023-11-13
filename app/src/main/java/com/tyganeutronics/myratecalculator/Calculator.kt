@@ -1,8 +1,15 @@
 package com.tyganeutronics.myratecalculator
 
-import com.tyganeutronics.myratecalculator.database.*
+import com.tyganeutronics.myratecalculator.database.BOND
+import com.tyganeutronics.myratecalculator.database.Currency
+import com.tyganeutronics.myratecalculator.database.OMIR
+import com.tyganeutronics.myratecalculator.database.RBZ
+import com.tyganeutronics.myratecalculator.database.RTGS
+import com.tyganeutronics.myratecalculator.database.USD
+import com.tyganeutronics.myratecalculator.database.ZAR
+import java.math.BigDecimal
 
-class Calculator constructor(
+open class Calculator constructor(
     var usd: USD,
     var bond: BOND,
     var omir: OMIR,
@@ -12,31 +19,31 @@ class Calculator constructor(
     var currency: Currency
 ) {
 
-    fun toUSD(amount: Double): Double {
+    fun toUSD(amount: BigDecimal): BigDecimal {
         return toCurrency(usd, amount)
     }
 
-    fun toOMIR(amount: Double): Double {
+    fun toOMIR(amount: BigDecimal): BigDecimal {
         return toCurrency(omir, amount)
     }
 
-    fun toBOND(amount: Double): Double {
+    fun toBOND(amount: BigDecimal): BigDecimal {
         return toCurrency(bond, amount)
     }
 
-    fun toRTGS(amount: Double): Double {
+    fun toRTGS(amount: BigDecimal): BigDecimal {
         return toCurrency(rtgs, amount)
     }
 
-    fun toRBZ(amount: Double): Double {
+    fun toRBZ(amount: BigDecimal): BigDecimal {
         return toCurrency(rbz, amount)
     }
 
-    fun toZAR(amount: Double): Double {
+    fun toZAR(amount: BigDecimal): BigDecimal {
         return toCurrency(zar, amount)
     }
 
-    protected fun toCurrency(current: Currency, amount: Double): Double {
+    private fun toCurrency(current: Currency, amount: BigDecimal): BigDecimal {
         return amount.times(current.rate).div(currency.rate)
     }
 

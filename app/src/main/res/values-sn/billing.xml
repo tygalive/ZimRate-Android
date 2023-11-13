@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="billing_coin_purchase_failed">Tarisa internet irikuita.</string>
+    <string name="billing_coin_purchase_cancelled">Kutenga maCoin kwakanzurwa.</string>
+    <string name="billing_coin_purchase_not_supported">Kutenga maCoin hakuite pamudziyo uno.</string>
+
+    <string name="billing_purchase_coins">%1$d Coins (+%2$d mbasera)</string>
+
+    <string name="billing_disclaimer"><b>Cherechedza:</b>\n\n
+        <b>1</b>. Kana maCoin akasa oneka watenga, dzvanya "Tarisa futi"\n
+        <b>2</b>. MaCoin anenge atengwa, anowedzera pamusoro peanenge apihwa. Anenge Atengwa anobatsira kudzikisa zvinodiwa kuitwa kuti uwane maCoin emahara, pamwechete neku dzima maAdvert\n
+        <b>3</b>. MaCoin haisi mari, hatidzorere kana muchinge matenga.\n
+        <b>4</b>. MaCoin anongo shanda pafoni ino chete, kubvisa data reapplication ino maCoin anobviswawo futi (Zvinogona kuchinja nekufamba kwenguva).
+    </string>
+    <string name="billing_title">Wedzera maCoin</string>
+
+    <string name="billing_coins_credited">%1$d maCoin awedzerwa pamudziyo uno . Order Id: %2$s</string>
+
+    <string name="billing_menu_restore">Tarisa futi</string>
+    <string name="billing_restoring_purchases">Tarisa maCoin Patsva!</string>
+</resources>

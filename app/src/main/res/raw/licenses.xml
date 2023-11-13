@@ -13,10 +13,12 @@
         <license>SIL Open Font License v1.1</license>
     </notice>
     <notice>
-        <name>Smart App Rate</name>
-        <url>https://github.com/codemybrainsout/smart-app-rate/</url>
-        <copyright>Copyright (C) 2016 Code My Brains Out</copyright>
-        <license>Apache Software License 2.0</license>
+        <name>Apollo Kotlin</name>
+        <url>https://github.com/apollographql/apollo-kotlin</url>
+        <copyright>Copyright (c) 2016-2023 Apollo Graph, Inc. (Formerly Meteor Development Group,
+            Inc.)
+        </copyright>
+        <license>MIT License</license>
     </notice>
     <notice>
         <name>Volley</name>

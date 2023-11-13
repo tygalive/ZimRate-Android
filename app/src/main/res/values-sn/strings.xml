@@ -2,7 +2,7 @@
 <resources>
 
     <string name="calc_amount">Mari</string>
-    <string name="amount_info">Mari yandoda kurater</string>
+    <string name="amount_info">Mari yandoda kuchinja</string>
 
     <string name="preferred_currency">Rate randoda</string>
     <string name="preferred_currency_summary">Tora rate %s</string>
@@ -30,31 +30,26 @@
 
     <string name="menu_settings">MaSettings</string>
     <string name="menu_info">Dama</string>
+    <string name="menu_close">Vhara</string>
+
+    <string name="menu_history">Nhorondo</string>
+    <string name="menu_home">Pamba</string>
+    <string name="menu_calculator">Muchinjo</string>
+
     <string name="info_message">1. Kuti uwane rate ritsva chero nguva unogona kuswiper kubva kumusoro pascreen rino.\n\n2. Unogona kuisa widget pahome screen rako kuti uone rate usina kumbo vhura application ino. (Marates haa refresh musinga zvizive)\n\n3. Unogona kushandisa rate racalculator nekudzvanya rate racho usina kuri nyora patsva.</string>
     <string name="info_dismiss">Bho</string>
     <string name="about">Ndezvei</string>
     <string name="author">Munyori</string>
     <string name="rates_source_title">MaRates arikubva</string>
 
-    <string name="app_version">Chiburwa %s</string>
+    <string name="pref_dev_brief">Sununguka kundibata nekubaya pazasi kana uine dambudziko, muvhunzo, dama kana kungodawo kuonawo zvako zvandaka gadzira.</string>
+
+    <string name="pref_app_version">Chiburwa %s</string>
 
     <string name="update_available">Rate ritsva ravapo</string>
     <string name="update_apply">Isa</string>
 
     <string name="license">Ma License</string>
-
-    <string name="rate_app">Unoinawo sei application ino?</string>
-    <string name="rate_later">Rimwe zuva</string>
-    <string name="rate_never">Hameno</string>
-    <string name="rate_submit">Tumira</string>
-    <string name="rate_submit_feedbak">Tumira</string>
-    <string name="rate_submit_prompt">Chii chandingaite kuti application ino iku fadze</string>
-    <string name="rate_cancel">Kana</string>
-    <string name="rate_email_failed">Hapana email. Enda pawebsite utumire</string>
-    <string name="rate_site">Enda</string>
-    <string name="rate_playstore">Unoda kuita saizvozvo here paPlaystore</string>
-    <string name="rate_yes">Ehe</string>
-    <string name="rate_title">Rater Application ino</string>
 
     <string name="widget_add_desc">Sarudza rate rekuisa</string>
     <string name="widget_add">Isa</string>
@@ -77,8 +72,7 @@
         <item>Number inofanira kuita diki pana zero</item>
     </string-array>
 
-    <string name="donate">Donate</string>
-    <string name="donate_summary">Batsira project iyenderere mberi ne donation</string>
-    <string name="donate_link">https://www.buymeacoffee.com/fpjyrXk</string>
+    <string name="list_nothing_found">Hapana Zviripo.</string>
+    <string name="list_search_nothing_found">Hapana zvaenderana nezvawa tsvaga.</string>
 
 </resources>

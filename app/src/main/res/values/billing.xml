@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="billing_coin_purchase_failed">Check you have an active internet connection.</string>
+    <string name="billing_coin_purchase_cancelled">Coin Purchase Cancelled.</string>
+    <string name="billing_coin_purchase_not_supported">Coin Purchase Not Supported on this device.</string>
+
+    <string name="billing_purchase_coins">%1$d Coins (+%2$d free)</string>
+
+    <string name="billing_disclaimer"><b>Note:</b>\n\n
+        <b>1</b>. If coins do not reflect after purchase, click restore to retry\n
+        <b>2</b>. In addition to the coins earned through various ways in the app, purchased coins, reduce the need to complete various in-app activities as well as disable ads\n
+        <b>3</b>. Coins are virtual items, we do not support refunds.\n
+        <b>4</b>. Coins are tied to this current application install, clearing app data removes this association (Subject to change).
+    </string>
+    <string name="billing_title">Top up Coins</string>
+
+    <string name="billing_coins_credited">%1$d coins have been credited to your account. Order Id: %2$s</string>
+
+    <string name="billing_menu_restore">Restore</string>
+    <string name="billing_restoring_purchases">Restoring Purchases!</string>
+</resources>
