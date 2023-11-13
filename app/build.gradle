@@ -14,8 +14,8 @@ android {
         applicationId "com.tyganeutronics.myratecalculator"
         minSdk 19
         targetSdk 34
-        versionCode 33
-        versionName "1.7.9"
+        versionCode 34
+        versionName "2.0.0"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
 
