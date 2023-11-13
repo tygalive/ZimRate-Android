@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rewards_day_1">Day 1</string>
+    <string name="rewards_day_2">Day 2</string>
+    <string name="rewards_day_3">Day 3</string>
+    <string name="rewards_day_4">Day 4</string>
+    <string name="rewards_day_5">Day 5</string>
+    <string name="rewards_day_6">Day 6</string>
+    <string name="rewards_day_7">Day 7</string>
+
+    <string name="rewards_awards_info">Continuous daily application use Coin awards.\nEarn more Coins by watching Adverts or by purchasing Coins.</string>
+
+    <string name="rewards_description">Continuous check-in Rewards</string>
+
+    <string name="rewards_coins_info">Total coins available for use in application only. Includes rewarded and purchased Coins.</string>
+
+    <string name="rewards_history_awards_cta">Awards</string>
+    <string name="rewards_history_purchases_cta">Purchased</string>
+    <string name="rewards_history_spends_cta">Coin Spends</string>
+    <string name="rewards_earn_advert">Watch advert to earn %d+ coins</string>
+    <string name="rewards_earn_advert_loading">Loading Advert…</string>
+    <string name="rewards_earn_purchase">Purchase Coins</string>
+
+    <string name="rewards_coins">Coins</string>
+    <string name="menu_coins_balance">%d Coins</string>
+
+    <string name="rewards_toast_watched_advert">Reward awarded, Advert Watched.</string>
+    <string name="rewards_toast_advert_failed">Failed to load advert.</string>
+
+    <string name="rewards_awarded_history_title">Reward History</string>
+    <string name="rewards_purchases_history_title">Purchased Coins</string>
+    <string name="rewards_coin_spends_history_title">Coin Spends History</string>
+
+    <string name="rewards_expires">Expires %s</string>
+    <string name="rewards_spent_on">Spent %s</string>
+
+    <string name="rewards_awarded_starter_pack">Starter pack reward. Awarded %d Coins.</string>
+    <string name="rewards_award_banner_click">"Banner click reward. Awarded %d Coins."</string>
+    <string name="rewards_award_watch_advert">"Watch advert reward. Awarded %d Coins."</string>
+    <string name="rewards_award_daily_clock_in">"Daily clock in reward. Awarded %d Coins."</string>
+    <string name="rewards_award_coins_purchased">Coin Purchase. %d coins have been credited.</string>
+
+    <string name="rewards_spend_data_fetch">%d Coin spent on data fetch.</string>
+    <string name="rewards_spend_calculation">%d Coin spent on calculation.</string>
+
+    <string name="rewards_coins_title">Coin Top Up</string>
+    <string name="rewards_coins_available">You seem all set, you can use the following options to recharge your coin balance.</string>
+    <string name="rewards_coins_exhausted">You seem to have exhausted your coin balance, you can use the following options to recharge your coin balance.</string>
+</resources>

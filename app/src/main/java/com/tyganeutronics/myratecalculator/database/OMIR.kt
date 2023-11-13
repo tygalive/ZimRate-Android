@@ -1,10 +1,11 @@
 package com.tyganeutronics.myratecalculator.database
 
 import com.tyganeutronics.myratecalculator.R
+import java.math.BigDecimal
 
-class OMIR constructor(id: String, rate: Double) : Currency(id, rate) {
+class OMIR constructor(id: String, rate: BigDecimal) : Currency(id, rate) {
 
-    constructor(rate: Double) : this("OMIR", rate)
+    constructor(rate: BigDecimal) : this("OMIR", rate)
 
     override fun getSign(): String {
         return "$"

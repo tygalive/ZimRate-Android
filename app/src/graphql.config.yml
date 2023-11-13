@@ -1,0 +1,8 @@
+schema: main/graphql/schema.graphqls
+extensions:
+  endpoints:
+    Default GraphQL Endpoint:
+      url: http://localhost/zimrate/api/graphql
+      headers:
+        user-agent: Zimrate Mobile
+      introspect: false

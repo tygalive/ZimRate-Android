@@ -1,10 +1,11 @@
 package com.tyganeutronics.myratecalculator.database
 
 import com.tyganeutronics.myratecalculator.R
+import java.math.BigDecimal
 
-class RBZ constructor(id: String, rate: Double) : Currency(id, rate) {
+class RBZ constructor(id: String, rate: BigDecimal) : Currency(id, rate) {
 
-    constructor(rate: Double) : this("RBZ", rate)
+    constructor(rate: BigDecimal) : this("RBZ", rate)
 
     override fun getSign(): String {
         return "$"

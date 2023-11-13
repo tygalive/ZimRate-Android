@@ -18,12 +18,21 @@ android {
         versionName "1.7.9"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                compilerArgumentProviders(
+                        new RoomSchemaArgProvider(new File(projectDir, "schemas"))
+                )
+            }
+        }
     }
 
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix '.debug'
+            multiDexKeepFile file('multidex-config.txt')
         }
         release {
             minifyEnabled true
@@ -55,30 +64,34 @@ android {
 }
 
 dependencies {
+    //desugaring
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
-    //desugaring
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+    implementation "androidx.core:core-splashscreen:1.0.1"
 
-    // Firebase
-    implementation 'com.google.firebase:firebase-ads:22.3.0'
-    implementation 'com.google.firebase:firebase-invites:17.0.0'
+    // Unity Ads
+    implementation 'com.unity3d.ads:unity-ads:4.9.2'
+
+    // AppLovin Ads
+    implementation 'com.applovin:applovin-sdk:11.11.3'
+    implementation 'com.applovin.mediation:unityads-adapter:4.9.2.0'
 
     //Crashlytics
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:32.2.3')
+    implementation platform('com.google.firebase:firebase-bom:32.5.0')
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-analytics'
-
-    //Smart app rate
-    implementation 'com.github.codemybrainsout:smart-app-rate:2.0.0'
+    implementation 'com.google.firebase:firebase-config'
+    implementation("com.google.firebase:firebase-appcheck-playintegrity")
 
     //licenses dialog
     implementation 'de.psdev.licensesdialog:licensesdialog:2.2.0'
@@ -98,16 +111,47 @@ dependencies {
     implementation "com.maltaisn:calcdialog:2.2.2"
 
     //https://developer.android.com/training/data-storage/room
-    def room_version = '2.5.2'
+    def room_version = '2.6.0'
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
 
-    implementation('com.android.billingclient:billing-ktx:6.0.1')
+    //play licensing
+    def billing_version = "6.0.1"
+    implementation("com.android.billingclient:billing:$billing_version")
+    implementation("com.android.billingclient:billing-ktx:$billing_version")
+
+    // Play In-App Review
+    implementation 'com.google.android.play:review:2.0.1'
+    implementation 'com.google.android.play:review-ktx:2.0.1'
+
+    // Play In-App Update
+    implementation 'com.google.android.play:app-update:2.1.0'
+    implementation 'com.google.android.play:app-update-ktx:2.1.0'
 }
 
 apollo {
-    packageName.set("com.tyganeutronics.myratecalculator.graphql")
+    service("service") {
+        packageName.set("com.tyganeutronics.myratecalculator.graphql")
+    }
+}
+
+class RoomSchemaArgProvider implements CommandLineArgumentProvider {
+
+    @InputDirectory
+    @PathSensitive(PathSensitivity.RELATIVE)
+    File schemaDir
+
+    RoomSchemaArgProvider(File schemaDir) {
+        this.schemaDir = schemaDir
+    }
+
+    @Override
+    Iterable<String> asArguments() {
+        // Note: If you're using KSP, change the line below to return
+        // ["room.schemaLocation=${schemaDir.path}".toString()].
+        return ["-Aroom.schemaLocation=${schemaDir.path}".toString()]
+    }
 }

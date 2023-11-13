@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">ZimRate</string>
 
     <string name="calc_amount">Amount</string>
     <string name="amount_info">Amount to Rate</string>
 
-    <string translatable="false" name="currency_usd">USD</string>
+    <string name="currency_usd" translatable="false">USD</string>
     <string name="currency_bond" translatable="false">BOND</string>
     <string name="currency_rtgs" translatable="false">RTGS</string>
     <string name="currency_omir" translatable="false">OMIR</string>
@@ -45,6 +46,12 @@
 
     <string name="menu_settings">Settings</string>
     <string name="menu_info">Tips</string>
+    <string name="menu_close">Close</string>
+
+    <string name="menu_history">History</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_calculator">Calculator</string>
+
     <string name="info_message">1. To refresh rates at any time, you can swipe from the top on this screen.\n\n2. You can also add a widget to your home screen to view last loaded rates without opening app. (Rates are not loaded in the background)\n\n3. You can instantly use the calculated result for further calculation by pressing the desired result.</string>
     <string name="info_dismiss">OK</string>
     <string name="about">About</string>
@@ -52,36 +59,19 @@
     <string name="rates_source_title">Rates from</string>
     <string name="rates_source" translatable="false">http://zimrate.tyganeutronics.com/</string>
 
-    <string name="author_name" translatable="false">Richard Muvirimi</string>
-    <string name="author_email" translatable="false">rich4rdmuvirimi@gmail.com</string>
-    <string name="author_email_link" translatable="false">mailto:rich4rdmuvirimi@gmail.com</string>
-    <string name="author_url" translatable="false">https://richard.co.zw</string>
+    <string name="pref_dev_brief">Please feel free to contact me below if you have any issue, query, suggestions or simply want to view what else I have worked on.</string>
+    <string name="pref_dev_name" translatable="false">Richard Muvirimi</string>
+    <string name="pref_dev_url" translatable="false">https://richard.co.zw</string>
 
-    <string name="app_version">Version %s</string>
+    <string name="pref_app_version">Version %s</string>
 
     <string name="update_available">New Rates Available</string>
     <string name="update_apply">Apply</string>
 
     <string name="result" translatable="false">%1$s%2$,10.2f</string>
-    <string translatable="false" name="current_rate">$1 USD =</string>
-
-    <string name="ads_id" translatable="false">ca-app-pub-5305936235957258/6604376845</string>
-    <string name="ads_app_id" translatable="false">ca-app-pub-5305936235957258~9422111874</string>
+    <string name="current_rate" translatable="false">$1 USD =</string>
 
     <string name="license">Open source Licenses</string>
-
-    <string name="rate_app">How would you rate this app?</string>
-    <string name="rate_later">Later</string>
-    <string name="rate_never">Never</string>
-    <string name="rate_submit">Submit</string>
-    <string name="rate_submit_feedbak">Submit Feedback</string>
-    <string name="rate_submit_prompt">Please tell where we can improve.</string>
-    <string name="rate_cancel">Cancel</string>
-    <string name="rate_email_failed">You have no email client. Please visit our website to submit feedback.</string>
-    <string name="rate_site">Visit</string>
-    <string name="rate_playstore">Would you like to rate us also on Playstore</string>
-    <string name="rate_yes">Yes</string>
-    <string name="rate_title">Rate this App</string>
 
     <string name="widget_add_desc">Select rate to add</string>
     <string name="widget_add">Add</string>
@@ -90,9 +80,6 @@
     <string name="prefs_analytics_title">Analytics</string>
     <string name="prefs_analytics_on">Allow collection of anonymous usage statistics</string>
     <string name="prefs_analytics_off">Opt out of collection of anonymous usage statistics</string>
-
-    <string name="playstore_market" translatable="false">market://details?id=%s</string>
-    <string name="playstore_browser" translatable="false">https://play.google.com/store/apps/details?id=%s</string>
 
     <string name="calculator_answer">Ans</string>
     <string name="calculator_dialog_cancel">Cancel</string>
@@ -107,8 +94,7 @@
         <item>Result must be negative</item>
     </string-array>
 
-    <string name="donate">Donate</string>
-    <string name="donate_summary">Support this project with a donation</string>
-    <string name="donate_link">https://www.buymeacoffee.com/fpjyrXk</string>
+    <string name="list_nothing_found">Nothing Here.</string>
+    <string name="list_search_nothing_found">Nothing matches search criteria.</string>
 
 </resources>

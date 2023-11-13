@@ -1,17 +1,83 @@
 package com.tyganeutronics.myratecalculator
 
 import androidx.multidex.MultiDexApplication
+import androidx.preference.PreferenceManager
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.apollographql.apollo3.ApolloClient
-import com.google.android.gms.ads.MobileAds
-import com.tyganeutronics.myratecalculator.contract.ApiContract
+import com.google.firebase.Firebase
+import com.google.firebase.appcheck.appCheck
+import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory
+import com.google.firebase.initialize
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.remoteConfig
+import com.google.firebase.remoteconfig.remoteConfigSettings
+import com.tyganeutronics.myratecalculator.database.Database
+import com.tyganeutronics.myratecalculator.database.contract.DatabaseContract
+import com.tyganeutronics.myratecalculator.database.models.RewardModel
+import com.tyganeutronics.myratecalculator.utils.contracts.ApiContract
 
 class AppZimrate : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
         this.setUpApollo()
+        PreferenceManager.setDefaultValues(this, R.xml.settings, false)
 
-        MobileAds.initialize(this)
+        initializeAppCheck()
+        setUpDataBase()
+        setUpRemoteConfig()
+    }
+
+    private fun initializeAppCheck() {
+        Firebase.initialize(context = this)
+        Firebase.appCheck.installAppCheckProviderFactory(
+            PlayIntegrityAppCheckProviderFactory.getInstance(),
+        )
+    }
+
+    private fun setUpRemoteConfig() {
+        val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
+
+        val configSettings = remoteConfigSettings {
+            minimumFetchIntervalInSeconds = 3600
+        }
+
+        remoteConfig.setConfigSettingsAsync(configSettings)
+
+        remoteConfig.setDefaultsAsync(R.xml.remote_config_defaults)
+    }
+
+    private fun setUpDataBase() {
+        val database = Room.databaseBuilder(
+            applicationContext,
+            Database::class.java,
+            DatabaseContract.DATABASE_NAME
+        )
+        database.allowMainThreadQueries()
+        database.enableMultiInstanceInvalidation()
+        database.addCallback(object : RoomDatabase.Callback() {
+            override fun onCreate(db: SupportSQLiteDatabase) {
+                super.onCreate(db)
+
+                RewardModel.rewardStarterPack(applicationContext)
+            }
+
+            override fun onOpen(db: SupportSQLiteDatabase) {
+                super.onOpen(db)
+
+                //clear old history
+                AppZimrate.database.apply {
+                    transactionExecutor.execute {
+                        rewards().cleanExpired()
+                        spends().cleanExpired()
+                    }
+                }
+            }
+        })
+
+        Companion.database = database.build()
     }
 
     private fun setUpApollo() {
@@ -22,5 +88,6 @@ class AppZimrate : MultiDexApplication() {
 
     companion object {
         lateinit var apolloClient: ApolloClient
+        lateinit var database: Database
     }
 }

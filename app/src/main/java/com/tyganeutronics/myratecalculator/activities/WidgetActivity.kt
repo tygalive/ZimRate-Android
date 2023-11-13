@@ -8,24 +8,22 @@ import android.view.View
 import android.widget.RadioGroup
 import android.widget.RemoteViews
 import androidx.appcompat.widget.AppCompatButton
-import com.google.android.gms.ads.AdView
 import com.tyganeutronics.myratecalculator.R
-import com.tyganeutronics.myratecalculator.utils.BaseUtils
+import com.tyganeutronics.myratecalculator.ui.base.BaseAppActivity
+import com.tyganeutronics.myratecalculator.utils.traits.putStringPref
 
-class WidgetActivity : BaseActivity(), View.OnClickListener {
+class WidgetActivity : BaseAppActivity(), View.OnClickListener {
 
-    var mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
+    private var mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setResult(RESULT_CANCELED)
         setContentView(R.layout.widget_configure)
 
-        bindViews()
-        syncViews()
     }
 
-    private fun bindViews() {
+    override fun bindViews() {
         mAppWidgetId = intent?.extras?.getInt(
             AppWidgetManager.EXTRA_APPWIDGET_ID,
             AppWidgetManager.INVALID_APPWIDGET_ID
@@ -41,7 +39,7 @@ class WidgetActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    private fun syncViews() {
+    override fun syncViews() {
         findViewById<AppCompatButton>(R.id.btn_add).setOnClickListener(this)
     }
 
@@ -59,22 +57,25 @@ class WidgetActivity : BaseActivity(), View.OnClickListener {
                     R.id.rbtn_bond -> {
                         which = getString(R.string.currency_bond)
                     }
+
                     R.id.rbtn_omir -> {
                         which = getString(R.string.currency_omir)
                     }
+
                     R.id.rbtn_rtgs -> {
                         which = getString(R.string.currency_rtgs)
                     }
+
                     R.id.rbtn_zar -> {
                         which = getString(R.string.currency_zar)
                     }
+
                     else -> {
                         which = getString(R.string.currency_rbz)
                     }
                 }
 
-                BaseUtils.getPrefs(baseContext).edit().putString("widget-$mAppWidgetId", which)
-                    .apply()
+                putStringPref("widget-$mAppWidgetId", which)
 
                 //prepare response
                 val resultValue = Intent().apply {

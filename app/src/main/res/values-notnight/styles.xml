@@ -2,6 +2,8 @@
 <resources>
 
     <style name="AppTheme" parent="AppTheme.Base">
+        <item name="ic_info">@drawable/ic_info</item>
+
         <item name="ic_dollar">@drawable/ic_dollar</item>
         <item name="ic_auto">@drawable/ic_auto</item>
         <item name="ic_interval">@drawable/ic_interval</item>
@@ -9,7 +11,7 @@
         <item name="ic_analytics">@drawable/ic_analytics</item>
 
         <item name="color_rating_bar">@android:color/darker_gray</item>
-        <item name="colorAccent">@color/colorPrimaryLight</item>
+        <item name="colorPrimaryLight">@color/colorPrimaryLight</item>
 
     </style>
 
