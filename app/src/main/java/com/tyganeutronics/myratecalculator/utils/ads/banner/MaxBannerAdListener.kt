@@ -14,43 +14,43 @@ object MaxBannerAdListener : MaxAdViewAdListener, MaxAdRevenueListener {
 
     lateinit var contextRef: WeakReference<Context>
 
-    override fun onAdLoaded(p0: MaxAd?) {
+    override fun onAdLoaded(p0: MaxAd) {
 
     }
 
-    override fun onAdDisplayed(p0: MaxAd?) {
+    override fun onAdDisplayed(p0: MaxAd) {
 
     }
 
-    override fun onAdHidden(p0: MaxAd?) {
+    override fun onAdHidden(p0: MaxAd) {
 
     }
 
-    override fun onAdClicked(p0: MaxAd?) {
+    override fun onAdClicked(p0: MaxAd) {
 
         contextRef.get()?.let {
             FirebaseAnalytics.getInstance(it).logEvent("reward_banner_click", null)
         }
     }
 
-    override fun onAdLoadFailed(p0: String?, p1: MaxError?) {
+    override fun onAdLoadFailed(p0: String, p1: MaxError) {
 
     }
 
-    override fun onAdDisplayFailed(p0: MaxAd?, p1: MaxError?) {
+    override fun onAdDisplayFailed(p0: MaxAd, p1: MaxError) {
 
     }
 
-    override fun onAdExpanded(p0: MaxAd?) {
+    override fun onAdExpanded(p0: MaxAd) {
 
     }
 
-    override fun onAdCollapsed(p0: MaxAd?) {
+    override fun onAdCollapsed(p0: MaxAd) {
 
     }
 
-    override fun onAdRevenuePaid(impressionData: MaxAd?) {
-        impressionData?.let {
+    override fun onAdRevenuePaid(impressionData: MaxAd) {
+        impressionData.let {
 
             contextRef.get()?.let { context ->
 
