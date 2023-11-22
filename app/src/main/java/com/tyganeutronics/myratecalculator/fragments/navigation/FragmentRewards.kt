@@ -17,6 +17,7 @@ import com.tyganeutronics.myratecalculator.interfaces.RewardItemInterface
 import com.tyganeutronics.myratecalculator.ui.base.BaseListFragment
 import com.tyganeutronics.myratecalculator.ui.recyclerview.adapters.RewardsAdapter
 import com.tyganeutronics.myratecalculator.utils.traits.displayBackButton
+import com.tyganeutronics.myratecalculator.utils.traits.hideBackButton
 import com.tyganeutronics.myratecalculator.utils.traits.setTitle
 
 class FragmentRewards : BaseListFragment(), RewardItemInterface,
@@ -109,5 +110,11 @@ class FragmentRewards : BaseListFragment(), RewardItemInterface,
         super.bindViews()
 
         recyclerView.adapter = RewardsAdapter(this)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        hideBackButton()
     }
 }

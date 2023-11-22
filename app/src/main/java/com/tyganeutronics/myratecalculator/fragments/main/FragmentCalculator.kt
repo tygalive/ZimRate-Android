@@ -55,6 +55,7 @@ import com.tyganeutronics.myratecalculator.utils.traits.putIntPref
 import com.tyganeutronics.myratecalculator.utils.traits.putLongPref
 import com.tyganeutronics.myratecalculator.utils.traits.putStringPref
 import com.tyganeutronics.myratecalculator.utils.traits.requireViewById
+import com.tyganeutronics.myratecalculator.utils.traits.setTitle
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import java.time.Instant
@@ -159,6 +160,8 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
      */
     override fun syncViews() {
         super.syncViews()
+
+        setTitle(R.string.menu_calculator)
 
         val observer = Observer { _: Long ->
             invalidateOptionsMenu()
