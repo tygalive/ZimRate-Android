@@ -31,6 +31,7 @@ import com.tyganeutronics.myratecalculator.database.models.RewardModel
 import com.tyganeutronics.myratecalculator.ui.base.BaseFragment
 import com.tyganeutronics.myratecalculator.utils.contracts.BillingContract
 import com.tyganeutronics.myratecalculator.utils.traits.findViewById
+import com.tyganeutronics.myratecalculator.utils.traits.hideBackButton
 import com.tyganeutronics.myratecalculator.utils.traits.requireViewById
 
 class FragmentPurchase : BaseFragment(), View.OnClickListener, PurchasesUpdatedListener,
@@ -311,5 +312,11 @@ class FragmentPurchase : BaseFragment(), View.OnClickListener, PurchasesUpdatedL
         purchases: MutableList<Purchase>
     ) {
         onPurchasesUpdated(billingResult, purchases)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        hideBackButton()
     }
 }

@@ -1,5 +1,6 @@
 package com.tyganeutronics.myratecalculator.utils.traits
 
+import android.os.Build
 import android.view.View
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
@@ -17,11 +18,15 @@ fun Fragment.setTitle(@StringRes title: Int) {
 }
 
 fun <T : View?> Fragment.findViewById(@IdRes id: Int): T? {
-    return requireView().findViewById(id)
+    return view?.findViewById(id)
 }
 
 fun <T : View?> Fragment.requireViewById(@IdRes id: Int): T {
-    return findViewById<T>(id)!!
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        requireView().requireViewById<T>(id)
+    } else {
+        findViewById<T>(id)!!
+    }
 }
 
 fun Fragment.onBackPressed() {

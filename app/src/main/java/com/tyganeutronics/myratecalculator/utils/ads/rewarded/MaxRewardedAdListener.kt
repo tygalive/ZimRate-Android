@@ -134,9 +134,9 @@ object MaxRewardedAdListener : MaxRewardedAdListener, MaxAdRevenueListener {
                             // All Applovin revenue is sent in USD
                             param(FirebaseAnalytics.Param.CURRENCY, "USD")
                         }
-
-                    RewardModel.rewardWatchAdvert(context, it.revenue)
                 }
+
+                RewardModel.rewardWatchAdvert(context, it.revenue)
             }
         }
     }

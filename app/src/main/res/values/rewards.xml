@@ -8,11 +8,12 @@
     <string name="rewards_day_6">Day 6</string>
     <string name="rewards_day_7">Day 7</string>
 
-    <string name="rewards_awards_info">Continuous daily application use Coin awards.\nEarn more Coins by watching Adverts or by purchasing Coins.</string>
+    <string name="rewards_awards_info">Continuously check-in the application daily to receive Coin awards to use in app.\nEarn more Coins by watching Adverts or by purchasing Coins.</string>
 
     <string name="rewards_description">Continuous check-in Rewards</string>
 
-    <string name="rewards_coins_info">Total coins available for use in application only. Includes rewarded and purchased Coins.</string>
+    <string name="rewards_coins_info">Total coins available for use in application only. Includes rewarded and purchased Coins. Coins will be deducted through various activities in the application.</string>
+    <string name="rewards_coins_purchase_alt">OR</string>
 
     <string name="rewards_history_awards_cta">Awards</string>
     <string name="rewards_history_purchases_cta">Purchased</string>

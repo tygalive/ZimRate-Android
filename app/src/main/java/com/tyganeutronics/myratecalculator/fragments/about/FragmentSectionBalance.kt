@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.tyganeutronics.myratecalculator.R
-import com.tyganeutronics.myratecalculator.database.contract.RewardContract
 import com.tyganeutronics.myratecalculator.database.viewmodels.RewardViewModel
-import com.tyganeutronics.myratecalculator.fragments.navigation.FragmentPurchase
 import com.tyganeutronics.myratecalculator.interfaces.RewardsActivity
 import com.tyganeutronics.myratecalculator.ui.base.BaseFragment
 import com.tyganeutronics.myratecalculator.utils.traits.requireViewById
@@ -39,8 +36,6 @@ class FragmentSectionBalance : BaseFragment(), OnClickListener {
     override fun bindViews() {
         super.bindViews()
 
-        requireViewById<LinearLayoutCompat>(R.id.btn_show_award_history).setOnClickListener(this)
-        requireViewById<AppCompatButton>(R.id.btn_trigger_earn_award).setOnClickListener(this)
         requireViewById<LinearLayoutCompat>(R.id.btn_show_spends_history).setOnClickListener(this)
     }
 
@@ -60,20 +55,9 @@ class FragmentSectionBalance : BaseFragment(), OnClickListener {
     override fun onClick(v: View?) {
         if (v != null) {
             when (v.id) {
-                R.id.btn_show_award_history -> {
-                    val bundle = Bundle()
-                    bundle.putString(RewardContract.COLUMN_NAME_TYPE, RewardContract.TYPES.PURCHASE)
-
-                    (requireActivity() as RewardsActivity).showRewardHistory(bundle)
-                }
 
                 R.id.btn_show_spends_history -> {
                     (requireActivity() as RewardsActivity).showPurchasesHistory(Bundle())
-                }
-
-                R.id.btn_trigger_earn_award -> {
-                    val fragment = FragmentPurchase()
-                    fragment.show(childFragmentManager, FragmentPurchase.TAG)
                 }
             }
         }
