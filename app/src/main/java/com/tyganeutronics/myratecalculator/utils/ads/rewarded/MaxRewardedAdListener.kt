@@ -55,7 +55,7 @@ object MaxRewardedAdListener : MaxRewardedAdListener, MaxAdRevenueListener {
         }
     }
 
-    override fun onAdLoadFailed(adUnitId: String?, error: MaxError?) {
+    override fun onAdLoadFailed(adUnitId: String, error: MaxError) {
         // Rewarded ad failed to load
         // We recommend retrying with exponentially higher delays up to a maximum delay (in this case 64 seconds)
 
@@ -78,7 +78,7 @@ object MaxRewardedAdListener : MaxRewardedAdListener, MaxAdRevenueListener {
         }
     }
 
-    override fun onAdDisplayFailed(ad: MaxAd?, error: MaxError?) {
+    override fun onAdDisplayFailed(ad: MaxAd, error: MaxError) {
         // Rewarded ad failed to display. We recommend loading the next ad
         rewardedAd.loadAd()
     }
@@ -118,8 +118,8 @@ object MaxRewardedAdListener : MaxRewardedAdListener, MaxAdRevenueListener {
         }
     }
 
-    override fun onAdRevenuePaid(impressionData: MaxAd?) {
-        impressionData?.let {
+    override fun onAdRevenuePaid(impressionData: MaxAd) {
+        impressionData.let {
             MaxBannerAdListener.contextRef.get()?.let { context ->
 
                 if (it.revenue > 0) {
@@ -134,9 +134,9 @@ object MaxRewardedAdListener : MaxRewardedAdListener, MaxAdRevenueListener {
                             // All Applovin revenue is sent in USD
                             param(FirebaseAnalytics.Param.CURRENCY, "USD")
                         }
-
-                    RewardModel.rewardWatchAdvert(context, it.revenue)
                 }
+
+                RewardModel.rewardWatchAdvert(context, it.revenue)
             }
         }
     }

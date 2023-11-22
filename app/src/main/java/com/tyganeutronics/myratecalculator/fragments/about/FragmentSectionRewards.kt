@@ -15,6 +15,7 @@ import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.database.contract.RewardContract
 import com.tyganeutronics.myratecalculator.database.models.RewardModel
 import com.tyganeutronics.myratecalculator.database.models.SpendModel
+import com.tyganeutronics.myratecalculator.fragments.navigation.FragmentPurchase
 import com.tyganeutronics.myratecalculator.interfaces.AdFragmentSubscriberInterface
 import com.tyganeutronics.myratecalculator.interfaces.RewardsActivity
 import com.tyganeutronics.myratecalculator.ui.base.BaseFragment
@@ -71,6 +72,8 @@ class FragmentSectionRewards : BaseFragment(), OnClickListener, AdFragmentSubscr
 
         requireViewById<LinearLayoutCompat>(R.id.btn_show_award_history).setOnClickListener(this)
         requireViewById<AppCompatButton>(R.id.btn_trigger_earn_award).setOnClickListener(this)
+        requireViewById<LinearLayoutCompat>(R.id.btn_show_purchases_history).setOnClickListener(this)
+        requireViewById<AppCompatButton>(R.id.btn_trigger_purchase_award).setOnClickListener(this)
     }
 
     override fun syncViews() {
@@ -129,6 +132,18 @@ class FragmentSectionRewards : BaseFragment(), OnClickListener, AdFragmentSubscr
                             rewardedAd.showAd()
                         }
                     }
+                }
+
+                R.id.btn_show_purchases_history -> {
+                    val bundle = Bundle()
+                    bundle.putString(RewardContract.COLUMN_NAME_TYPE, RewardContract.TYPES.PURCHASE)
+
+                    (requireActivity() as RewardsActivity).showRewardHistory(bundle)
+                }
+
+                R.id.btn_trigger_purchase_award -> {
+                    val fragment = FragmentPurchase()
+                    fragment.show(childFragmentManager, FragmentPurchase.TAG)
                 }
             }
         }

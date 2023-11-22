@@ -23,7 +23,10 @@ object RewardModel {
     fun dayClockInReward(streak: Int): Long {
         val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
 
-        return JSONArray(remoteConfig.getString("reward_clock_in")).optLong(streak, 0)
+        return JSONArray(remoteConfig.getString(RemoteConfigContract.REWARD_CLOCK_IN)).optLong(
+            streak,
+            0
+        )
     }
 
     fun maybeRewardClockIn(context: Context, days: Int = 7) {
@@ -47,7 +50,7 @@ object RewardModel {
                     val reward = RewardEntity()
                     if (latestDate.isBefore(DateUtils.systemDateTime().toInstant())) {
 
-                        reward.amount = dayClockInReward(streak)
+                        reward.amount = dayClockInReward(streak.coerceAtMost(days - 1))
                         reward.expiresAt = LocalDateTime.now()
                             .plusDays(remoteConfig.getLong(RemoteConfigContract.REWARD_CLOCK_IN_DAYS))
                             .plusDays(1)

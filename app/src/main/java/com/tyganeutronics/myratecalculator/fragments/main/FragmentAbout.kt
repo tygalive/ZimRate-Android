@@ -21,7 +21,6 @@ class FragmentAbout : BaseFragment() {
     override fun syncViews() {
         super.syncViews()
         setTitle(R.string.menu_settings)
-        hideBackButton()
     }
 
     companion object {

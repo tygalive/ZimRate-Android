@@ -16,6 +16,7 @@ import com.tyganeutronics.myratecalculator.interfaces.SpendItemInterface
 import com.tyganeutronics.myratecalculator.ui.base.BaseListFragment
 import com.tyganeutronics.myratecalculator.ui.recyclerview.adapters.SpendsAdapter
 import com.tyganeutronics.myratecalculator.utils.traits.displayBackButton
+import com.tyganeutronics.myratecalculator.utils.traits.hideBackButton
 import com.tyganeutronics.myratecalculator.utils.traits.setTitle
 
 class FragmentSpends : BaseListFragment(), SpendItemInterface,
@@ -96,5 +97,11 @@ class FragmentSpends : BaseListFragment(), SpendItemInterface,
         super.bindViews()
 
         recyclerView.adapter = SpendsAdapter(this)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        hideBackButton()
     }
 }
