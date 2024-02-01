@@ -73,6 +73,8 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
 
     private val fragmentCalculator: FragmentCalculator = FragmentCalculator()
 
+    private var didCalculate = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -143,13 +145,8 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
         }
 
         requireViewById<TextInputEditText>(R.id.et_amount).setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus && canConsumeCoins()) {
-                SpendModel.consume(
-                    requireContext(),
-                    1,
-                    PurchasesContract.TYPES.CALCULATION,
-                    getString(R.string.rewards_spend_calculation)
-                )
+            if (hasFocus && canConsumeCoins()) {
+                didCalculate = true
             }
         }
 
@@ -237,7 +234,22 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
     override fun onStart() {
         super.onStart()
 
+        didCalculate = false
+
         textWatchers()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        if (didCalculate && canConsumeCoins()) {
+            SpendModel.consume(
+                requireContext(),
+                1,
+                PurchasesContract.TYPES.CALCULATION,
+                getString(R.string.rewards_spend_calculation)
+            )
+        }
     }
 
     override fun onRefresh() {

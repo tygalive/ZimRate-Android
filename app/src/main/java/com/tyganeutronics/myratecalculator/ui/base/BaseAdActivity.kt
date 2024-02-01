@@ -46,7 +46,7 @@ abstract class BaseAdActivity : BaseActivity() {
 
     }
 
-    fun setupAd() {
+    private fun setupAd() {
         findViewById<ViewGroup>(R.id.adView)?.let { adView ->
 
             adView.post {
