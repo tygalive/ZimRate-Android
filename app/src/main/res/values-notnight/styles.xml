@@ -10,7 +10,6 @@
         <item name="ic_check">@drawable/ic_check</item>
         <item name="ic_analytics">@drawable/ic_analytics</item>
 
-        <item name="color_rating_bar">@android:color/darker_gray</item>
         <item name="colorPrimaryLight">@color/colorPrimaryLight</item>
 
     </style>

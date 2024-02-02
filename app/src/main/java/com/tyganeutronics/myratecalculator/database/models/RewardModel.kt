@@ -23,10 +23,8 @@ object RewardModel {
     fun dayClockInReward(streak: Int): Long {
         val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
 
-        return JSONArray(remoteConfig.getString(RemoteConfigContract.REWARD_CLOCK_IN)).optLong(
-            streak,
-            0
-        )
+        return JSONArray(remoteConfig.getString(RemoteConfigContract.REWARD_CLOCK_IN))
+            .optLong(streak, 0)
     }
 
     fun maybeRewardClockIn(context: Context, days: Int = 7) {

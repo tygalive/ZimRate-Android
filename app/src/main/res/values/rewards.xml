@@ -42,7 +42,7 @@
     <string name="rewards_award_coins_purchased">Coin Purchase. %d coins have been credited.</string>
 
     <string name="rewards_spend_data_fetch">%d Coin spent on data fetch.</string>
-    <string name="rewards_spend_calculation">%d Coin spent on calculation.</string>
+    <string name="rewards_spend_calculation">%d Coin spent on calculation session.</string>
 
     <string name="rewards_coins_title">Coin Top Up</string>
     <string name="rewards_coins_available">You seem all set, you can use the following options to recharge your coin balance.</string>
