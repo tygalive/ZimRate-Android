@@ -14,8 +14,8 @@ android {
         applicationId "com.tyganeutronics.myratecalculator"
         minSdk 21
         targetSdk 34
-        versionCode 35
-        versionName "2.0.1"
+        versionCode 36
+        versionName "2.0.2"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
 
@@ -30,7 +30,6 @@ android {
 
     buildTypes {
         debug {
-            //applicationIdSuffix = ".debug"
             versionNameSuffix '.debug'
             multiDexKeepFile file('multidex-config.txt')
         }
