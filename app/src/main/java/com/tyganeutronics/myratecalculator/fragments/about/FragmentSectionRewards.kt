@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
+import com.appodeal.ads.Appodeal
 import com.google.firebase.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.remoteConfig
@@ -19,7 +21,7 @@ import com.tyganeutronics.myratecalculator.fragments.navigation.FragmentPurchase
 import com.tyganeutronics.myratecalculator.interfaces.AdFragmentSubscriberInterface
 import com.tyganeutronics.myratecalculator.interfaces.RewardsActivity
 import com.tyganeutronics.myratecalculator.ui.base.BaseFragment
-import com.tyganeutronics.myratecalculator.utils.ads.rewarded.MaxRewardedAdListener
+import com.tyganeutronics.myratecalculator.utils.ads.rewarded.AppoRewardedAdListener
 import com.tyganeutronics.myratecalculator.utils.contracts.RemoteConfigContract
 import com.tyganeutronics.myratecalculator.utils.traits.requireViewById
 import kotlinx.coroutines.CoroutineScope
@@ -30,33 +32,18 @@ import java.lang.ref.WeakReference
 
 class FragmentSectionRewards : BaseFragment(), OnClickListener, AdFragmentSubscriberInterface {
 
-    override fun onCanReshowAd() {
-        requireViewById<AppCompatButton>(R.id.btn_trigger_earn_award).apply {
-            val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-            isEnabled = true
-            text = getString(
-                R.string.rewards_earn_advert,
-                remoteConfig.getLong(RemoteConfigContract.REWARD_WATCH_ADVERT)
-            )
+        AppoRewardedAdListener.apply {
+            adSubscriberRef = WeakReference(this@FragmentSectionRewards)
         }
+
+        Appodeal.setRewardedVideoCallbacks(AppoRewardedAdListener)
     }
 
-    override fun onAdReady() {
-        onCanReshowAd()
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        CoroutineScope(Dispatchers.Main).launch {
-
-            MaxRewardedAdListener.apply {
-                adUnit = getString(R.string.ads_max_video_id)
-                adSubscriberRef = WeakReference(this@FragmentSectionRewards)
-                loadAd()
-            }
-        }
+    override fun requireShowAdButton(): Button {
+        return requireViewById<AppCompatButton>(R.id.btn_trigger_earn_award)
     }
 
     override fun onCreateView(
@@ -101,9 +88,13 @@ class FragmentSectionRewards : BaseFragment(), OnClickListener, AdFragmentSubscr
             }
         }
 
+        resetShowAdButtonText()
+    }
+
+    override fun resetShowAdButtonText() {
         val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
 
-        requireViewById<AppCompatButton>(R.id.btn_trigger_earn_award).apply {
+        requireShowAdButton().apply {
             text = getString(
                 R.string.rewards_earn_advert,
                 remoteConfig.getLong(RemoteConfigContract.REWARD_WATCH_ADVERT)
@@ -122,15 +113,8 @@ class FragmentSectionRewards : BaseFragment(), OnClickListener, AdFragmentSubscr
                 }
 
                 R.id.btn_trigger_earn_award -> {
-                    requireViewById<AppCompatButton>(R.id.btn_trigger_earn_award).apply {
-                        isEnabled = false
-                        text = getString(R.string.rewards_earn_advert_loading)
-                    }
-
-                    MaxRewardedAdListener.apply {
-                        if (rewardedAd.isReady) {
-                            rewardedAd.showAd()
-                        }
+                    AppoRewardedAdListener.apply {
+                        showAd()
                     }
                 }
 
@@ -147,5 +131,11 @@ class FragmentSectionRewards : BaseFragment(), OnClickListener, AdFragmentSubscr
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        Appodeal.setRewardedVideoCallbacks(null)
     }
 }

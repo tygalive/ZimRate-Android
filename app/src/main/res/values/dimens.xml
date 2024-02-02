@@ -32,6 +32,4 @@
 
     <dimen name="dimen_100dp">100dp</dimen>
 
-    <dimen name="ads_banner_height">50dp</dimen>
-
 </resources>

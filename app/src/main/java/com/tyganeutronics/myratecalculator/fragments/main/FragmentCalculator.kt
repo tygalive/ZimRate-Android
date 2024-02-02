@@ -73,6 +73,8 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
 
     private val fragmentCalculator: FragmentCalculator = FragmentCalculator()
 
+    private var didCalculate = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -143,13 +145,8 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
         }
 
         requireViewById<TextInputEditText>(R.id.et_amount).setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus && canConsumeCoins()) {
-                SpendModel.consume(
-                    requireContext(),
-                    1,
-                    PurchasesContract.TYPES.CALCULATION,
-                    getString(R.string.rewards_spend_calculation)
-                )
+            if (hasFocus) {
+                didCalculate = true
             }
         }
 
@@ -237,7 +234,22 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
     override fun onStart() {
         super.onStart()
 
+        didCalculate = false
+
         textWatchers()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        if (didCalculate && canConsumeCoins()) {
+            SpendModel.consume(
+                requireContext(),
+                1,
+                PurchasesContract.TYPES.CALCULATION,
+                getString(R.string.rewards_spend_calculation)
+            )
+        }
     }
 
     override fun onRefresh() {
@@ -539,59 +551,55 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
 
     private fun calculate() {
 
-        if (canConsumeCoins()) {
+        val calculator = getCalculator()
 
-            val calculator = getCalculator()
+        val amountText = requireViewById<TextInputEditText>(R.id.et_amount)
+            .text.toString()
+            .ifEmpty { "1" }
+            .toBigDecimalOrNull()?.toPlainString() ?: "1"
 
-            val amountText = requireViewById<TextInputEditText>(R.id.et_amount)
-                .text.toString()
-                .ifEmpty { "1" }
-                .toBigDecimalOrNull()?.toPlainString() ?: "1"
+        //save amount entered
+        requireContext().putStringPref("amount", amountText)
+        requireContext().putIntPref(
+            "currency",
+            requireViewById<AppCompatSpinner>(R.id.s_currency).selectedItemPosition
+        )
 
-            //save amount entered
-            requireContext().putStringPref("amount", amountText)
-            requireContext().putIntPref(
-                "currency",
-                requireViewById<AppCompatSpinner>(R.id.s_currency).selectedItemPosition
-            )
+        calculateCurrencyResult(
+            R.id.txt_usd_result,
+            calculator.toUSD(amountText.toBigDecimal()),
+            calculator.usd
+        )
 
-            calculateCurrencyResult(
-                R.id.txt_usd_result,
-                calculator.toUSD(amountText.toBigDecimal()),
-                calculator.usd
-            )
+        calculateCurrencyResult(
+            R.id.txt_bond_result,
+            calculator.toBOND(amountText.toBigDecimal()),
+            calculator.bond
+        )
 
-            calculateCurrencyResult(
-                R.id.txt_bond_result,
-                calculator.toBOND(amountText.toBigDecimal()),
-                calculator.bond
-            )
+        calculateCurrencyResult(
+            R.id.txt_omir_result,
+            calculator.toOMIR(amountText.toBigDecimal()),
+            calculator.omir
+        )
 
-            calculateCurrencyResult(
-                R.id.txt_omir_result,
-                calculator.toOMIR(amountText.toBigDecimal()),
-                calculator.omir
-            )
+        calculateCurrencyResult(
+            R.id.txt_rbz_result,
+            calculator.toRBZ(amountText.toBigDecimal()),
+            calculator.rbz
+        )
 
-            calculateCurrencyResult(
-                R.id.txt_rbz_result,
-                calculator.toRBZ(amountText.toBigDecimal()),
-                calculator.rbz
-            )
+        calculateCurrencyResult(
+            R.id.txt_rtgs_result,
+            calculator.toRTGS(amountText.toBigDecimal()),
+            calculator.rtgs
+        )
 
-            calculateCurrencyResult(
-                R.id.txt_rtgs_result,
-                calculator.toRTGS(amountText.toBigDecimal()),
-                calculator.rtgs
-            )
-
-            calculateCurrencyResult(
-                R.id.txt_zar_result,
-                calculator.toZAR(amountText.toBigDecimal()),
-                calculator.zar
-            )
-
-        }
+        calculateCurrencyResult(
+            R.id.txt_zar_result,
+            calculator.toZAR(amountText.toBigDecimal()),
+            calculator.zar
+        )
     }
 
     private fun calculateCurrencyResult(

@@ -12,7 +12,7 @@ android {
     buildToolsVersion = '34.0.0'
     defaultConfig {
         applicationId "com.tyganeutronics.myratecalculator"
-        minSdk 19
+        minSdk 21
         targetSdk 34
         versionCode 35
         versionName "2.0.1"
@@ -30,7 +30,7 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix = ".debug"
+            //applicationIdSuffix = ".debug"
             versionNameSuffix '.debug'
             multiDexKeepFile file('multidex-config.txt')
         }
@@ -71,21 +71,24 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.core:core-ktx:1.12.0'
-    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     implementation "androidx.core:core-splashscreen:1.0.1"
 
-    // Unity Ads
-    implementation 'com.unity3d.ads:unity-ads:4.9.2'
-
-    // AppLovin Ads
-    implementation 'com.applovin:applovin-sdk:12.0.0'
-    implementation 'com.applovin.mediation:unityads-adapter:4.9.2.0'
+    // Appodeal Ads
+    implementation('com.appodeal.ads:sdk:3.2.1.+') {
+        exclude group: 'com.appodeal.ads.sdk.services', module: 'adjust'
+        exclude group: 'com.appodeal.ads.sdk.services', module: 'appsflyer'
+        exclude group: 'com.appodeal.ads.sdk.services', module: 'facebook_analytics'
+        exclude group: 'com.appodeal.ads.sdk.services', module: 'sentry_analytics'
+        exclude(group: "com.appodeal.ads.sdk.networks", module: "admob")
+        exclude(group: "com.google.android.gms", module: "play-services-ads")
+    }
 
     //Crashlytics
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:32.6.0')
+    implementation platform('com.google.firebase:firebase-bom:32.7.1')
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-crashlytics'
@@ -111,12 +114,12 @@ dependencies {
     implementation "com.maltaisn:calcdialog:2.2.2"
 
     //https://developer.android.com/training/data-storage/room
-    def room_version = '2.6.0'
+    def room_version = '2.6.1'
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0'
 
     //play licensing
     def billing_version = '6.1.0'

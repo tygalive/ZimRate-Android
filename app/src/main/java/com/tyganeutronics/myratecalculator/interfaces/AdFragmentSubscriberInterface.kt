@@ -2,6 +2,7 @@ package com.tyganeutronics.myratecalculator.interfaces
 
 import android.app.Activity
 import android.content.Context
+import android.widget.Button
 
 interface AdFragmentSubscriberInterface {
 
@@ -9,7 +10,8 @@ interface AdFragmentSubscriberInterface {
 
     fun requireActivity(): Activity
 
-    fun onCanReshowAd()
+    fun requireShowAdButton(): Button
 
-    fun onAdReady()
+    fun resetShowAdButtonText()
+
 }

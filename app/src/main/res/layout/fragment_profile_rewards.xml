@@ -354,7 +354,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="5"
-                android:enabled="false"
                 android:text="@string/rewards_earn_advert" />
 
             <androidx.appcompat.widget.LinearLayoutCompat

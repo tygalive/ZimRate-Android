@@ -8,7 +8,6 @@
     <attr name="ic_check" format="reference" />
     <attr name="ic_analytics" format="reference" />
 
-    <attr name="color_rating_bar" format="reference" />
     <attr name="colorPrimaryLight" format="reference" />
 
 </resources>
