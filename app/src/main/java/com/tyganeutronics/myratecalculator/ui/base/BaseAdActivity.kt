@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.appodeal.ads.Appodeal
-import com.tyganeutronics.myratecalculator.AppZimrate
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.utils.BaseUtils
 import com.tyganeutronics.myratecalculator.utils.ads.banner.AppoBannerAdListener
@@ -52,25 +51,23 @@ abstract class BaseAdActivity : BaseActivity() {
 
             adView.post {
 
-                AppZimrate.database.let {
-                    if (it.rewards().tokenTypeBalance() <= 0) {
+                if (BaseUtils.canShowAds(baseContext)) {
 
-                        AppoBannerAdListener.apply {
-                            contextRef = WeakReference(baseContext)
-                        }
-
-                        Appodeal.setBannerViewId(R.id.adView)
-                        Appodeal.setBannerCallbacks(AppoBannerAdListener)
-
-                        val banner: View = Appodeal.getBannerView(this)
-
-                        Appodeal.show(this, Appodeal.BANNER_VIEW)
-
-                        adView.addView(banner)
-                        adView.isVisible = true
-                    } else {
-                        adView.isGone = true
+                    AppoBannerAdListener.apply {
+                        contextRef = WeakReference(baseContext)
                     }
+
+                    Appodeal.setBannerViewId(R.id.adView)
+                    Appodeal.setBannerCallbacks(AppoBannerAdListener)
+
+                    val banner: View = Appodeal.getBannerView(this)
+
+                    Appodeal.show(this, Appodeal.BANNER_VIEW)
+
+                    adView.addView(banner)
+                    adView.isVisible = true
+                } else {
+                    adView.isGone = true
                 }
             }
         }
