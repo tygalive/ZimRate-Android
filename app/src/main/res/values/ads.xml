@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="ads_unity_app_id" translatable="false">5474025</string>
-    <string name="ads_unity_banner_id" translatable="false">Banner_Android</string>
-    <string name="ads_unity_video_id" translatable="false">Rewarded_Android</string>
-
-    <string name="ads_max_app_id" translatable="false">s8dsoAGPAC16btpuZ9Sre7IwIytXmXRKrqkTpOfZxKgS1fQ6DGkkOx0J5WVtkuE7phBfT_f_kXIrhtRL9OW05m</string>
-    <string name="ads_max_banner_id" translatable="false">6c55e5cb1391ba7a</string>
-    <string name="ads_max_video_id" translatable="false">450776e8fb53789c</string>
+    <string name="ads_appodeal_app_id" translatable="false">1c8d22b28f81f470a6673d4ed8eb21f6b86e6b03b73f3fb5</string>
 
 </resources>
