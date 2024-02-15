@@ -16,6 +16,7 @@ import com.google.firebase.remoteconfig.remoteConfigSettings
 import com.tyganeutronics.myratecalculator.database.Database
 import com.tyganeutronics.myratecalculator.database.contract.DatabaseContract
 import com.tyganeutronics.myratecalculator.database.models.RewardModel
+import com.tyganeutronics.myratecalculator.utils.TokenUtils
 import com.tyganeutronics.myratecalculator.utils.contracts.ApiContract
 
 class AppZimrate : MultiDexApplication() {
@@ -61,7 +62,13 @@ class AppZimrate : MultiDexApplication() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
 
-                RewardModel.rewardStarterPack(applicationContext)
+                if (!TokenUtils.installOlderThan(
+                        applicationContext,
+                        1
+                    )
+                ) {
+                    RewardModel.rewardStarterPack(applicationContext)
+                }
             }
 
             override fun onOpen(db: SupportSQLiteDatabase) {
