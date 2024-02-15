@@ -39,9 +39,8 @@ class MainActivity : BaseAppActivity(), NavigationBarView.OnItemSelectedListener
             installSplashScreen()
         }
 
-        RewardModel.maybeRewardClockIn(this)
-
-        fetchRemoteConfigs()
+        //Do not remove before create activity, crushes on rotate device
+        rewardViewModel = ViewModelProvider(this)[RewardViewModel::class.java]
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -52,7 +51,9 @@ class MainActivity : BaseAppActivity(), NavigationBarView.OnItemSelectedListener
             selectHomeFragment()
         }
 
-        rewardViewModel = ViewModelProvider(this)[RewardViewModel::class.java]
+        fetchRemoteConfigs()
+
+        RewardModel.maybeRewardClockIn(this)
     }
 
     private fun fetchRemoteConfigs() {

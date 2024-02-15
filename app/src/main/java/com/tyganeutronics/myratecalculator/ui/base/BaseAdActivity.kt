@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import com.appodeal.ads.Appodeal
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.utils.BaseUtils
+import com.tyganeutronics.myratecalculator.utils.TokenUtils
 import com.tyganeutronics.myratecalculator.utils.ads.banner.AppoBannerAdListener
 import com.tyganeutronics.myratecalculator.utils.contracts.PreferenceContract
 import com.tyganeutronics.myratecalculator.utils.traits.getBooleanPref
@@ -51,7 +52,7 @@ abstract class BaseAdActivity : BaseActivity() {
 
             adView.post {
 
-                if (BaseUtils.canShowAds(baseContext)) {
+                if (TokenUtils.canShowAds(baseContext)) {
 
                     AppoBannerAdListener.apply {
                         contextRef = WeakReference(baseContext)
@@ -71,8 +72,5 @@ abstract class BaseAdActivity : BaseActivity() {
                 }
             }
         }
-
     }
-
-
 }
