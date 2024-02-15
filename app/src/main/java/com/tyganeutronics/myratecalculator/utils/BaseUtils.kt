@@ -20,18 +20,5 @@ object BaseUtils {
 
     val isProductionBuild: Boolean
         get() = !BuildConfig.DEBUG
-
-    fun canShowAds(context: Context): Boolean {
-        val installDate = LocalDateTime.ofInstant(
-            Instant.ofEpochMilli(
-                context.packageManager.getPackageInfo(context.packageName, 0).firstInstallTime
-            ), ZoneOffset.UTC
-        )
-
-        val hasNoPaidTokens = AppZimrate.database.rewards().tokenTypeBalance() <= 0
-
-        return hasNoPaidTokens && LocalDateTime.now()
-            .minusDays(3)
-            .isAfter(installDate)
-    }
+    
 }

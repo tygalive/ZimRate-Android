@@ -3,7 +3,7 @@ package com.tyganeutronics.myratecalculator.utils.contracts
 import android.content.Context
 import android.os.BatteryManager
 import android.os.Build
-import com.tyganeutronics.myratecalculator.BuildConfig
+import com.tyganeutronics.myratecalculator.utils.BaseUtils
 
 object ApiContract {
 
@@ -14,7 +14,7 @@ object ApiContract {
     private fun getBaseApiUrl(context: Context): String {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
             && (context.getSystemService(Context.BATTERY_SERVICE) as BatteryManager).isCharging
-            && BuildConfig.BUILD_TYPE == "debug"
+            && !BaseUtils.isProductionBuild
         ) {
             "http://192.168.81.155/wordpress/api/v1"
         } else {
