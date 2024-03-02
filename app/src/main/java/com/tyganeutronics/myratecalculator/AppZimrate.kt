@@ -57,6 +57,7 @@ class AppZimrate : MultiDexApplication() {
             DatabaseContract.DATABASE_NAME
         )
         database.allowMainThreadQueries()
+        database.fallbackToDestructiveMigrationOnDowngrade()
         database.enableMultiInstanceInvalidation()
         database.addCallback(object : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
