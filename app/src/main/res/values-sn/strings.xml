@@ -75,4 +75,7 @@
     <string name="list_nothing_found">Hapana Zviripo.</string>
     <string name="list_search_nothing_found">Hapana zvaenderana nezvawa tsvaga.</string>
 
+    <string name="app_update_downloaded">Application itsva ya downloada.</string>
+    <string name="app_update_update">Tangidza</string>
+
 </resources>

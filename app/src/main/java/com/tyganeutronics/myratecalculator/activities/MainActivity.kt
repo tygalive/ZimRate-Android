@@ -3,7 +3,6 @@ package com.tyganeutronics.myratecalculator.activities
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -35,9 +34,7 @@ class MainActivity : BaseAppActivity(), NavigationBarView.OnItemSelectedListener
     override lateinit var rewardViewModel: RewardViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            installSplashScreen()
-        }
+        installSplashScreen()
 
         //Do not remove before create activity, crushes on rotate device
         rewardViewModel = ViewModelProvider(this)[RewardViewModel::class.java]

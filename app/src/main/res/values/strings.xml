@@ -97,4 +97,7 @@
     <string name="list_nothing_found">Nothing Here.</string>
     <string name="list_search_nothing_found">Nothing matches search criteria.</string>
 
+    <string name="app_update_downloaded">An update has just been downloaded.</string>
+    <string name="app_update_update">Restart</string>
+
 </resources>

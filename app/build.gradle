@@ -76,7 +76,7 @@ dependencies {
     implementation "androidx.core:core-splashscreen:1.0.1"
 
     // Appodeal Ads
-    implementation('com.appodeal.ads:sdk:3.2.1.+') {
+    implementation('com.appodeal.ads:sdk:3.2.1.0') {
         exclude group: 'com.appodeal.ads.sdk.services', module: 'adjust'
         exclude group: 'com.appodeal.ads.sdk.services', module: 'appsflyer'
         exclude group: 'com.appodeal.ads.sdk.services', module: 'facebook_analytics'
@@ -87,7 +87,7 @@ dependencies {
 
     //Crashlytics
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:32.7.1')
+    implementation platform('com.google.firebase:firebase-bom:32.7.3')
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-crashlytics'
