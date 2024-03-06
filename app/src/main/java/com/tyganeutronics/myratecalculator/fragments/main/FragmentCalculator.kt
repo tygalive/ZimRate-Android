@@ -74,6 +74,7 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
     private val fragmentCalculator: FragmentCalculator = FragmentCalculator()
 
     private var didCalculate = false
+    private var isAppSettled = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -235,6 +236,10 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
         super.onStart()
 
         didCalculate = false
+
+        requireView().post {
+            isAppSettled = true
+        }
 
         textWatchers()
     }
@@ -398,7 +403,9 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        FirebaseAnalytics.getInstance(requireContext()).logEvent("change_currency", Bundle())
+        if (isAppSettled) {
+            FirebaseAnalytics.getInstance(requireContext()).logEvent("change_currency", Bundle())
+        }
 
         calculate()
     }
