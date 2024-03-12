@@ -16,7 +16,9 @@ object SpendModel {
                 var rewards = emptyList<Long>()
 
                 for (i in 0..credits) {
-                    val reward = it.rewards().oldestActiveReward()!!
+                    // If there is no active reward, over draw the longest living reward
+                    val reward =
+                        it.rewards().oldestActiveReward() ?: it.rewards().longestLivingReward()!!
 
                     reward.balance--
                     reward.dirty = true

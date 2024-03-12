@@ -37,6 +37,9 @@ interface RewardsDao {
     @Query("SELECT * FROM `rewards` WHERE DATETIME(`expires_at`, 'unixepoch') >= DATETIME('now') AND `balance` > 0 ORDER BY `expires_at` ASC LIMIT 1")
     fun oldestActiveReward(): RewardEntity?
 
+    @Query("SELECT * FROM `rewards` ORDER BY `expires_at` DESC LIMIT 1")
+    fun longestLivingReward(): RewardEntity?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(rewardEntity: RewardEntity): Long?
 

@@ -44,7 +44,9 @@ open class Calculator constructor(
     }
 
     private fun toCurrency(current: Currency, amount: BigDecimal): BigDecimal {
-        return amount.times(current.rate).div(currency.rate)
+        val rate = currency.rate.takeUnless { it == BigDecimal.ZERO } ?: BigDecimal.ONE
+
+        return amount.times(current.rate).div(rate)
     }
 
 }

@@ -112,9 +112,11 @@ class MainActivity : BaseAppActivity(), NavigationBarView.OnItemSelectedListener
     }
 
     override fun showTopUpDialog() {
-        if (supportFragmentManager.findFragmentByTag(CoinsBalanceFragment.TAG) === null) {
-            val fragment = CoinsBalanceFragment()
-            fragment.show(supportFragmentManager, CoinsBalanceFragment.TAG)
+        if (!isFinishing) {
+            if (supportFragmentManager.findFragmentByTag(CoinsBalanceFragment.TAG) === null) {
+                val fragment = CoinsBalanceFragment()
+                fragment.show(supportFragmentManager, CoinsBalanceFragment.TAG)
+            }
         }
     }
 
