@@ -7,7 +7,6 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.database.models.RewardModel
 import com.tyganeutronics.myratecalculator.interfaces.AdFragmentSubscriberInterface
-import com.tyganeutronics.myratecalculator.utils.ads.banner.AppoBannerAdListener
 import java.lang.ref.WeakReference
 
 object AppoRewardedAdListener : RewardedVideoCallbacks {
@@ -69,8 +68,8 @@ object AppoRewardedAdListener : RewardedVideoCallbacks {
     override fun onRewardedVideoClicked() {
         // Called when rewarded video is clicked
 
-        AppoBannerAdListener.contextRef.get()?.let {
-            FirebaseAnalytics.getInstance(it).logEvent("reward_banner_click", null)
+        adSubscriberRef.get()?.let {
+            FirebaseAnalytics.getInstance(it.requireContext()).logEvent("reward_banner_click", null)
         }
     }
 
