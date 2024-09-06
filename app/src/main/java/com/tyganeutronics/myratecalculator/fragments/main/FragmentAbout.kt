@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.ui.base.BaseFragment
-import com.tyganeutronics.myratecalculator.utils.traits.hideBackButton
 import com.tyganeutronics.myratecalculator.utils.traits.setTitle
 
 class FragmentAbout : BaseFragment() {

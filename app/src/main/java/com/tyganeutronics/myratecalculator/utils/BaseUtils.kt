@@ -1,11 +1,6 @@
 package com.tyganeutronics.myratecalculator.utils
 
-import android.content.Context
-import com.tyganeutronics.myratecalculator.AppZimrate
 import com.tyganeutronics.myratecalculator.BuildConfig
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneOffset
 
 object BaseUtils {
 
@@ -20,5 +15,5 @@ object BaseUtils {
 
     val isProductionBuild: Boolean
         get() = !BuildConfig.DEBUG
-    
+
 }
