@@ -28,4 +28,8 @@ object TokenUtils {
             .isAfter(installDate)
     }
 
+    fun hasLowTokenBalance(): Boolean {
+        return AppZimrate.database.rewards().tokenBalance() < 5
+    }
+
 }

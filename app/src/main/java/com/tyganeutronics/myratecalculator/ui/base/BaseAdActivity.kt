@@ -10,6 +10,7 @@ import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.utils.BaseUtils
 import com.tyganeutronics.myratecalculator.utils.TokenUtils
 import com.tyganeutronics.myratecalculator.utils.ads.banner.AppoBannerAdListener
+import com.tyganeutronics.myratecalculator.utils.ads.interstitial.AppoInterstitialListener
 import com.tyganeutronics.myratecalculator.utils.contracts.PreferenceContract
 import com.tyganeutronics.myratecalculator.utils.traits.getBooleanPref
 import kotlinx.coroutines.CoroutineScope
@@ -27,12 +28,13 @@ abstract class BaseAdActivity : BaseActivity() {
             Appodeal.initialize(
                 this@BaseAdActivity,
                 getString(R.string.ads_appodeal_app_id),
-                Appodeal.BANNER or Appodeal.REWARDED_VIDEO
+                Appodeal.BANNER or Appodeal.INTERSTITIAL or Appodeal.REWARDED_VIDEO
             ) {
                 // Appodeal initialization finished
             }
 
             Appodeal.setTesting(!BaseUtils.isProductionBuild)
+            Appodeal.muteVideosIfCallsMuted(true)
         }
     }
 
@@ -70,7 +72,21 @@ abstract class BaseAdActivity : BaseActivity() {
                 } else {
                     adView.isGone = true
                 }
+
+                setupInterstitial()
             }
+        }
+    }
+
+    private fun setupInterstitial() {
+        AppoInterstitialListener.apply {
+            contextRef = WeakReference(this@BaseAdActivity)
+        }
+
+        Appodeal.setInterstitialCallbacks(AppoInterstitialListener)
+
+        if (TokenUtils.hasLowTokenBalance() && Appodeal.isLoaded(Appodeal.INTERSTITIAL)) {
+            Appodeal.show(this, Appodeal.INTERSTITIAL)
         }
     }
 }
