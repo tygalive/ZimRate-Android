@@ -76,7 +76,8 @@ dependencies {
     implementation "androidx.core:core-splashscreen:1.0.1"
 
     // Appodeal Ads
-    implementation('com.appodeal.ads:sdk:3.2.1.0') {
+    implementation "com.bigossp:max-mediation:4.8.2.0"
+    implementation('com.appodeal.ads:sdk:3.3.2.0') {
         exclude group: 'com.appodeal.ads.sdk.services', module: 'adjust'
         exclude group: 'com.appodeal.ads.sdk.services', module: 'appsflyer'
         exclude group: 'com.appodeal.ads.sdk.services', module: 'facebook_analytics'
