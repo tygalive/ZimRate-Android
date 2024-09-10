@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <defaults>
   <entry>
-    <key>reward_banner_click_days</key>
-    <value>3</value>
+    <key>reward_interstitial_click</key>
+    <value>2</value>
+  </entry>
+  <entry>
+    <key>reward_interstitial</key>
+    <value>1</value>
   </entry>
   <entry>
     <key>reward_watch_advert_days</key>
     <value>6</value>
   </entry>
   <entry>
-    <key>reward_starter_pack_days</key>
-    <value>40</value>
+    <key>reward_watch_advert_click</key>
+    <value>2</value>
+  </entry>
+  <entry>
+    <key>reward_banner_click</key>
+    <value>1</value>
+  </entry>
+  <entry>
+    <key>reward_interstitial_days</key>
+    <value>3</value>
   </entry>
   <entry>
     <key>reward_clock_in_days</key>
+    <value>2</value>
+  </entry>
+  <entry>
+    <key>reward_clock_in</key>
+    <value>[1, 1, 4, 1, 1, 2, 4]</value>
+  </entry>
+  <entry>
+    <key>reward_watch_advert</key>
     <value>2</value>
   </entry>
   <entry>
@@ -25,15 +45,11 @@
     <value>10</value>
   </entry>
   <entry>
-    <key>reward_watch_advert</key>
-    <value>2</value>
+    <key>reward_banner_days</key>
+    <value>3</value>
   </entry>
   <entry>
-    <key>reward_banner_click</key>
-    <value>1</value>
-  </entry>
-  <entry>
-    <key>reward_clock_in</key>
-    <value>[1, 1, 4, 1, 1, 2, 4]</value>
+    <key>reward_starter_pack_days</key>
+    <value>40</value>
   </entry>
 </defaults>

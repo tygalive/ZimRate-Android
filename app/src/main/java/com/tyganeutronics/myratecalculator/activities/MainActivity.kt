@@ -16,12 +16,12 @@ import com.google.firebase.remoteconfig.remoteConfig
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.database.models.RewardModel
 import com.tyganeutronics.myratecalculator.database.viewmodels.RewardViewModel
-import com.tyganeutronics.myratecalculator.fragments.dialogs.CoinsBalanceFragment
 import com.tyganeutronics.myratecalculator.fragments.main.FragmentAbout
 import com.tyganeutronics.myratecalculator.fragments.main.FragmentCalculator
 import com.tyganeutronics.myratecalculator.fragments.main.FragmentHome
-import com.tyganeutronics.myratecalculator.fragments.navigation.FragmentRewards
-import com.tyganeutronics.myratecalculator.fragments.navigation.FragmentSpends
+import com.tyganeutronics.myratecalculator.fragments.rewards.FragmentCoinsBalance
+import com.tyganeutronics.myratecalculator.fragments.rewards.FragmentRewards
+import com.tyganeutronics.myratecalculator.fragments.rewards.FragmentSpends
 import com.tyganeutronics.myratecalculator.interfaces.RewardModelInterface
 import com.tyganeutronics.myratecalculator.interfaces.RewardsActivity
 import com.tyganeutronics.myratecalculator.ui.base.BaseAppActivity
@@ -113,9 +113,9 @@ class MainActivity : BaseAppActivity(), NavigationBarView.OnItemSelectedListener
 
     override fun showTopUpDialog() {
         if (!isFinishing) {
-            if (supportFragmentManager.findFragmentByTag(CoinsBalanceFragment.TAG) === null) {
-                val fragment = CoinsBalanceFragment()
-                fragment.show(supportFragmentManager, CoinsBalanceFragment.TAG)
+            if (supportFragmentManager.findFragmentByTag(FragmentCoinsBalance.TAG) === null) {
+                val fragment = FragmentCoinsBalance()
+                fragment.show(supportFragmentManager, FragmentCoinsBalance.TAG)
             }
         }
     }

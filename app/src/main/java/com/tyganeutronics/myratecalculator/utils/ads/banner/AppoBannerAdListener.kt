@@ -2,7 +2,6 @@ package com.tyganeutronics.myratecalculator.utils.ads.banner
 
 import android.content.Context
 import com.appodeal.ads.BannerCallbacks
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.myratecalculator.database.models.RewardModel
 import java.lang.ref.WeakReference
 
@@ -29,8 +28,6 @@ object AppoBannerAdListener : BannerCallbacks {
     override fun onBannerClicked() {
         // Called when banner is clicked
         contextRef.get()?.let {
-            FirebaseAnalytics.getInstance(it).logEvent("reward_banner_click", null)
-
             RewardModel.rewardBannerClick(it, 0.01)
         }
 

@@ -60,7 +60,7 @@ abstract class BaseAppActivity : BaseAdActivity(), ReviewableActivity {
     }
 
     override fun requestReview() {
-        if (this::reviewManager.isInitialized) {
+        if (this::reviewManager.isInitialized && this::reviewInfo.isInitialized) {
             if (getLongPref("last_rating_requested", 0) < LocalDateTime.now()
                     .minusMonths(2)
                     .toEpochSecond(ZoneOffset.UTC)
