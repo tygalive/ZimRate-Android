@@ -3,7 +3,6 @@ package com.tyganeutronics.myratecalculator.utils.ads.rewarded
 import android.widget.Toast
 import com.appodeal.ads.Appodeal
 import com.appodeal.ads.RewardedVideoCallbacks
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.database.models.RewardModel
 import com.tyganeutronics.myratecalculator.interfaces.AdFragmentSubscriberInterface
@@ -69,7 +68,7 @@ object AppoRewardedAdListener : RewardedVideoCallbacks {
         // Called when rewarded video is clicked
 
         adSubscriberRef.get()?.let {
-            FirebaseAnalytics.getInstance(it.requireContext()).logEvent("reward_banner_click", null)
+            RewardModel.rewardWatchAdvertClick(it.requireContext(), 0.02)
         }
     }
 
@@ -79,15 +78,13 @@ object AppoRewardedAdListener : RewardedVideoCallbacks {
         adSubscriberRef.get()?.let {
 
             // Reward the user for watching the ad to completion
-            FirebaseAnalytics.getInstance(it.requireContext()).logEvent("reward_watch_advert", null)
-
             Toast.makeText(
                 it.requireContext(),
                 R.string.rewards_toast_watched_advert,
                 Toast.LENGTH_LONG
             ).show()
 
-            RewardModel.rewardWatchAdvert(it.requireContext(), amount)
+            RewardModel.rewardWatchVideoAdvert(it.requireContext(), amount)
         }
     }
 

@@ -131,9 +131,9 @@ object RewardModel {
                 reward.balance = reward.amount
                 reward.type = RewardContract.TYPES.BANNER_CLICK
                 reward.description = context
-                    .getString(R.string.rewards_award_banner_click, reward.amount)
+                    .getString(R.string.rewards_award_advert_click, reward.amount)
                 reward.expiresAt = LocalDateTime.now()
-                    .plusDays(remoteConfig.getLong(RemoteConfigContract.REWARD_BANNER_CLICK_DAYS))
+                    .plusDays(remoteConfig.getLong(RemoteConfigContract.REWARD_BANNER_DAYS))
                     .plusDays(1)
                     .truncatedTo(ChronoUnit.DAYS)
                     .minusSeconds(1)
@@ -146,7 +146,65 @@ object RewardModel {
         FirebaseAnalytics.getInstance(context).logEvent("reward_banner_click", null)
     }
 
-    fun rewardWatchAdvert(context: Context, amount: Double) {
+    fun rewardInterstitialClick(context: Context, amount: Double) {
+        AppZimrate.database.let {
+            it.transactionExecutor.execute {
+
+                val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
+
+                val reward = RewardEntity()
+                reward.amount = remoteConfig
+                    .getLong(RemoteConfigContract.REWARD_INTERSTITIAL_CLICK)
+                    .plus(amount.times(100).toLong())
+
+                reward.balance = reward.amount
+                reward.type = RewardContract.TYPES.BANNER_CLICK
+                reward.description = context
+                    .getString(R.string.rewards_award_advert_click, reward.amount)
+                reward.expiresAt = LocalDateTime.now()
+                    .plusDays(remoteConfig.getLong(RemoteConfigContract.REWARD_INTERSTITIAL_DAYS))
+                    .plusDays(1)
+                    .truncatedTo(ChronoUnit.DAYS)
+                    .minusSeconds(1)
+                    .toInstant(ZoneOffset.UTC)
+                reward.save()
+
+            }
+        }
+
+        FirebaseAnalytics.getInstance(context).logEvent("reward_interstitial_click", null)
+    }
+
+    fun rewardWatchAdvertClick(context: Context, amount: Double) {
+        AppZimrate.database.let {
+            it.transactionExecutor.execute {
+
+                val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
+
+                val reward = RewardEntity()
+                reward.amount = remoteConfig
+                    .getLong(RemoteConfigContract.REWARD_WATCH_ADVERT_CLICK)
+                    .plus(amount.times(100).toLong())
+
+                reward.balance = reward.amount
+                reward.type = RewardContract.TYPES.BANNER_CLICK
+                reward.description = context
+                    .getString(R.string.rewards_award_advert_click, reward.amount)
+                reward.expiresAt = LocalDateTime.now()
+                    .plusDays(remoteConfig.getLong(RemoteConfigContract.REWARD_WATCH_ADVERT_DAYS))
+                    .plusDays(1)
+                    .truncatedTo(ChronoUnit.DAYS)
+                    .minusSeconds(1)
+                    .toInstant(ZoneOffset.UTC)
+                reward.save()
+
+            }
+        }
+
+        FirebaseAnalytics.getInstance(context).logEvent("reward_video_click", null)
+    }
+
+    fun rewardWatchVideoAdvert(context: Context, amount: Double) {
         AppZimrate.database.let {
             it.transactionExecutor.execute {
 
@@ -174,6 +232,36 @@ object RewardModel {
 
         FirebaseAnalytics.getInstance(context).logEvent("reward_watch_advert", null)
     }
+
+    fun rewardWatchInterstitialAdvert(context: Context, amount: Double) {
+        AppZimrate.database.let {
+            it.transactionExecutor.execute {
+
+                val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
+
+                val reward = RewardEntity()
+                reward.amount = remoteConfig
+                    .getLong(RemoteConfigContract.REWARD_INTERSTITIAL)
+                    .plus(amount.times(100).toLong())
+
+                reward.balance = reward.amount
+                reward.type = RewardContract.TYPES.WATCH_ADVERT
+                reward.description = context
+                    .getString(R.string.rewards_award_watch_advert, reward.amount)
+                reward.expiresAt = LocalDateTime.now()
+                    .plusDays(remoteConfig.getLong(RemoteConfigContract.REWARD_INTERSTITIAL_DAYS))
+                    .plusDays(1)
+                    .truncatedTo(ChronoUnit.DAYS)
+                    .minusSeconds(1)
+                    .toInstant(ZoneOffset.UTC)
+                reward.save()
+
+            }
+        }
+
+        FirebaseAnalytics.getInstance(context).logEvent("reward_watch_interstitial_advert", null)
+    }
+
 
     fun rewardPurchaseCoins(context: Context, amount: Long) {
         AppZimrate.database.let {

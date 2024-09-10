@@ -17,7 +17,7 @@ import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.database.contract.RewardContract
 import com.tyganeutronics.myratecalculator.database.models.RewardModel
 import com.tyganeutronics.myratecalculator.database.models.SpendModel
-import com.tyganeutronics.myratecalculator.fragments.navigation.FragmentPurchase
+import com.tyganeutronics.myratecalculator.fragments.rewards.FragmentPurchase
 import com.tyganeutronics.myratecalculator.interfaces.AdFragmentSubscriberInterface
 import com.tyganeutronics.myratecalculator.interfaces.RewardsActivity
 import com.tyganeutronics.myratecalculator.ui.base.BaseFragment

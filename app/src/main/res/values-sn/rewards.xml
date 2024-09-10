@@ -36,7 +36,7 @@
     <string name="rewards_spent_on">Chashanda %s</string>
 
     <string name="rewards_awarded_starter_pack">MaCoin apuhwa ekutangisa. Wapihwa %d maCoin.</string>
-    <string name="rewards_award_banner_click">"MaCoin ekubaya advert. Wapihwa %d maCoin."</string>
+    <string name="rewards_award_advert_click">"MaCoin ekubaya advert. Wapihwa %d maCoin."</string>
     <string name="rewards_award_watch_advert">"MaCoin ekuona advert. Wapihwa %d maCoin."</string>
     <string name="rewards_award_daily_clock_in">"MaCoin ekuoneka mazuva aka teedzana. Wapihwa %d maCoin."</string>
     <string name="rewards_award_coins_purchased">MaCoin awatenga. %d maCoin awedzerwa.</string>

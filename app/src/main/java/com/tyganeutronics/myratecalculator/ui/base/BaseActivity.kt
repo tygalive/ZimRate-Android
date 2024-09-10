@@ -11,6 +11,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.activities.MainActivity
+import com.tyganeutronics.myratecalculator.database.models.SpendModel
 
 abstract class BaseActivity : AppCompatActivity() {
     val firebaseAnalytics: FirebaseAnalytics
@@ -46,6 +47,8 @@ abstract class BaseActivity : AppCompatActivity() {
     public override fun onStart() {
         super.onStart()
         syncViews()
+
+        SpendModel.normalizeOverdrawnRewards()
     }
 
     protected open fun syncViews() {

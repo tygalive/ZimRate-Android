@@ -34,11 +34,17 @@ interface RewardsDao {
     @Query("SELECT TOTAL(`balance`) FROM `rewards` WHERE DATETIME(`expires_at`, 'unixepoch') >= DATETIME('now') AND `type` = :type")
     fun tokenTypeBalance(type: String = RewardContract.TYPES.PURCHASE): Long
 
+    @Query("SELECT TOTAL(`balance`) FROM `rewards` WHERE DATETIME(`expires_at`, 'unixepoch') >= DATETIME('now')")
+    fun tokenBalance(): Long
+
     @Query("SELECT * FROM `rewards` WHERE DATETIME(`expires_at`, 'unixepoch') >= DATETIME('now') AND `balance` > 0 ORDER BY `expires_at` ASC LIMIT 1")
     fun oldestActiveReward(): RewardEntity?
 
     @Query("SELECT * FROM `rewards` ORDER BY `expires_at` DESC LIMIT 1")
     fun longestLivingReward(): RewardEntity?
+
+    @Query("SELECT * FROM `rewards` WHERE `balance` < 0 ORDER BY `expires_at` DESC LIMIT 1")
+    fun overDrawnReward(): RewardEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(rewardEntity: RewardEntity): Long?

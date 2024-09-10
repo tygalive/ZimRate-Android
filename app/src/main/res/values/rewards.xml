@@ -36,7 +36,7 @@
     <string name="rewards_spent_on">Spent %s</string>
 
     <string name="rewards_awarded_starter_pack">Starter pack reward. Awarded %d Coins.</string>
-    <string name="rewards_award_banner_click">"Banner click reward. Awarded %d Coins."</string>
+    <string name="rewards_award_advert_click">"Banner click reward. Awarded %d Coins."</string>
     <string name="rewards_award_watch_advert">"Watch advert reward. Awarded %d Coins."</string>
     <string name="rewards_award_daily_clock_in">"Daily clock in reward. Awarded %d Coins."</string>
     <string name="rewards_award_coins_purchased">Coin Purchase. %d coins have been credited.</string>

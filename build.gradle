@@ -7,7 +7,6 @@ buildscript {
         mavenLocal()
         mavenCentral()
         google()
-        maven { url 'https://artifacts.applovin.com/android' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.5.2'
@@ -16,9 +15,6 @@ buildscript {
 
         // Add the Crashlytics Gradle plugin.
         classpath 'com.google.firebase:firebase-crashlytics-gradle:3.0.2'
-
-        // Applovin Ads
-        classpath "com.applovin.quality:AppLovinQualityServiceGradlePlugin:5.0.2"
     }
 }
 

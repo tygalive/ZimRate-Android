@@ -1,4 +1,4 @@
-package com.tyganeutronics.myratecalculator.fragments.dialogs
+package com.tyganeutronics.myratecalculator.fragments.rewards
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import com.tyganeutronics.myratecalculator.database.viewmodels.RewardViewModel
 import com.tyganeutronics.myratecalculator.ui.base.BaseExpandedDialogFragment
 import com.tyganeutronics.myratecalculator.utils.traits.requireViewById
 
-class CoinsBalanceFragment : BaseExpandedDialogFragment() {
+class FragmentCoinsBalance : BaseExpandedDialogFragment() {
 
     private lateinit var rewardViewModel: RewardViewModel
 

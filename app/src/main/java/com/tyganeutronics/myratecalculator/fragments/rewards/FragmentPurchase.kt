@@ -1,4 +1,4 @@
-package com.tyganeutronics.myratecalculator.fragments.navigation
+package com.tyganeutronics.myratecalculator.fragments.rewards
 
 import android.os.Bundle
 import android.os.Handler

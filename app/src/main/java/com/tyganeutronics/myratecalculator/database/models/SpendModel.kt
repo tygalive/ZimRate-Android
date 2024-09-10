@@ -62,4 +62,32 @@ object SpendModel {
         return streak.toList().filterNotNull()
     }
 
+    fun normalizeOverdrawnRewards() {
+
+        AppZimrate.database.let {
+            it.transactionExecutor.execute {
+
+                var reward = it.rewards().overDrawnReward()
+
+                while (reward != null) {
+
+                    it.rewards().oldestActiveReward()?.let { oldest ->
+
+                        reward!!.balance++
+                        reward!!.dirty = true
+                        reward!!.save()
+
+                        oldest.balance--
+                        oldest.dirty = true
+                        oldest.save()
+
+                        reward = it.rewards().overDrawnReward()
+
+                    } ?: break
+                }
+            }
+        }
+
+    }
+
 }
