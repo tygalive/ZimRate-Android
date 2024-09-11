@@ -4,7 +4,9 @@ import android.content.Context
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.myratecalculator.AppZimrate
+import com.tyganeutronics.myratecalculator.database.Database
 import com.tyganeutronics.myratecalculator.database.entities.SpendEntity
+import kotlin.math.absoluteValue
 
 object SpendModel {
 
@@ -62,32 +64,23 @@ object SpendModel {
         return streak.toList().filterNotNull()
     }
 
-    fun normalizeOverdrawnRewards() {
+    fun normalizeOverdrawnRewards(database: Database, credits: Long): Long {
 
-        AppZimrate.database.let {
-            it.transactionExecutor.execute {
+        val overdraft = database.rewards().overDrawnReward()
 
-                var reward = it.rewards().overDrawnReward()
+        if (overdraft != null) {
 
-                while (reward != null) {
+            //
+            val balance = credits.coerceAtMost(overdraft.balance.absoluteValue)
 
-                    it.rewards().oldestActiveReward()?.let { oldest ->
+            overdraft.balance += balance
+            overdraft.dirty = true
+            overdraft.save()
 
-                        reward!!.balance++
-                        reward!!.dirty = true
-                        reward!!.save()
-
-                        oldest.balance--
-                        oldest.dirty = true
-                        oldest.save()
-
-                        reward = it.rewards().overDrawnReward()
-
-                    } ?: break
-                }
-            }
+            return credits - balance
         }
 
+        return credits
     }
 
 }
