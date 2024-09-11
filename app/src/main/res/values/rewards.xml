@@ -20,7 +20,7 @@
     <string name="rewards_history_spends_cta">Coin Spends</string>
     <string name="rewards_earn_advert">Watch advert to earn %d+ coins</string>
     <string name="rewards_earn_advert_loading">Loading Advert…</string>
-    <string name="rewards_earn_purchase">Purchase Coins</string>
+    <string name="rewards_earn_purchase">Purchase Coins (Removes Ads)</string>
 
     <string name="rewards_coins">Coins</string>
     <string name="menu_coins_balance">%d Coins</string>

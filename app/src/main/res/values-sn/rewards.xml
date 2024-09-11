@@ -20,7 +20,7 @@
     <string name="rewards_history_spends_cta">Akashandiswa</string>
     <string name="rewards_earn_advert">Ona advert upihwe %d+ maCoin</string>
     <string name="rewards_earn_advert_loading">Advert iri kuloader…</string>
-    <string name="rewards_earn_purchase">Tenga maCoin</string>
+    <string name="rewards_earn_purchase">Tenga maCoin (Bvisa Ads)</string>
 
     <string name="rewards_coins">MaCoin</string>
     <string name="menu_coins_balance">%d maCoin</string>

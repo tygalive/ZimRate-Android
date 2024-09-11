@@ -138,4 +138,12 @@ class FragmentSectionRewards : BaseFragment(), OnClickListener, AdFragmentSubscr
 
         Appodeal.setRewardedVideoCallbacks(null)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        AppoRewardedAdListener.apply {
+            adSubscriberRef.clear()
+        }
+    }
 }
