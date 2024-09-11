@@ -92,7 +92,7 @@ object RewardModel {
 
                 val reward = RewardEntity()
                 reward.amount = remoteConfig.getLong(RemoteConfigContract.REWARD_STARTER_PACK)
-                reward.balance = reward.amount
+                reward.balance = SpendModel.normalizeOverdrawnRewards(it, reward.amount)
                 reward.type = RewardContract.TYPES.STARTER_PACK
 
                 reward.description = if (context !== null) {
@@ -128,7 +128,7 @@ object RewardModel {
                     .getLong(RemoteConfigContract.REWARD_BANNER_CLICK)
                     .plus(amount.times(100).toLong())
 
-                reward.balance = reward.amount
+                reward.balance = SpendModel.normalizeOverdrawnRewards(it, reward.amount)
                 reward.type = RewardContract.TYPES.BANNER_CLICK
                 reward.description = context
                     .getString(R.string.rewards_award_advert_click, reward.amount)
@@ -157,7 +157,7 @@ object RewardModel {
                     .getLong(RemoteConfigContract.REWARD_INTERSTITIAL_CLICK)
                     .plus(amount.times(100).toLong())
 
-                reward.balance = reward.amount
+                reward.balance = SpendModel.normalizeOverdrawnRewards(it, reward.amount)
                 reward.type = RewardContract.TYPES.BANNER_CLICK
                 reward.description = context
                     .getString(R.string.rewards_award_advert_click, reward.amount)
@@ -186,7 +186,7 @@ object RewardModel {
                     .getLong(RemoteConfigContract.REWARD_WATCH_ADVERT_CLICK)
                     .plus(amount.times(100).toLong())
 
-                reward.balance = reward.amount
+                reward.balance = SpendModel.normalizeOverdrawnRewards(it, reward.amount)
                 reward.type = RewardContract.TYPES.BANNER_CLICK
                 reward.description = context
                     .getString(R.string.rewards_award_advert_click, reward.amount)
@@ -215,7 +215,7 @@ object RewardModel {
                     .getLong(RemoteConfigContract.REWARD_WATCH_ADVERT)
                     .plus(amount.times(100).toLong())
 
-                reward.balance = reward.amount
+                reward.balance = SpendModel.normalizeOverdrawnRewards(it, reward.amount)
                 reward.type = RewardContract.TYPES.WATCH_ADVERT
                 reward.description = context
                     .getString(R.string.rewards_award_watch_advert, reward.amount)
@@ -244,7 +244,7 @@ object RewardModel {
                     .getLong(RemoteConfigContract.REWARD_INTERSTITIAL)
                     .plus(amount.times(100).toLong())
 
-                reward.balance = reward.amount
+                reward.balance = SpendModel.normalizeOverdrawnRewards(it, reward.amount)
                 reward.type = RewardContract.TYPES.WATCH_ADVERT
                 reward.description = context
                     .getString(R.string.rewards_award_watch_advert, reward.amount)
@@ -271,7 +271,7 @@ object RewardModel {
 
                 val reward = RewardEntity()
                 reward.amount = amount
-                reward.balance = reward.amount
+                reward.balance = SpendModel.normalizeOverdrawnRewards(it, reward.amount)
                 reward.type = RewardContract.TYPES.PURCHASE
                 reward.description = context
                     .getString(R.string.rewards_award_coins_purchased, reward.amount)

@@ -272,8 +272,6 @@ class FragmentPurchase : BaseFragment(), View.OnClickListener, PurchasesUpdatedL
                                     RewardModel.rewardPurchaseCoins(requireContext(), coins)
                                 }
 
-                                dismiss()
-
                                 Toast.makeText(
                                     requireContext().applicationContext,
                                     getString(
@@ -283,6 +281,8 @@ class FragmentPurchase : BaseFragment(), View.OnClickListener, PurchasesUpdatedL
                                     ),
                                     Toast.LENGTH_LONG
                                 ).show()
+
+                                dismiss()
                             }
                         }
                     }
