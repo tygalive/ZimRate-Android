@@ -34,12 +34,33 @@ abstract class BaseEntity {
 
     protected abstract fun doDelete(database: Database)
 
+    fun insertInstantly() {
+        AppZimrate.database.let {
+            if (this.createdAt == Instant.MIN) this.createdAt = Instant.now()
+            if (this.updatedAt == Instant.MIN) this.updatedAt = Instant.now()
+            doInsert(it)
+        }
+    }
+
+    fun updateInstantly() {
+        AppZimrate.database.let {
+            if (this.updatedAt == Instant.MIN) this.updatedAt = Instant.now()
+            doUpdate(it)
+        }
+    }
+
+    fun deleteInstantly() {
+        AppZimrate.database.let {
+            doDelete(it)
+        }
+    }
+
     fun insert() {
         AppZimrate.database.let {
             it.transactionExecutor.execute {
                 if (this.createdAt == Instant.MIN) this.createdAt = Instant.now()
                 if (this.updatedAt == Instant.MIN) this.updatedAt = Instant.now()
-                doInsert(it)
+                insertInstantly()
             }
         }
     }
@@ -48,7 +69,7 @@ abstract class BaseEntity {
         AppZimrate.database.let {
             it.transactionExecutor.execute {
                 if (this.updatedAt == Instant.MIN) this.updatedAt = Instant.now()
-                doUpdate(it)
+                updateInstantly()
             }
         }
     }
@@ -56,7 +77,7 @@ abstract class BaseEntity {
     fun delete() {
         AppZimrate.database.let {
             it.transactionExecutor.execute {
-                doDelete(it)
+                deleteInstantly()
             }
         }
     }
@@ -66,6 +87,14 @@ abstract class BaseEntity {
             this.insert()
         } else {
             this.update()
+        }
+    }
+
+    fun saveInstantly() {
+        if (this.id == 0L) {
+            this.insertInstantly()
+        } else {
+            this.updateInstantly()
         }
     }
 

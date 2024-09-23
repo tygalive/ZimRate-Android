@@ -15,6 +15,7 @@ import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.tyganeutronics.myratecalculator.R
+import com.tyganeutronics.myratecalculator.database.models.SpendModel
 import com.tyganeutronics.myratecalculator.interfaces.ReviewableActivity
 import com.tyganeutronics.myratecalculator.utils.BaseUtils
 import com.tyganeutronics.myratecalculator.utils.traits.getLongPref
@@ -92,6 +93,8 @@ abstract class BaseAppActivity : BaseAdActivity(), ReviewableActivity {
         if (this::appUpdateManager.isInitialized) {
             appUpdateManager.registerListener(listener)
         }
+
+        SpendModel.normalizeOverdrawnRewards()
     }
 
     override fun onStop() {
