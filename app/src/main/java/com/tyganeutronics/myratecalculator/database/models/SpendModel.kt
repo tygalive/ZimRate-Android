@@ -4,9 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.myratecalculator.AppZimrate
-import com.tyganeutronics.myratecalculator.database.Database
 import com.tyganeutronics.myratecalculator.database.entities.SpendEntity
-import kotlin.math.absoluteValue
 
 object SpendModel {
 
@@ -17,14 +15,14 @@ object SpendModel {
 
                 var rewards = emptyList<Long>()
 
-                for (i in 0..credits) {
+                for (i in 0 until credits) {
                     // If there is no active reward, over draw the longest living reward
                     val reward =
                         it.rewards().oldestActiveReward() ?: it.rewards().longestLivingReward()!!
 
                     reward.balance--
                     reward.dirty = true
-                    reward.save()
+                    reward.saveInstantly()
 
                     rewards = rewards.plus(reward.id).distinct()
                 }
@@ -64,23 +62,27 @@ object SpendModel {
         return streak.toList().filterNotNull()
     }
 
-    fun normalizeOverdrawnRewards(database: Database, credits: Long): Long {
+    fun normalizeOverdrawnRewards() {
 
-        val overdraft = database.rewards().overDrawnReward()
+        AppZimrate.database.let {
+            it.transactionExecutor.execute {
+                var reward = it.rewards().overDrawnReward()
+                var oldest = it.rewards().oldestActiveReward()
 
-        if (overdraft != null) {
+                while (reward != null && oldest != null) {
+                    reward.balance++
+                    reward.dirty = true
+                    reward.saveInstantly()
 
-            //
-            val balance = credits.coerceAtMost(overdraft.balance.absoluteValue)
+                    oldest.balance--
+                    oldest.dirty = true
+                    oldest.saveInstantly()
 
-            overdraft.balance += balance
-            overdraft.dirty = true
-            overdraft.save()
-
-            return credits - balance
+                    reward = it.rewards().overDrawnReward()
+                    oldest = it.rewards().oldestActiveReward()
+                }
+            }
         }
-
-        return credits
     }
 
 }
