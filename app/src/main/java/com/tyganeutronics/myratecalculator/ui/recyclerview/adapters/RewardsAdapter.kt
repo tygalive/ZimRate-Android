@@ -37,6 +37,7 @@ class RewardsAdapter(private val itemInterFace: RewardItemInterface) :
 
         holder.title.text = rewardEntity.description
         holder.description.text = holder.getContext().getString(R.string.rewards_expires, duration)
-        holder.balance.text = rewardEntity.balance.toString()
+        holder.balance.text = holder.getContext()
+            .getString(R.string.rewards_balance_amount, rewardEntity.balance, rewardEntity.amount)
     }
 }

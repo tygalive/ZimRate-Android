@@ -32,6 +32,7 @@
     <string name="rewards_purchases_history_title">Purchased Coins</string>
     <string name="rewards_coin_spends_history_title">Coin Spends History</string>
 
+    <string name="rewards_balance_amount" translatable="false">%1$d / %2$d</string>
     <string name="rewards_expires">Expires %s</string>
     <string name="rewards_spent_on">Spent %s</string>
 
