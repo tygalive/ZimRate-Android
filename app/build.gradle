@@ -76,7 +76,7 @@ dependencies {
     implementation "androidx.core:core-splashscreen:1.0.1"
 
     // Appodeal Ads
-    implementation 'com.bigossp:max-mediation:5.0.0.0'
+    implementation 'com.bigossp:max-mediation:5.0.2.0'
     implementation('com.appodeal.ads:sdk:3.3.2.0') {
         exclude group: 'com.appodeal.ads.sdk.services', module: 'adjust'
         exclude group: 'com.appodeal.ads.sdk.services', module: 'appsflyer'
@@ -88,7 +88,7 @@ dependencies {
 
     //Crashlytics
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:33.3.0')
+    implementation platform('com.google.firebase:firebase-bom:33.5.1')
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-crashlytics'
@@ -102,7 +102,7 @@ dependencies {
     //multi dex
     implementation 'androidx.multidex:multidex:2.0.1'
 
-    implementation 'org.jetbrains:annotations:24.1.0'
+    implementation 'org.jetbrains:annotations:26.0.1'
 
     //preferences
     implementation 'androidx.preference:preference-ktx:1.2.1'
@@ -122,13 +122,13 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6'
 
     //play licensing
-    def billing_version = '7.1.0'
+    def billing_version = '7.1.1'
     implementation("com.android.billingclient:billing:$billing_version")
     implementation("com.android.billingclient:billing-ktx:$billing_version")
 
     // Play In-App Review
-    implementation 'com.google.android.play:review:2.0.1'
-    implementation 'com.google.android.play:review-ktx:2.0.1'
+    implementation 'com.google.android.play:review:2.0.2'
+    implementation 'com.google.android.play:review-ktx:2.0.2'
 
     // Play In-App Update
     implementation 'com.google.android.play:app-update:2.1.0'
