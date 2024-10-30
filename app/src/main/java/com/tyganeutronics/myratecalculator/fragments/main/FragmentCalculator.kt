@@ -22,7 +22,6 @@ import com.apollographql.apollo3.api.Optional
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.maltaisn.calcdialog.CalcDialog
 import com.maltaisn.calcdialog.CalcNumpadLayout
 import com.tyganeutronics.myratecalculator.AppZimrate
@@ -87,8 +86,6 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-
-        rewardViewModel = (requireActivity() as RewardModelInterface).rewardViewModel
     }
 
     private fun textWatchers() {
@@ -111,6 +108,8 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
      */
     override fun bindViews() {
         super.bindViews()
+
+        rewardViewModel = (requireActivity() as RewardModelInterface).rewardViewModel
 
         requireViewById<SwipeRefreshLayout>(R.id.sr_layout).setOnRefreshListener(this)
 
@@ -179,7 +178,7 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
             )
         )
         requireViewById<TextInputEditText>(R.id.et_bond).setText(
-            requireActivity().getStringPref(
+            requireContext().getStringPref(
                 getString(R.string.currency_bond),
                 "1"
             )
@@ -404,7 +403,7 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         if (isAppSettled) {
-            FirebaseAnalytics.getInstance(requireContext()).logEvent("change_currency", Bundle())
+            firebaseAnalytics.logEvent("change_currency", Bundle())
         }
 
         calculate()
@@ -421,7 +420,7 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
 
             R.id.menu_info -> {
 
-                FirebaseAnalytics.getInstance(requireContext()).logEvent("view_info_dialog", null)
+                firebaseAnalytics.logEvent("view_info_dialog", null)
 
                 val dialog = AlertDialog.Builder(requireContext())
                 dialog.setTitle(R.string.menu_info)
@@ -625,8 +624,7 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
                 val selection = resources.getStringArray(R.array.currencies)
                     .indexOf(getString(currency.getName()))
 
-                FirebaseAnalytics.getInstance(requireContext())
-                    .logEvent("copy_result_for_calculation", null)
+                firebaseAnalytics.logEvent("copy_result_for_calculation", null)
 
                 this@FragmentCalculator.requireViewById<AppCompatSpinner>(R.id.s_currency)
                     .setSelection(selection)
