@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.AsyncTaskLoader
 import androidx.loader.content.Loader
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.myratecalculator.AppZimrate
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.database.entities.SpendEntity
@@ -82,7 +81,7 @@ class FragmentSpends : BaseListFragment(), SpendItemInterface,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FirebaseAnalytics.getInstance(requireContext()).logEvent("view_Purchases_History", null)
+        firebaseAnalytics.logEvent("view_Purchases_History", null)
     }
 
     override fun onCreateView(

@@ -14,6 +14,7 @@ import com.tyganeutronics.myratecalculator.database.viewmodels.RewardViewModel
 import com.tyganeutronics.myratecalculator.interfaces.RewardsActivity
 import com.tyganeutronics.myratecalculator.ui.base.BaseFragment
 import com.tyganeutronics.myratecalculator.utils.traits.requireViewById
+import java.util.Locale
 
 class FragmentSectionBalance : BaseFragment(), OnClickListener {
 
@@ -27,14 +28,10 @@ class FragmentSectionBalance : BaseFragment(), OnClickListener {
         return inflater.inflate(R.layout.fragment_profile_balance, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        calculatorViewModel = ViewModelProvider(this)[RewardViewModel::class.java]
-    }
-
     override fun bindViews() {
         super.bindViews()
+
+        calculatorViewModel = ViewModelProvider(this)[RewardViewModel::class.java]
 
         requireViewById<LinearLayoutCompat>(R.id.btn_show_spends_history).setOnClickListener(this)
     }
@@ -44,7 +41,7 @@ class FragmentSectionBalance : BaseFragment(), OnClickListener {
 
         val observer = Observer { balance: Long ->
             requireViewById<AppCompatTextView>(R.id.txt_rewards_balance).apply {
-                text = balance.toString()
+                text = String.format(Locale.getDefault(), "%d", balance)
             }
         }
 

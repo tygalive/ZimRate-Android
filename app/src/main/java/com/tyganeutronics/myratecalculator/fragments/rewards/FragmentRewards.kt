@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.AsyncTaskLoader
 import androidx.loader.content.Loader
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.tyganeutronics.myratecalculator.AppZimrate
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.database.contract.RewardContract
@@ -95,7 +94,7 @@ class FragmentRewards : BaseListFragment(), RewardItemInterface,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FirebaseAnalytics.getInstance(requireContext()).logEvent("view_Rewards_History", null)
+        firebaseAnalytics.logEvent("view_Rewards_History", null)
     }
 
     override fun onCreateView(

@@ -25,14 +25,10 @@ class FragmentCoinsBalance : BaseExpandedDialogFragment() {
         return inflater.inflate(R.layout.fragment_coins_balance, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        rewardViewModel = ViewModelProvider(this)[RewardViewModel::class.java]
-    }
-
     override fun bindViews() {
         super.bindViews()
+
+        rewardViewModel = ViewModelProvider(this)[RewardViewModel::class.java]
 
         toolBar.apply {
             title = getString(R.string.rewards_coins_title)

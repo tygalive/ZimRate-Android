@@ -13,6 +13,7 @@ import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.fragments.main.FragmentCalculator
 import com.tyganeutronics.myratecalculator.utils.traits.getStringPref
 import com.tyganeutronics.myratecalculator.utils.traits.removePref
+import java.util.Locale
 
 
 class SingleRateProvider : AppWidgetProvider() {
@@ -70,8 +71,9 @@ class SingleRateProvider : AppWidgetProvider() {
             context.getStringPref("widget-$appWidgetId", context.getString(R.string.currency_rbz))
 
         val value = String.format(
+            Locale.getDefault(),
             "%10.2f",
-            context.getStringPref(currency, "1")?.toDouble()
+            context.getStringPref(currency, "1").toDouble()
         )
 
         //set values
