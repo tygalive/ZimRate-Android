@@ -19,7 +19,7 @@ import com.tyganeutronics.myratecalculator.database.models.RewardModel
 import com.tyganeutronics.myratecalculator.utils.TokenUtils
 import com.tyganeutronics.myratecalculator.utils.contracts.ApiContract
 
-class AppZimrate : MultiDexApplication() {
+class AppZimRate : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
@@ -76,7 +76,7 @@ class AppZimrate : MultiDexApplication() {
                 super.onOpen(db)
 
                 //clear old history
-                AppZimrate.database.apply {
+                AppZimRate.database.apply {
                     transactionExecutor.execute {
                         rewards().cleanExpired()
                         spends().cleanExpired()

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.AsyncTaskLoader
 import androidx.loader.content.Loader
-import com.tyganeutronics.myratecalculator.AppZimrate
+import com.tyganeutronics.myratecalculator.AppZimRate
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.database.contract.RewardContract
 import com.tyganeutronics.myratecalculator.database.entities.RewardEntity
@@ -63,9 +63,9 @@ class FragmentRewards : BaseListFragment(), RewardItemInterface,
                 val type = args?.getString(RewardContract.COLUMN_NAME_TYPE, "") ?: ""
 
                 return if (args !== null && type.isNotEmpty()) {
-                    AppZimrate.database.rewards().getType(type)
+                    AppZimRate.database.rewards().getType(type)
                 } else {
-                    AppZimrate.database.rewards().getActive()
+                    AppZimRate.database.rewards().getActive()
                 }
             }
         }

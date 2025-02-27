@@ -1,7 +1,7 @@
 package com.tyganeutronics.myratecalculator.utils
 
 import android.content.Context
-import com.tyganeutronics.myratecalculator.AppZimrate
+import com.tyganeutronics.myratecalculator.AppZimRate
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneOffset
@@ -13,7 +13,7 @@ object TokenUtils {
     }
 
     fun hasNoPaidTokens(): Boolean {
-        return AppZimrate.database.rewards().tokenTypeBalance() <= 0
+        return AppZimRate.database.rewards().tokenTypeBalance() <= 0
     }
 
     fun installOlderThan(context: Context, days: Long = 3): Boolean {
@@ -29,7 +29,7 @@ object TokenUtils {
     }
 
     fun hasLowTokenBalance(): Boolean {
-        return AppZimrate.database.rewards().tokenBalance() < 5
+        return AppZimRate.database.rewards().tokenBalance() < 5
     }
 
 }

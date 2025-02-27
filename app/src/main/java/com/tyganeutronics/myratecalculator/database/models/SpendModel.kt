@@ -3,14 +3,14 @@ package com.tyganeutronics.myratecalculator.database.models
 import android.content.Context
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.tyganeutronics.myratecalculator.AppZimrate
+import com.tyganeutronics.myratecalculator.AppZimRate
 import com.tyganeutronics.myratecalculator.database.entities.SpendEntity
 
 object SpendModel {
 
     fun consume(context: Context, credits: Long, type: String, description: String) {
 
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             it.transactionExecutor.execute {
 
                 var rewards = emptyList<Long>()
@@ -49,7 +49,7 @@ object SpendModel {
         val streak = arrayOfNulls<Boolean>(days)
         streak.fill(false)
 
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             for (i in 0 until days) {
                 if (it.rewards().getDayRewards(i).isEmpty()) {
                     break
@@ -64,7 +64,7 @@ object SpendModel {
 
     fun normalizeOverdrawnRewards() {
 
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             it.transactionExecutor.execute {
                 var reward = it.rewards().overDrawnReward()
                 var oldest = it.rewards().oldestActiveReward()

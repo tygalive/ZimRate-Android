@@ -4,7 +4,7 @@ import android.provider.BaseColumns
 import androidx.room.ColumnInfo
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import com.tyganeutronics.myratecalculator.AppZimrate
+import com.tyganeutronics.myratecalculator.AppZimRate
 import com.tyganeutronics.myratecalculator.database.Database
 import com.tyganeutronics.myratecalculator.database.contract.BaseContract
 import com.tyganeutronics.myratecalculator.utils.traits.optInstant
@@ -35,7 +35,7 @@ abstract class BaseEntity {
     protected abstract fun doDelete(database: Database)
 
     fun insertInstantly() {
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             if (this.createdAt == Instant.MIN) this.createdAt = Instant.now()
             if (this.updatedAt == Instant.MIN) this.updatedAt = Instant.now()
             doInsert(it)
@@ -43,20 +43,20 @@ abstract class BaseEntity {
     }
 
     fun updateInstantly() {
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             if (this.updatedAt == Instant.MIN) this.updatedAt = Instant.now()
             doUpdate(it)
         }
     }
 
     fun deleteInstantly() {
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             doDelete(it)
         }
     }
 
     fun insert() {
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             it.transactionExecutor.execute {
                 if (this.createdAt == Instant.MIN) this.createdAt = Instant.now()
                 if (this.updatedAt == Instant.MIN) this.updatedAt = Instant.now()
@@ -66,7 +66,7 @@ abstract class BaseEntity {
     }
 
     fun update() {
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             it.transactionExecutor.execute {
                 if (this.updatedAt == Instant.MIN) this.updatedAt = Instant.now()
                 updateInstantly()
@@ -75,7 +75,7 @@ abstract class BaseEntity {
     }
 
     fun delete() {
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             it.transactionExecutor.execute {
                 deleteInstantly()
             }

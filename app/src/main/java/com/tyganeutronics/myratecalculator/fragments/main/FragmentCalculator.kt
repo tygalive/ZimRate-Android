@@ -24,7 +24,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.maltaisn.calcdialog.CalcDialog
 import com.maltaisn.calcdialog.CalcNumpadLayout
-import com.tyganeutronics.myratecalculator.AppZimrate
+import com.tyganeutronics.myratecalculator.AppZimRate
 import com.tyganeutronics.myratecalculator.Calculator
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.database.BOND
@@ -297,7 +297,7 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
 
                     val prefer = Optional.presentIfNotNull(Prefer.safeValueOf(option.uppercase()))
 
-                    AppZimrate
+                    AppZimRate
                         .apolloClient
                         .query(FetchRatesQuery(prefer))
                         .execute()
@@ -567,7 +567,7 @@ class FragmentCalculator : BaseFragment(), AdapterView.OnItemSelectedListener,
         //save amount entered
         requireContext().putStringPref("amount", amountText)
         requireContext().putIntPref(
-            "currency",
+            CurrencyContract.CURRENCY,
             requireViewById<AppCompatSpinner>(R.id.s_currency).selectedItemPosition
         )
 

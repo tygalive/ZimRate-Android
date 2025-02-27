@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.AsyncTaskLoader
 import androidx.loader.content.Loader
-import com.tyganeutronics.myratecalculator.AppZimrate
+import com.tyganeutronics.myratecalculator.AppZimRate
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.database.entities.SpendEntity
 import com.tyganeutronics.myratecalculator.interfaces.SpendItemInterface
@@ -53,7 +53,7 @@ class FragmentSpends : BaseListFragment(), SpendItemInterface,
             }
 
             override fun loadInBackground(): List<SpendEntity> {
-                return AppZimrate.database.spends().getAll()
+                return AppZimRate.database.spends().getAll()
             }
         }
 

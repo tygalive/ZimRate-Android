@@ -6,7 +6,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.remoteConfig
-import com.tyganeutronics.myratecalculator.AppZimrate
+import com.tyganeutronics.myratecalculator.AppZimRate
 import com.tyganeutronics.myratecalculator.R
 import com.tyganeutronics.myratecalculator.database.contract.RewardContract
 import com.tyganeutronics.myratecalculator.database.entities.RewardEntity
@@ -28,7 +28,7 @@ object RewardModel {
     }
 
     fun maybeRewardClockIn(context: Context, days: Int = 7) {
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             it.transactionExecutor.execute {
 
                 if (it.rewards().getDayRewards().isEmpty()) {
@@ -85,7 +85,7 @@ object RewardModel {
     }
 
     fun rewardStarterPack(context: Context? = null) {
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             it.transactionExecutor.execute {
 
                 val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
@@ -118,7 +118,7 @@ object RewardModel {
     }
 
     fun rewardBannerClick(context: Context, amount: Double) {
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             it.transactionExecutor.execute {
 
                 val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
@@ -147,7 +147,7 @@ object RewardModel {
     }
 
     fun rewardInterstitialClick(context: Context, amount: Double) {
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             it.transactionExecutor.execute {
 
                 val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
@@ -176,7 +176,7 @@ object RewardModel {
     }
 
     fun rewardWatchAdvertClick(context: Context, amount: Double) {
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             it.transactionExecutor.execute {
 
                 val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
@@ -205,7 +205,7 @@ object RewardModel {
     }
 
     fun rewardWatchVideoAdvert(context: Context, amount: Double) {
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             it.transactionExecutor.execute {
 
                 val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
@@ -234,7 +234,7 @@ object RewardModel {
     }
 
     fun rewardWatchInterstitialAdvert(context: Context, amount: Double) {
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             it.transactionExecutor.execute {
 
                 val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
@@ -264,7 +264,7 @@ object RewardModel {
 
 
     fun rewardPurchaseCoins(context: Context, amount: Long) {
-        AppZimrate.database.let {
+        AppZimRate.database.let {
             it.transactionExecutor.execute {
 
                 val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
